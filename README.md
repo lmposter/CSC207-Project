@@ -12,3 +12,8 @@ The problem domain our team is tentatively wanting to focus on is e-commerce and
 - Recommendations and Personalization: The app may offer product recommendations based on user preferences and purchase history.
 - Seller Dashboard: An administrative panel will allow retailers to manage their product listings, track sales, and handle customer inquiries.
 - Mobile Platform: The application will be built with Andriod Studio, ensuring a seamless mobile shopping experience on Andriod devices.
+## Tools Used
+- Java
+- UML
+- Android Studio
+- FireBase
