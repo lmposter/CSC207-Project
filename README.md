@@ -58,3 +58,33 @@ public class API_Example {
 ```java
 {"coord":{"lon":-60,"lat":60},"weather":[{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04d"}],"base":"stations","main":{"temp":277.02,"feels_like":277.02,"temp_min":277.02,"temp_max":277.02,"pressure":1020,"humidity":75,"sea_level":1020,"grnd_level":1020},"visibility":10000,"wind":{"speed":0.72,"deg":85,"gust":0.91},"clouds":{"all":100},"dt":1696015048,"sys":{"sunrise":1695981601,"sunset":1696023642},"timezone":-14400,"id":0,"name":"","cod":200}
 ```
+## Interpretation
+```java
+import org.json.JSONObject;
+
+public class WeatherParser {
+
+    public static void main(String[] args) {
+        // Example Weather API response
+        String weatherApiResponse = "{\"coord\":{\"lon\":-60,\"lat\":60},\"weather\":[{\"id\":804,\"main\":\"Clouds\",\"description\":\"overcast clouds\",\"icon\":\"04d\"}],\"base\":\"stations\",\"main\":{\"temp\":277.02,\"feels_like\":277.02,\"temp_min\":277.02,\"temp_max\":277.02,\"pressure\":1020,\"humidity\":75,\"sea_level\":1020,\"grnd_level\":1020},\"visibility\":10000,\"wind\":{\"speed\":0.72,\"deg\":85,\"gust\":0.91},\"clouds\":{\"all\":100},\"dt\":1696015048,\"sys\":{\"sunrise\":1695981601,\"sunset\":1696023642},\"timezone\":-14400,\"id\":0,\"name\":\"\",\"cod\":200}";
+
+        // Parse the JSON response
+        JSONObject weatherData = new JSONObject(weatherApiResponse);
+
+        // Extract relevant information
+        double temperature = weatherData.getJSONObject("main").getDouble("temp");
+        String description = weatherData.getJSONArray("weather").getJSONObject(0).getString("description");
+        double windSpeed = weatherData.getJSONObject("wind").getDouble("speed");
+        int humidity = weatherData.getJSONObject("main").getInt("humidity");
+        int visibility = weatherData.getInt("visibility");
+
+        // Example usage in a shopping app context
+        System.out.println("Current temperature: " + temperature + " K");
+        System.out.println("Weather description: " + description);
+        System.out.println("Wind speed: " + windSpeed + " m/s");
+        System.out.println("Humidity: " + humidity + "%");
+        System.out.println("Visibility: " + visibility + " meters");
+    }
+}
+```
+We will use these extracted values to make decisions or display information within the shopping app based on the weather conditions. For instance, weather-appropriate clothing or display relevant promotions based on the current weather.
