@@ -25,7 +25,7 @@ The problem domain our team is tentatively wanting to focus on is e-commerce and
 ## API Description
 Integrating a weather API into a shopping app can enhance user experience by providing real-time weather information, allowing personalized product recommendations based on current season/weather conditions.
 ## Example Code
-"""java
+```java
 
 import java.net.URI;
 import java.net.http.HttpRequest;
@@ -53,6 +53,6 @@ public class API_Example {
         System.out.println(response.body());
     }
 }
-"""
+```
 ## Output
 {"coord":{"lon":-60,"lat":60},"weather":[{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04d"}],"base":"stations","main":{"temp":277.02,"feels_like":277.02,"temp_min":277.02,"temp_max":277.02,"pressure":1020,"humidity":75,"sea_level":1020,"grnd_level":1020},"visibility":10000,"wind":{"speed":0.72,"deg":85,"gust":0.91},"clouds":{"all":100},"dt":1696015048,"sys":{"sunrise":1695981601,"sunset":1696023642},"timezone":-14400,"id":0,"name":"","cod":200}
