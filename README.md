@@ -20,3 +20,6 @@ The problem domain our team is tentatively wanting to focus on is e-commerce and
 
 ## Image of trying out the weather API on postman
 ![TryAPI](https://github.com/lmposter/Full-Stack-Shopping-App/assets/144400489/0eceb9f2-0a01-4bbc-aed8-e4bfa8c2909b)
+
+## API Description
+Integrating a weather API into a shopping app can enhance user experience by providing real-time weather information, allowing personalized product recommendations based on current season/weather conditions.
