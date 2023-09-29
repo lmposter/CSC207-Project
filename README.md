@@ -17,3 +17,6 @@ The problem domain our team is tentatively wanting to focus on is e-commerce and
 - UML
 - Android Studio
 - FireBase
+
+## Image of trying out the weather API on postman
+![TryAPI](https://github.com/lmposter/Full-Stack-Shopping-App/assets/144400489/0eceb9f2-0a01-4bbc-aed8-e4bfa8c2909b)
