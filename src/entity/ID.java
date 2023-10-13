@@ -3,7 +3,7 @@ package entity;
 import java.util.Random;
 
 class ID {
-    private final String randomString;
+    private static String randomString;
     ID(int length){
         this.randomString = generateRandomString(length);
     }
@@ -16,5 +16,9 @@ class ID {
             id.append(chars.charAt(index));
         }
         return id.toString();
+    }
+
+    public String getID(){
+        return randomString;
     }
 }

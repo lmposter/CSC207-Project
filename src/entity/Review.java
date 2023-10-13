@@ -1,2 +1,4 @@
-package entity;public class Review {
+package entity;
+
+public class Review {
 }
