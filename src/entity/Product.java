@@ -2,7 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 
-class Product {
+public class Product {
     private final String id;
     private String title;
     private String photoURL;
