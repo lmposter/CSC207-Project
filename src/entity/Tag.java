@@ -12,7 +12,7 @@ public class Tag {
             allTags.add(tag);
         }
     }
-    public ArrayList<String> getTagsContent(){
+    public ArrayList<String> getAllTags(){
         return allTags;
     }
 
