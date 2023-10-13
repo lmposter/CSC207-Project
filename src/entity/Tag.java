@@ -4,13 +4,16 @@ import java.util.ArrayList;
 
 public class Tag {
     public String tag;
-    ArrayList<String> tagsContent = new ArrayList<>();
+    ArrayList<String> allTags = new ArrayList<>();
     Tag(String tag){
         this.tag = tag;
-        boolean notInTagsContent = !(tagsContent.contains(tag));
+        boolean notInTagsContent = !(allTags.contains(tag));
         if (notInTagsContent) {
-            tagsContent.add(tag);
+            allTags.add(tag);
         }
+    }
+    public ArrayList<String> getTagsContent(){
+        return allTags;
     }
 
 }
