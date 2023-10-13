@@ -15,7 +15,6 @@ The problem domain our team is tentatively wanting to focus on is e-commerce and
 ## Tools Used
 - Java
 - UML
-- Android Studio
 - FireBase
 
 ## Image of trying out the weather API on postman
