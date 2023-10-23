@@ -1,4 +1,7 @@
 package use_case.signup;
 
-public class SignUpDataAccessInterface {
+public interface SignUpDataAccessInterface {
+    boolean existById(String id);
+
+    boolean save();
 }
