@@ -22,7 +22,7 @@ public class Product {
 
     }
     public String getTitle(){
-        return title
+        return title;
     }
     protected void updateTitle(String newTitle){
         title = newTitle;
@@ -43,15 +43,15 @@ public class Product {
         return inventory;
     }
 
-    public int setInventory(int newNum){
+    public void setInventory(int newNum){
         inventory = newNum;
-    }
-    public void updateInventory(int numBought){
-        inventory -= numBought;
-        if (inventory <= 0){
-            throw InventoryError; // TODO: handle inventory error and create exception class
-        }
-    }
+    };
+//    public void updateInventory(int numBought){
+//        inventory -= numBought;
+//        if (inventory <= 0){
+//            throw InventoryError; // TODO: handle inventory error and create exception class
+//        }
+//    }
 
     protected ArrayList<Tag> getTags(){
         return tags;
