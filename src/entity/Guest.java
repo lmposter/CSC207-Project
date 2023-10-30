@@ -3,8 +3,8 @@ package entity;
 import java.util.UUID;
 
 public class Guest implements User {
-    private String guestId;
-    private String guestName;
+    private final String guestId;
+    private final String guestName;
 
     public Guest() {
         this.guestId = UUID.randomUUID().toString();
