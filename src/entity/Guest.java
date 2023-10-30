@@ -23,7 +23,7 @@ public class Guest implements User {
      * Generates a unique ID for the guest and sets a default name.
      */
     public Guest() {
-        this.guestId = UUID.randomUUID().toString();
+        this.guestId = "G" + UUID.randomUUID().toString();
         this.guestName = "Guest" + guestId;
     }
 

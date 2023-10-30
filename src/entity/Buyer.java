@@ -28,7 +28,7 @@ public class Buyer implements LoginUser {
      * Generates a unique ID for the buyer and sets a default name.
      */
     public Buyer() {
-        this.buyerId = UUID.randomUUID().toString();
+        this.buyerId = "B" + UUID.randomUUID().toString();
         this.buyerName = "Buyer" + buyerId;
         this.password = ""; // Set a default empty password
     }
