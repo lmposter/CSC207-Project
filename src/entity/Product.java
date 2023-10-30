@@ -21,6 +21,10 @@ public class Product {
         this.reviews = new ArrayList<>();
 
     }
+    public String getId()
+    {
+        return id;
+    }
     public String getTitle(){
         return title;
     }
