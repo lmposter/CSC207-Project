@@ -20,9 +20,4 @@ public class Guest implements User {
     public String getName() {
         return guestName;
     }
-
-    @Override
-    public String getPassword() {
-        return null;
-    }
 }
