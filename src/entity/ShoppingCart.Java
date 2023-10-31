@@ -1,25 +1,65 @@
 package entity;
+import java.util.HashMap;
 
 import java.util.*;
 
 public class ShoppingCart {
 
-    private ArrayList<Product> cartList;
+    private HashMap<Product, Integer> cart;
     private double price;
 
-    public ShoppingCart(ArrayList<Product> cartList, double price) {
+    public ShoppingCart() {
         // need to shadow copy the object
-        this.cartList = new ArrayList<>(cartList);
-
-        // iterate through cartList to calculate total price
-        double temp = 0.0;
-        for (int i = 0; i < cartList.size(); i++) {
-            temp += cartList.get(i).getPrice();
-        }
-        this.price = temp;
+        this.cart = new HashMap<>();
+        this.price = 0;
     }
 
-    public double getTotalPrice() {
-        return this.price;
+    private boolean contains(Product product)
+    {
+        for (Product i : cart.keySet())
+        {
+            if (i.getId().equals(product.getId()))
+                return true;
+        }
+        return false;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void addProduct(Product product)
+    {
+        price += product.getPrice();
+        if (this.contains(product))
+            cart.put(product, cart.get(product) + 1);
+        else
+            cart.put(product, 1);
+    }
+
+    public int getProductQuantity(Product product)
+    {
+        if (!this.contains(product))
+            throw new NoSuchElementException();
+        else
+            return cart.get(product);
+    }
+
+    public void removeProduct(Product product)
+    {
+        if (!this.contains(product))
+            throw new NoSuchElementException();
+        cart.put(product, cart.get(product) - 1);
+        price -= product.getPrice();
+        if (cart.get(product) <= 0)
+            cart.remove(product);
+    }
+
+    public void clearCart()
+    {
+        cart.clear();
+        price = 0;
     }
 }
+
+
