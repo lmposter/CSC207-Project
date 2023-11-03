@@ -1,18 +1,15 @@
+package use_case.login;
+
 public class LoginInputData {
 
-    final private int id;
     final private String name;
     final private String password;
 
-    public LoginInputData(int id, String name, String password) {
-        this.id = id;
+    public LoginInputData(String name, String password) {
         this.name = name;
         this.password = password;
     }
 
-    String getId(){
-        return id;
-    }
     String getName(){
         return name;
     }
