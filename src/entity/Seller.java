@@ -3,29 +3,31 @@ package entity;
 import java.util.UUID;
 
 /**
- * The Buyer class represents a buyer user in the system.
- * Buyers are users with login credentials.
+ * The seller class represents a seller user in the system.
+ * sellers are users with login credentials.
  */
+
 public class Seller implements User, LoginUser {
 
+
     /**
-     * Unique identifier for the buyer.
+     * Unique identifier for the seller.
      */
     private final String buyerId;
 
     /**
-     * Name of the buyer.
+     * Name of the seller.
      */
-    private String buyerName;
+    private String sellerName;
 
     /**
-     * Password of the buyer.
+     * Password of the seller.
      */
     private String password;
 
     /**
-     * Default constructor for creating a Buyer.
-     * Generates a unique ID for the buyer and sets a default name.
+     * Default constructor for creating a seller.
+     * Generates a unique ID for the seller and sets a default name.
      */
     public Seller(String name, String password) {
         this.buyerId = "S" + UUID.randomUUID().toString();
@@ -34,47 +36,47 @@ public class Seller implements User, LoginUser {
     }
 
     /**
-     * Set the name for the buyer.
-     * The implementation of this method allows buyers to change their name.
+     * Set the name for the seller.
+     * The implementation of this method allows sellers to change their name.
      */
     @Override
     public void setName(String name) {
-        this.buyerName = name;
+        this.sellerName = name;
     }
 
     /**
-     * Set the password for the buyer.
-     * The implementation of this method allows buyers to set or change their password.
+     * Set the password for the seller.
+     * The implementation of this method allows sellers to set or change their password.
      */
     @Override
     public void setPassword(String password) {
         this.password = password;
     }
-
+  
     /**
-     * Get the unique identifier of the buyer.
+     * Get the unique identifier of the seller.
      *
-     * @return The buyer's ID.
+     * @return The seller's ID.
      */
     @Override
     public String getId() {
-        return buyerId;
+        return sellerId;
     }
-
+  
     /**
-     * Get the name of the buyer.
+     * Get the name of the seller.
      *
-     * @return The buyer's name.
+     * @return The seller's name.
      */
     @Override
     public String getName() {
-        return buyerName;
+        return sellerName;
     }
 
     /**
-     * Get the password of the buyer.
+     * Get the password of the seller.
      *
-     * @return The buyer's password.
+     * @return The seller's password.
      */
     @Override
     public String getPassword() {
