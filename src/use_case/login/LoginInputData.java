@@ -1,22 +1,37 @@
-public class LoginInputData {
+package use_case.login;
 
-    final private int id;
-    final private String name;
-    final private String password;
+/**
+ * The LoginInputData class represents the input data for the user login process.
+ * It holds information such as the username and password.
+ */
+public record LoginInputData(String username, String password) {
 
-    public LoginInputData(int id, String name, String password) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
+    /**
+     * Constructs a LoginInputData object with the provided username and password.
+     *
+     * @param username The username for the login attempt.
+     * @param password The password for the login attempt.
+     */
+    public LoginInputData {
     }
 
-    String getId(){
-        return id;
+    /**
+     * Gets the username.
+     *
+     * @return The username for the login attempt.
+     */
+    @Override
+    public String username() {
+        return username;
     }
-    String getName(){
-        return name;
-    }
-    String getPassword(){
+
+    /**
+     * Gets the password.
+     *
+     * @return The password for the login attempt.
+     */
+    @Override
+    public String password() {
         return password;
     }
 }
