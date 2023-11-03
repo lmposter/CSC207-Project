@@ -1,16 +1,15 @@
 package entity;
 
-public class BuyerFactory implements UserFactory, LoginUserFactory {
+public class BuyerFactory implements LoginUserFactory {
     /**
      * Requires: password is valid.
-     * @param id
      * @param name
      * @param password
      * @return
      */
 
     @Override
-    public Buyer create(String id, String name, String password) {
-        return new Buyer(id, name, password);
+    public LoginUser create(String name, String password) {
+        return new Buyer(name, password);
     }
 }

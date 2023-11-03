@@ -6,12 +6,14 @@ import java.util.UUID;
  * The seller class represents a seller user in the system.
  * sellers are users with login credentials.
  */
-public class Seller implements LoginUser {
+
+public class Seller implements User, LoginUser {
+
 
     /**
      * Unique identifier for the seller.
      */
-    private String sellerId;
+    private final String buyerId;
 
     /**
      * Name of the seller.
@@ -27,10 +29,10 @@ public class Seller implements LoginUser {
      * Default constructor for creating a seller.
      * Generates a unique ID for the seller and sets a default name.
      */
-    public Seller() {
-        this.sellerId = "B" + UUID.randomUUID().toString();
-        this.sellerName = "seller" + sellerId;
-        this.password = ""; // Set a default empty password
+    public Seller(String name, String password) {
+        this.buyerId = "S" + UUID.randomUUID().toString();
+        this.buyerName = name;
+        this.password = password;
     }
 
     /**
@@ -50,17 +52,7 @@ public class Seller implements LoginUser {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    /**
-     * Get the name of the seller.
-     *
-     * @return The seller's name.
-     */
-    @Override
-    public String getName() {
-        return sellerName;
-    }
-
+  
     /**
      * Get the unique identifier of the seller.
      *
@@ -69,6 +61,16 @@ public class Seller implements LoginUser {
     @Override
     public String getId() {
         return sellerId;
+    }
+  
+    /**
+     * Get the name of the seller.
+     *
+     * @return The seller's name.
+     */
+    @Override
+    public String getName() {
+        return sellerName;
     }
 
     /**

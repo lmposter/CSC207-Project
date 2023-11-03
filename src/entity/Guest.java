@@ -32,7 +32,7 @@ public class Guest implements User {
      * Guest users are not allowed to change their name.
      * Calling this method will print a warning message.
      */
-    public void setName() {
+    public void setName(String name) {
         System.out.println("Warning: Guest users are not allowed to change name.");
     }
 
