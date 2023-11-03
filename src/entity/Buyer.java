@@ -6,12 +6,12 @@ import java.util.UUID;
  * The Buyer class represents a buyer user in the system.
  * Buyers are users with login credentials.
  */
-public class Buyer implements LoginUser {
+public class Buyer implements LoginUser, User {
 
     /**
      * Unique identifier for the buyer.
      */
-    private String buyerId;
+    private final String buyerId;
 
     /**
      * Name of the buyer.
@@ -27,10 +27,10 @@ public class Buyer implements LoginUser {
      * Default constructor for creating a Buyer.
      * Generates a unique ID for the buyer and sets a default name.
      */
-    public Buyer() {
+    public Buyer(String name, String password) {
         this.buyerId = "B" + UUID.randomUUID().toString();
-        this.buyerName = "Buyer" + buyerId;
-        this.password = ""; // Set a default empty password
+        this.buyerName = name;
+        this.password = password;
     }
 
     /**
