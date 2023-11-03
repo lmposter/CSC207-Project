@@ -13,7 +13,7 @@ public class Seller implements User, LoginUser {
     /**
      * Unique identifier for the seller.
      */
-    private final String buyerId;
+    private final String sellerId;
 
     /**
      * Name of the seller.
@@ -30,8 +30,8 @@ public class Seller implements User, LoginUser {
      * Generates a unique ID for the seller and sets a default name.
      */
     public Seller(String name, String password) {
-        this.buyerId = "S" + UUID.randomUUID().toString();
-        this.buyerName = name;
+        this.sellerId = "S" + UUID.randomUUID().toString();
+        this.sellerName = name;
         this.password = password;
     }
 
