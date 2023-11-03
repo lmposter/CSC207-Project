@@ -27,7 +27,7 @@ public class Seller implements LoginUser {
      * Default constructor for creating a seller.
      * Generates a unique ID for the seller and sets a default name.
      */
-    public seller() {
+    public Seller() {
         this.sellerId = "B" + UUID.randomUUID().toString();
         this.sellerName = "seller" + sellerId;
         this.password = ""; // Set a default empty password
