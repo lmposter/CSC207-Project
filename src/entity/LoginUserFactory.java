@@ -1,6 +1,6 @@
 package entity;
 
-public interface LoginUserFactory extends UserFactory {
+public interface LoginUserFactory{
     /** Pre-condition: valid id, name and password. */
-    LoginUser create(String id, String name, String pwd);
+    LoginUser create(String name, String pwd);
 }

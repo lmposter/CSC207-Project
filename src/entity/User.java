@@ -11,7 +11,7 @@ public interface User {
      * The implementation of this method should allow users to change their name.
      * The specific behavior may vary for different user types.
      */
-    void setName();
+    void setName(String name);
 
     /**
      * Get the unique identifier of the user.

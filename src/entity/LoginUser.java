@@ -11,7 +11,7 @@ public interface LoginUser extends User {
      * The implementation of this method should allow users to set or change their password.
      * The specific behavior may vary for different user types.
      */
-    void setPassword();
+    void setPassword(String password);
 
     /**
      * Get the password of the login user.
