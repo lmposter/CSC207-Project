@@ -17,9 +17,12 @@ public class SearchPresenter implements SearchOutPutBoundary {
 
     @Override
     public void prepareNoMatchProductView(String message) {
+        SearchState searchState = searchViewModel.getState();
+        searchState.setMessage(message);
+        this.searchViewModel.setState(searchState);
     }
 
     @Override
-    public void prepareSuccessView(SearchOutPutData product) {
+    public void prepareSuccessView(String s, SearchOutPutData product) {
     }
 }

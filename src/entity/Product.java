@@ -52,8 +52,9 @@ public class Product {
     };
 //    public void updateInventory(int numBought){
 //        inventory -= numBought;
+//
 //        if (inventory <= 0){
-//            throw InventoryError; // TODO: handle inventory error and create exception class
+//            throw InventoryError; // TODO: handle inventory error in reaction and create exception class
 //        }
 //    }
 
