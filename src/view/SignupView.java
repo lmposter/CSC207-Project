@@ -22,7 +22,12 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
     private final SignupController signupController;
 
-    private final JButton signUp;
+    private final JButton sellerSignUp;
+
+    private final JButton buyerSignUp;
+
+    private final JButton switchToLogIn;
+
     private final JButton cancel;
 
     public SignupView(SignupController controller, SignupViewModel signupViewModel) {
@@ -42,19 +47,57 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new JLabel(SignupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
 
         JPanel buttons = new JPanel();
-        signUp = new JButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
-        buttons.add(signUp);
+        sellerSignUp = new JButton(SignupViewModel.SELLER_SIGNUP_BUTTON_LABEL);
+        buyerSignUp = new JButton(SignupViewModel.BUYER_SIGNUP_BUTTON_LABEL);
         cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
+        switchToLogIn = new JButton(SignupViewModel.SWITCH_TO_LOGIN);
+        buttons.add(sellerSignUp);
+        buttons.add(buyerSignUp);
         buttons.add(cancel);
+        buttons.add(switchToLogIn);
 
-//        clear = new JButton(SignupViewModel.CLEAR_BUTTON_LABEL);
-//        buttons.add(clear);
 
-        signUp.addActionListener(
+        sellerSignUp.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(signUp)) {
+                        if (evt.getSource().equals(sellerSignUp)) {
+                            SignupState currentState = signupViewModel.getState();
+
+                            signupController.execute(
+                                    currentState.getUsername(),
+                                    currentState.getPassword(),
+                                    currentState.getRepeatPassword(),
+                                    "seller"
+                            );
+                        }
+                    }
+                }
+        );
+
+        buyerSignUp.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(buyerSignUp)) {
+                            SignupState currentState = signupViewModel.getState();
+
+                            signupController.execute(
+                                    currentState.getUsername(),
+                                    currentState.getPassword(),
+                                    currentState.getRepeatPassword(),
+                                    "buyer"
+                            );
+                        }
+                    }
+                }
+        );
+
+        switchToLogIn.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(switchToLogIn)) {
 //                            SignupState currentState = signupViewModel.getState();
 //
 //                            signupController.execute(
@@ -155,6 +198,12 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         SignupState state = (SignupState) evt.getNewValue();
         if (state.getUsernameError() != null) {
             JOptionPane.showMessageDialog(this, state.getUsernameError());
+        }
+        else if (state.getPasswordError() != null) {
+            JOptionPane.showMessageDialog(this, state.getPasswordError());
+        }
+        else if (state.getRepeatPasswordError() != null) {
+            JOptionPane.showMessageDialog(this, state.getRepeatPasswordError());
         }
     }
 }
