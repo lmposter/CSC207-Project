@@ -1,6 +1,6 @@
 package app;
 
-import data_access.DataAcessObject;
+import data_access.UserDataAcessObject;
 //import entity.CommonUserFactory;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupViewModel;
@@ -41,7 +41,7 @@ public class Main {
         SignupViewModel signupViewModel = new SignupViewModel();
         StorePageViewModel storePageViewModel = new StorePageViewModel();
         PersonalPageViewModel personalPageViewModel = new PersonalPageViewModel();
-        DataAcessObject dataAcessObject = new DataAcessObject();
+        UserDataAcessObject dataAcessObject = new UserDataAcessObject();
 //        FileUserDataAccessObject userDataAccessObject;
 //        try {
 //            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
