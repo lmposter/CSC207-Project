@@ -84,35 +84,40 @@ public class ProductDAO implements SearchDAI, CreatePdDAI {
 
             @Override
     public int numItemsFound(String content) {
-        return 0;
+        String[] KeyWords = content.split(" ");
+        int s = 0;
+        for (Product pd : products.values()){
+            String title = pd.getTitle();
+            for (String word: KeyWords){
+                if (title.contains(word)){
+                    s++;
+                }
+            }
+        }
+        return s;
     }
+
 
     @Override
     public ArrayList<Product> getItems(String content) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(csvFile));
-            String header = reader.readLine();
-            ArrayList<String> titleList = new ArrayList<>();
-
-            if (header.equals("id,title,inventory,URL,price")) {
-                String row;
-                while ((row = reader.readLine()) != null) {
-                    String[] col = row.split(",");
-                    String title = String.valueOf(col[headers.get("title")]);
-                    titleList.add(title);
+        ArrayList<Product> pdList = new ArrayList<>();
+        String[] KeyWords = content.split(" ");
+        for (Product pd : products.values()){
+            String title = pd.getTitle();
+            for (String word: KeyWords){
+                if (title.contains(word)){
+                    pdList.add(pd);
                 }
-            }else{}
-
-        } catch (IOException e) {
-            System.out.println("Can't read file");
-            System.exit(1);
+            }
         }
-
-        return null;
+        return pdList;
     }
 
     @Override
     public void save(Product product) {
-
+        products.put(product.getTitle(), product);
+        this.save();
     }
+
+
 }
