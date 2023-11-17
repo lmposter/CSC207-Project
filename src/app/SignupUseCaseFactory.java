@@ -23,7 +23,6 @@ public class SignupUseCaseFactory {
 
     public static SignupView create(
             ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel, SignUpUserDataAccessInterface userDataAccessObject) {
-
         try {
             SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, loginViewModel, userDataAccessObject);
             return new SignupView(signupController, signupViewModel);
