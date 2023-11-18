@@ -58,7 +58,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
 
         sellerSignUp.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(sellerSignUp)) {
@@ -76,7 +75,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         );
 
         buyerSignUp.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(buyerSignUp)) {
@@ -94,7 +92,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         );
 
         switchToLogIn.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(switchToLogIn)) {
@@ -112,10 +109,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         cancel.addActionListener(this);
 
-        // This makes a new KeyListener implementing class, instantiates it, and
-        // makes it listen to keystrokes in the usernameInputField.
-        //
-        // Notice how it has access to instance variables in the enclosing class!
         usernameInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -186,11 +179,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.add(buttons);
     }
 
-    /**
-     * React to a button click that results in evt.
-     */
     public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
+        JOptionPane.showConfirmDialog(this, "Not implemented yet.");
     }
 
     @Override

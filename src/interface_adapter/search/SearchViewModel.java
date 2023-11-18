@@ -22,7 +22,6 @@ public class SearchViewModel extends ViewModel {
         support.firePropertyChange("", null, this.state);
     }
 
-
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
 

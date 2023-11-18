@@ -41,7 +41,6 @@ public class SearchUseCaseFactory {
         return new SearchController(userSearchInteractor);
     }
 
-    )
 
 
 }

@@ -15,7 +15,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "sign up";
+    public final String viewName = "search";
 
     private final SearchViewModel searchViewModel;
     private final JTextField searchInputField = new JTextField(100);
@@ -42,8 +42,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
 
         goSearch.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
+               new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(goSearch)) {
                             SearchState currentState = searchViewModel.getState();
@@ -80,11 +79,8 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         this.add(buttons);
     }
 
-    /**
-     * React to a button click that results in evt.
-     */
     public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
+        JOptionPane.showConfirmDialog(this, "Not implemented yet.");
     }
 
     @Override
