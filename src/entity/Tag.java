@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Tag {
     public String tag;
-    ArrayList<String> allTags = new ArrayList<>();
-    Tag(String tag){
+    public static ArrayList<String> allTags = new ArrayList<>();
+    public Tag(String tag){
         this.tag = tag;
-        boolean notInTagsContent = !(allTags.contains(tag));
+        boolean notInTagsContent = ! allTags.contains(tag);
         if (notInTagsContent) {
             allTags.add(tag);
         }

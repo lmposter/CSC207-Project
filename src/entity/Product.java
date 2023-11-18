@@ -1,9 +1,10 @@
 package entity;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Product {
-    private final String id;
+    private String id;
     private String title;
     private String photoURL;
     private double price;
@@ -12,7 +13,7 @@ public class Product {
     private ArrayList<Review> reviews;
 
     Product(String title, String photoURL, double price, int inventory, ArrayList<Tag> tags){
-        this.id = new ID(15).getID();
+        this.id = "Pd" + UUID.randomUUID().toString();
         this.title = title;
         this.photoURL = photoURL;
         this.price = price;
@@ -25,6 +26,7 @@ public class Product {
     {
         return id;
     }
+    public void setID(String newID){id = newID;}
     public String getTitle(){
         return title;
     }
@@ -50,22 +52,15 @@ public class Product {
     public void setInventory(int newNum){
         inventory = newNum;
     };
-//    public void updateInventory(int numBought){
-//        inventory -= numBought;
-//
-//        if (inventory <= 0){
-//            throw InventoryError; // TODO: handle inventory error in reaction and create exception class
-//        }
-//    }
 
-    protected ArrayList<Tag> getTags(){
+    public ArrayList<Tag> getTags(){
         return tags;
     }
 
     protected void updateTags(ArrayList<Tag> newTags){
         this.tags = newTags;
     }
-    protected void addReview(Review review){
+    public void addReview(Review review){
         this.reviews.add(review);
     }
 
@@ -74,9 +69,6 @@ public class Product {
     }
 
 
-
-
-
-
-
+    public String getID() { return id;
+    }
 }
