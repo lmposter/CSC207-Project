@@ -7,6 +7,10 @@ import java.beans.PropertyChangeSupport;
 import java.awt.*;
 
 public class SearchViewModel extends ViewModel {
+    public static final String TITLE_LABEL = "SEARCH";
+    public static final String SEARCH_LABEL = "Search here";
+    public static final String SEARCH_BUTTON_LABEL = "GO!";
+
     public SearchViewModel(){super("Search");}
     private SearchState state = new SearchState();
     public void setState(SearchState state){this.state = state; }

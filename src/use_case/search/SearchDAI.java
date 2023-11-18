@@ -9,5 +9,4 @@ public interface SearchDAI {
 
     ArrayList<Product> getItems(String content);
 
-    void save(Product product);
 }
