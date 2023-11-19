@@ -1,18 +1,26 @@
 package interface_adapter.search;
 
 
+import entity.Product;
+
+import java.util.ArrayList;
+
 public class SearchState {
 
     private String message = "";
 
     private String content = "";
 
+    private ArrayList<Product> products = new ArrayList<>();
+    private String productsError = null;
     private String contentError = null;
 
     public SearchState(SearchState copy){
         this.content = copy.content;
         this.contentError = copy.contentError;
         this.message = copy.message;
+        this.products = copy.products;
+        this.productsError = copy.productsError;
     }
 
     public SearchState(){}
@@ -33,4 +41,15 @@ public class SearchState {
     public String getContentError(){
         return contentError;
     }
+    public void setProducts(ArrayList<Product> newPds) {
+        this.products = newPds;
+    }
+    public void setProductsError(String productsError){
+        this.productsError = productsError;
+    }
+    public ArrayList<Product> getProducts() {return products;}
+    public String getProductsError(){
+        return productsError;
+    }
+
 }

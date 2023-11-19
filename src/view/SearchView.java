@@ -25,7 +25,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
 
     public SearchView(SearchController controller, SearchViewModel searchViewModel) {
-
+//TODO:add Product pages showing all the products found
         this.searchController = controller;
         this.searchViewModel = searchViewModel;
         searchViewModel.addPropertyChangeListener(this);
@@ -86,8 +86,8 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SearchState state = (SearchState) evt.getNewValue();
-        if (state.getContentError() != null) {
-            JOptionPane.showMessageDialog(this, state.getContentError());
+        if (state.getProductsError() == null){
+
         }
     }
 }

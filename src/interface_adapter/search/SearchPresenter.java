@@ -24,5 +24,20 @@ public class SearchPresenter implements SearchOutPutBoundary {
 
     @Override
     public void prepareSuccessView(String s, SearchOutPutData product) {
+        SearchState searchState = searchViewModel.getState();
+        searchState.setMessage(s);
+        searchState.setProducts(product.getProducts());
+
+        this.searchViewModel.setState(searchState);
+        searchViewModel.firePropertyChanged();
+        viewManagerModel.setActiveView(searchViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
+
+    @Override
+    public void prepareFailSearchView(String error) {
+        SearchState searchState = searchViewModel.getState();
+        searchState.setProductsError(error);
+        searchViewModel.firePropertyChanged();
     }
 }
