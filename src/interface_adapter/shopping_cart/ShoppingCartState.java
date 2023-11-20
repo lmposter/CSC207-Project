@@ -1,4 +1,5 @@
 package interface_adapter.shopping_cart;
 
-public class ShoppingCart {
+public class ShoppingCartState
+{
 }
