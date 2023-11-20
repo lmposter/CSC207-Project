@@ -1,5 +1,6 @@
 package interface_adapter.signup;
 
+import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.signup.SignUpUserOutputBoundary;
@@ -22,15 +23,22 @@ public class SignupPresenter implements SignUpUserOutputBoundary {
     @Override
     public void prepareSuccessView(SignUpUserOutputData response) {
         // On success, switch to the login view.
-//        LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
-//        response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
-//
-//        LoginState loginState = loginViewModel.getState();
-//        loginState.setUsername(response.getUsername());
-//        this.loginViewModel.setState(loginState);
-//        loginViewModel.firePropertyChanged();
-//
-//        viewManagerModel.setActiveView(loginViewModel.getViewName());
+
+        LoginState loginState = loginViewModel.getState();
+        loginState.setUsername(response.username());
+        this.loginViewModel.setState(loginState);
+        loginViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView(loginViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
+
+    public void switchPage(){
+        LoginState loginState = loginViewModel.getState();
+        this.loginViewModel.setState(loginState);
+
+        loginViewModel.firePropertyChanged();
+        viewManagerModel.setActiveView(loginViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 

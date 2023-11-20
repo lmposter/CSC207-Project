@@ -65,6 +65,11 @@ public class SignUpUserInteractor implements SignUpUserInputBoundary {
     }
 
     @Override
+    public void switchPage(){
+        userPresenter.switchPage();
+    }
+
+    @Override
     public boolean checkUserExists(String identifier) {
         return false;
     }

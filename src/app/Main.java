@@ -7,6 +7,7 @@ import interface_adapter.signup.SignupViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.store_page.StorePageViewModel;
 import interface_adapter.personal_page.PersonalPageViewModel;
+import view.LoginView;
 import view.SignupView;
 import view.ViewManager;
 
@@ -50,9 +51,9 @@ public class Main {
 //        }
         SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, dataAcessObject);
         views.add(signupView, signupView.viewName);
-
-//        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, storePageViewModel, personalPageViewModel);
-//        views.add(loginView, loginView.viewName);
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, null, null);
+        //LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, storePageViewModel, personalPageViewModel);
+        views.add(loginView, loginView.viewName);
 
 //        LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
 //        views.add(loggedInView, loggedInView.viewName);

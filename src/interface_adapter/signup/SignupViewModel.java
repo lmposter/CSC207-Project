@@ -7,17 +7,16 @@ import java.beans.PropertyChangeSupport;
 
 public class SignupViewModel extends ViewModel {
 
-    public static final String TITLE_LABEL = "Sign Up View";
-    public static final String USERNAME_LABEL = "Choose username";
-    public static final String PASSWORD_LABEL = "Choose password";
-    public static final String REPEAT_PASSWORD_LABEL = "Enter password again";
+    public static final String TITLE_LABEL = "Amazoff Signup Page";
+    public static final String USERNAME_LABEL = "Username";
+    public static final String PASSWORD_LABEL = "Password";
+    public static final String REPEAT_PASSWORD_LABEL = "Confirm your Password";
 
-    public static final String BUYER_SIGNUP_BUTTON_LABEL = "Sign up as Buyer";
+    public static final String BUYER_SIGNUP_BUTTON_LABEL = "Sign up as a Buyer";
 
-    public static final String SELLER_SIGNUP_BUTTON_LABEL = "Sign up as Seller";
+    public static final String SELLER_SIGNUP_BUTTON_LABEL = "Sign up as a Seller";
 
-    public static final String SWITCH_TO_LOGIN = "Switch to Login";
-    public static final String CANCEL_BUTTON_LABEL = "Cancel";
+    public static final String SWITCH_TO_LOGIN = "Switch to Login Page";
 
     private SignupState state = new SignupState();
 

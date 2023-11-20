@@ -9,7 +9,9 @@ public class SignupController {
     public SignupController(SignUpUserInputBoundary userSignupUseCaseInteractor) {
         this.userSignupUseCaseInteractor = userSignupUseCaseInteractor;
     }
-
+    public void switchPage(){
+        userSignupUseCaseInteractor.switchPage();
+    }
     public void execute(String username, String password1, String password2, String type) {
         SignUpUserInputData signupUserInputData = new SignUpUserInputData(
                 username, password1, password2, type);
