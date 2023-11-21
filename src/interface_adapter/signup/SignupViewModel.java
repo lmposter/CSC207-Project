@@ -7,7 +7,7 @@ import java.beans.PropertyChangeSupport;
 
 public class SignupViewModel extends ViewModel {
 
-    public static final String TITLE_LABEL = "Amazoff Signup Page";
+    public static final String TITLE_LABEL = "Join Amazoff Today! New users will receive a 0.1% discount!";
     public static final String USERNAME_LABEL = "Username";
     public static final String PASSWORD_LABEL = "Password";
     public static final String REPEAT_PASSWORD_LABEL = "Confirm Password";

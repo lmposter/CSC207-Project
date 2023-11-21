@@ -28,6 +28,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     final JButton logIn;
     final JButton cancel;
     final JButton guest;
+    final JButton deactivate;
     private final LoginController loginController;
 
     public LoginView(LoginViewModel loginViewModel, LoginController controller) {
@@ -51,6 +52,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         buttons.add(cancel);
         guest = new JButton(loginViewModel.GUEST_BUTTON_LABEL);
         buttons.add(guest);
+        deactivate = new JButton(loginViewModel.DEACTIVATE_BUTTON_LABEL);
+        buttons.add(deactivate);
 
         logIn.addActionListener(                // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
@@ -76,7 +79,20 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                     }
                 }
         );
+        deactivate.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(deactivate)) {
+                            LoginState currentState = loginViewModel.getState();
 
+                            loginController.deactivate(
+                                    currentState.getUsername(),
+                                    currentState.getPassword()
+                            );
+                        }
+                    }
+                }
+        );
         usernameInputField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {

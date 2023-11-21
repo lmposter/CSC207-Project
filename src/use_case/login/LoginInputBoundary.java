@@ -14,4 +14,6 @@ public interface LoginInputBoundary {
     void execute(LoginInputData loginInputData);
 
     void switchPage();
+
+    void deactivateAccount(String username, String password);
 }

@@ -50,7 +50,7 @@ public class LoginInteractor implements LoginInputBoundary {
 
         // Check if the account exists
         if (!userDataAccessObject.existsByName(username)) {
-            loginPresenter.prepareFailView(username + ": Account does not exist.");
+            loginPresenter.prepareFailView("Attempted login to non-existent account: " + username);
             LOGGER.log(Level.WARNING, "Attempted login to non-existent account: " + username);
         } else {
             // Retrieve stored password from the data access object
@@ -58,7 +58,7 @@ public class LoginInteractor implements LoginInputBoundary {
 
             // Check if the provided password matches the stored password
             if (!password.equals(storedPassword)) {
-                loginPresenter.prepareFailView("Incorrect password for " + username + ".");
+                loginPresenter.prepareFailView("Incorrect password for " + username);
                 LOGGER.log(Level.WARNING, "Incorrect password for account: " + username);
 
                 // Increment failed login attempts
@@ -88,13 +88,33 @@ public class LoginInteractor implements LoginInputBoundary {
      * Deactivates the user account.
      *
      * @param username The username of the account to be deactivated.
+     * @param password The password for account deactivation.
      */
-    public void deactivateAccount(String username) {
-        userDataAccessObject.deactivateAccount(username);
-        LOGGER.log(Level.INFO, "Account deactivated: " + username);
+    public void deactivateAccount(String username, String password) {
+        if (!userDataAccessObject.existsByName(username)) {
+            loginPresenter.prepareFailView("Attempted deactivate a non-existent account: " + username);
+            LOGGER.log(Level.WARNING, "Attempted deactivate a non-existent account: " + username);
+        } else {
+            // Retrieve stored password from the data access object
+            String storedPassword = userDataAccessObject.get(username).getPassword();
+
+            // Check if the provided password matches the stored password
+            if (!password.equals(storedPassword)) {
+                loginPresenter.prepareFailView("Incorrect password for " + username);
+                LOGGER.log(Level.WARNING, "Incorrect password for account: " + username);
+            } else {
+                userDataAccessObject.deactivateAccount(username);
+                loginPresenter.prepareFailView("Account: " + username + " Deactivated");
+                LOGGER.log(Level.INFO, "Account: " + username + " Deactivated");
+            }
+        }
     }
+
+    /**
+     * Switches the page using the login presenter.
+     */
     @Override
-    public void switchPage(){
+    public void switchPage() {
         loginPresenter.switchPage();
     }
 }

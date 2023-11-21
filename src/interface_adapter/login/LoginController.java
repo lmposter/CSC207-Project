@@ -22,6 +22,9 @@ public class LoginController {
     public void switchPage(){
         loginInteractor.switchPage();
     }
+    public void deactivate(String username, String password){
+        loginInteractor.deactivateAccount(username, password);
+    }
     /**
      * Executes the login action triggered by the user interface.
      *
