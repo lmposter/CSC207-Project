@@ -142,10 +142,15 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
         // Placeholder implementation
     }
 
-    // Deactivate a user account
+    // Deactivate a user account and remove from CSV
     @Override
     public void deactivateAccount(String username) {
-        // Placeholder implementation
+        LoginUser user = accounts.remove(username); // Remove the user from the map
+
+        if (user != null) {
+            // Save the changes to the CSV file (without the deactivated user)
+            save();
+        }
     }
 
     // Save user data to the CSV file
@@ -156,7 +161,7 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
             writer.write(String.join(",", headers.keySet()));
             writer.newLine();
 
-            // Write each user to a new line in the CSV file
+            // Write each active user to a new line in the CSV file
             for (LoginUser user : accounts.values()) {
                 String line = String.format("%s,%s,%s",
                         user.getId(), user.getName(), user.getPassword());
