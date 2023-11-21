@@ -15,11 +15,12 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI {
     private final File csvFile;
     private final ProductFactory productFactory;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
-    private final Map<String, Product> products = new HashMap<>();
+    private Map<String, Product> products;
 
     public ProductDAO(String csvPath, ProductFactory productFactory){
         this.productFactory = productFactory;
         this.csvFile = new File(csvPath);
+        this.products = new HashMap<>();
         headers.put("id", 0);
         headers.put("title", 1);
         headers.put("inventory", 2);
@@ -71,7 +72,7 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI {
                 }
 
             } catch (IOException e) {
-                System.out.println("Can't read file");
+                System.out.println("Can't read file in ProductDAO createProducts");
                 System.exit(1);
             }
     }
@@ -137,28 +138,30 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI {
 
     @Override
     public boolean productExists(String PdID) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-            String header = reader.readLine();
-
-            if (header.equals("id,title,inventory,URL,price")) {
-
-                String row;
-                while ((row = reader.readLine()) != null) {
-                    String[] col = row.split(",");
-                    String id = String.valueOf(col[headers.get("id")]);
-                    if (Objects.equals(id, PdID)){
-                        return true;
-                    }
-                }
-                return false;
-            } else {
-                throw new IOException();
-            }
-
-        } catch (IOException e) {
-            System.out.println("Can't read file");
-            System.exit(1);
-        }
+//        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+//            String header = reader.readLine();
+//
+//            if (header.equals("id,title,inventory,URL,price")) {
+//
+//                String row;
+//                while ((row = reader.readLine()) != null) {
+//                    String[] col = row.split(",");
+//                    String id = String.valueOf(col[headers.get("id")]);
+//                    if (Objects.equals(id, PdID)){
+//                        return true;
+//                    }
+//                }
+//                return false;
+//            } else {
+//                throw new IOException();
+//            }
+//
+//        } catch (IOException e) {
+//            System.out.println("Can't read file in ProductDAO productExists");
+//            System.exit(1);
+//        }
+//        return false;
+        if (products.containsKey(PdID)){return true;}
         return false;
     }
 
@@ -166,4 +169,5 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI {
     public Product getPd(String PdID) {
         return products.get(PdID);
     }
+
 }

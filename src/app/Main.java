@@ -14,7 +14,7 @@ import view.ViewManager;
 import javax.swing.*;
 import java.awt.*;
 
-// need dao for singupcase factory and user case factory
+// need dao for signupcase factory and user case factory
 public class Main {
     public static void main(String[] args) {
         // Build the main program window, the main panel containing the

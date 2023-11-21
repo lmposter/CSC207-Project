@@ -1,54 +1,85 @@
 package view;
 
+import entity.Review;
 import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductState;
 import interface_adapter.product.ProductViewModel;
 
+import javax.imageio.IIOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class ProductView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "product details";
+    public final String viewName = "Product Details";
     private final ProductViewModel productViewModel;
     private final ProductController productController;
-
     private final JButton buy;
     private final JButton add_to_cart;
-    private final JButton check_reviews;
-
+    private final JButton closeButton;
+    private final JPanel pdPanel;
 
     public ProductView(ProductController controller, ProductViewModel productViewModel) {
-
+        JFrame application = new JFrame(this.viewName);
+        CardLayout cardLayout = new CardLayout();
         this.productController = controller;
         this.productViewModel = productViewModel;
         productViewModel.addPropertyChangeListener(this);
+        this.pdPanel = new JPanel(cardLayout);
 
-        JLabel title = new JLabel(ProductViewModel.TITLE_LABEL + productViewModel.getState().getTitle());
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        application.setSize(400,300);
 
-        JPanel buttons = new JPanel();
-        JLabel price = new JLabel(ProductViewModel.PRICE_LABEL + productViewModel.getState().getPrice());
-        JLabel inventory = new JLabel(ProductViewModel.INVENTORY_LABEL+ productViewModel.getState().getInventory());
-        price.setAlignmentX(Component.RIGHT_ALIGNMENT);
-        inventory.setAlignmentX(Component.LEFT_ALIGNMENT);
-        //TODO:show photo
-        buy = new JButton(ProductViewModel.PURCHASE_LABEL);
-        add_to_cart = new JButton(ProductViewModel.ADD_TO_CART_LABEL);
-        check_reviews = new JButton(ProductViewModel.REVIEW_LABEL);
-        buttons.add(buy);
-        buttons.add(add_to_cart);
-        buttons.add(check_reviews);
+        pdPanel.setLayout(new BoxLayout(pdPanel, BoxLayout.Y_AXIS));
+
+        JLabel pdTitle = new JLabel(productViewModel.getState().getTitle().concat("\n"));
+        JLabel price = new JLabel(ProductViewModel.PRICE_LABEL.concat(String.valueOf(productViewModel.getState().getPrice())).concat("\n"));
+        JLabel inventory = new JLabel(ProductViewModel.INVENTORY_LABEL.concat(String.valueOf(productViewModel.getState().getInventory())).concat("\n"));
+        ArrayList<Review> reviewList = productViewModel.getState().getReviews();
+        String reviewListStr = Review.printReviews(reviewList);
+        JLabel reviews = new JLabel(ProductViewModel.REVIEW_LABEL.concat("\n").concat(reviewListStr).concat("\n"));
+
+        pdTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+        price.setAlignmentX(Component.CENTER_ALIGNMENT);
+        inventory.setAlignmentX(Component.CENTER_ALIGNMENT);
+        reviews.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+        try {
+            URL url = new URL(productViewModel.getState().getURL());
+            Image image = ImageIO.read(url).getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+            ImageIcon imageIcon = new ImageIcon(image);
+            JLabel imageLabel = new JLabel(imageIcon);
+            pdPanel.add(imageLabel);
+
+        } catch (IIOException | MalformedURLException e) {
+            pdPanel.add(new JLabel("Image not available in ProductView"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        pdPanel.add(pdTitle);
+        pdPanel.add(price);
+        pdPanel.add(inventory);
+        pdPanel.add(reviews);
+
+        this.buy = new JButton(ProductViewModel.PURCHASE_LABEL);
+        this.add_to_cart = new JButton(ProductViewModel.ADD_TO_CART_LABEL);
+        this.closeButton = new JButton(ProductViewModel.CLOSE);
+        pdPanel.add(buy);
+        pdPanel.add(add_to_cart);
+        pdPanel.add(closeButton);
 
         buy.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        //TODO: buy this product, add to orders
+                        //TODO: buy this product, set to purchase use case
                     }
                 }
         );
@@ -56,23 +87,26 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
         add_to_cart.addActionListener(
                  new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        //TODO: add_to_cart
+                        //TODO: add_to_cart, go to add to cart use case
                     }
                 }
         );
 
-        check_reviews.addActionListener(
+        closeButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        //TODO: show reviews
+                        application.dispose();
                     }
                 }
         );
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.add(title);
-        this.add(buttons);
+        JLabel title = new JLabel(ProductViewModel.TITLE_LABEL);
+        application.add(title);
+        application.add(pdPanel);
+        pdPanel.setVisible(true);
+        application.add(pdPanel);
+        application.setVisible(true);
     }
 
     @Override
@@ -87,4 +121,5 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
     public void actionPerformed(ActionEvent e) {
         JOptionPane.showConfirmDialog(this, "Not implemented yet.");
     }
+    public ProductController getProductController(){return productController;}
 }

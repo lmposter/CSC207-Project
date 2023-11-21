@@ -10,22 +10,23 @@ public class SearchInteractor implements SearchInputBoundary{
 
     private final SearchDAI searchDAO;
     private final SearchOutPutBoundary searchPresenter;
-    private final WalmartAPI walmartAPI;
 
     public SearchInteractor(SearchDAI searchDAO, SearchOutPutBoundary searchPresenter) {
         this.searchDAO = searchDAO;
         this.searchPresenter = searchPresenter;
-        this.walmartAPI = new WalmartAPI();
     }
 
 
     @Override
     public void execute(SearchInputData searchInputData) {
         int sumNum = 0;
-        ArrayList<Product> walmartItems = walmartAPI.searchWalmart(searchInputData.getContent());
+        ArrayList<Product> walmartItems = WalmartAPI.searchWalmart(searchInputData.getContent());
         for (String i : searchInputData.getContent()) {
             sumNum += searchDAO.numItemsFound(i);
-            sumNum += walmartItems.size();}
+            if (walmartItems != null) {
+            sumNum += walmartItems.size();
+            }
+        }
         if (sumNum == 0){
             searchPresenter.prepareNoMatchProductView("Sorry, there is no matching products. Try using other keywords.");
         } else {
@@ -35,8 +36,9 @@ public class SearchInteractor implements SearchInputBoundary{
                     productsList.addAll(searchDAO.getItems(i));
                 }
                 productsList.addAll(walmartItems);
+                for (Product pd: walmartItems){searchDAO.save(pd);}
                 SearchOutPutData searchOutPutData = new SearchOutPutData(productsList, false);
-                this.searchPresenter.prepareSuccessView("{num} items found:", searchOutPutData);
+                this.searchPresenter.prepareSuccessView(String.valueOf(sumNum).concat(" items found:"), searchOutPutData);
             }catch (RuntimeException e){
                 searchPresenter.prepareFailSearchView("OOPS! Error searching");
 
