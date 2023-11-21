@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class ProductView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "product details";
+    public final String viewName = "Product Details";
     private final ProductViewModel productViewModel;
     private final ProductController productController;
     private final JButton buy;
@@ -28,23 +28,16 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
     private final JPanel pdPanel;
 
     public ProductView(ProductController controller, ProductViewModel productViewModel) {
-        JFrame application = new JFrame("Product Details");
+        JFrame application = new JFrame(this.viewName);
         CardLayout cardLayout = new CardLayout();
         this.productController = controller;
         this.productViewModel = productViewModel;
         productViewModel.addPropertyChangeListener(this);
-
         this.pdPanel = new JPanel(cardLayout);
 
         application.setSize(400,300);
 
-//        JFrame frame = new JFrame(ProductViewModel.TITLE_LABEL);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(600, 400);
-
         pdPanel.setLayout(new BoxLayout(pdPanel, BoxLayout.Y_AXIS));
-//        JScrollPane scrollPane = new JScrollPane(pdPanel);
-//        frame.add(scrollPane);
 
         JLabel pdTitle = new JLabel(productViewModel.getState().getTitle().concat("\n"));
         JLabel price = new JLabel(ProductViewModel.PRICE_LABEL.concat(String.valueOf(productViewModel.getState().getPrice())).concat("\n"));
@@ -67,7 +60,6 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
             pdPanel.add(imageLabel);
 
         } catch (IIOException | MalformedURLException e) {
-//            e.printStackTrace();
             pdPanel.add(new JLabel("Image not available in ProductView"));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -77,9 +69,9 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
         pdPanel.add(inventory);
         pdPanel.add(reviews);
 
-        buy = new JButton(ProductViewModel.PURCHASE_LABEL);
-        add_to_cart = new JButton(ProductViewModel.ADD_TO_CART_LABEL);
-        closeButton = new JButton(ProductViewModel.CLOSE);
+        this.buy = new JButton(ProductViewModel.PURCHASE_LABEL);
+        this.add_to_cart = new JButton(ProductViewModel.ADD_TO_CART_LABEL);
+        this.closeButton = new JButton(ProductViewModel.CLOSE);
         pdPanel.add(buy);
         pdPanel.add(add_to_cart);
         pdPanel.add(closeButton);

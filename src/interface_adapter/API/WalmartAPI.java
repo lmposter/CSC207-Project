@@ -54,7 +54,6 @@ public class WalmartAPI {
                 }
 
                 return productList;
-//              String body = jsonObject.getString("body");
             } else {
                 System.out.println("HTTP GET request failed");
             }
@@ -79,7 +78,7 @@ public class WalmartAPI {
         }
         //Parse the JSON response using org.json
         JSONObject jsonObject = new JSONObject(content.toString());
-//                System.out.println(jsonObject);
+//      System.out.println(jsonObject);
 
         JSONArray searchResults = jsonObject.getJSONArray("search_results");
         return searchResults;
@@ -94,7 +93,6 @@ public class WalmartAPI {
 //        System.out.println(contentS);
         String apiToken = System.getenv("API_TOKEN_WAL");
         String urll = "https://api.bluecartapi.com/request?api_key=".concat(apiToken).concat("&search_term=").concat(contentS).concat("&type=search");
-        //"https://api.bluecartapi.com/request?api_key={apiToken}&type=search&search_term=".concat(contentS)
 //        System.out.println(photoURL);
         URL url = new URL(urll);
         //open a connection to the URL

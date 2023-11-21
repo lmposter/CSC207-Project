@@ -4,12 +4,12 @@ import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.awt.*;
 
 public class SearchViewModel extends ViewModel {
     public static final String TITLE_LABEL = "SEARCH";
     public static final String SEARCH_LABEL = "Search here";
     public static final String SEARCH_BUTTON_LABEL = "GO!";
+    public static final String PRODUCT_PANEL_LABEL = "Search Results";
 
     public SearchViewModel(){super("Search");}
     private SearchState state = new SearchState();

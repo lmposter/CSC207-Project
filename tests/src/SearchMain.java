@@ -19,7 +19,7 @@ public class SearchMain {
         // various cards, and the layout, and stitch them together.
 
         // The main application window.
-        JFrame application = new JFrame("Search Example");
+        JFrame application = new JFrame("Search test");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
@@ -32,13 +32,8 @@ public class SearchMain {
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
-        // The data for the views, such as username and password, are in the ViewModels.
-        // This information will be changed by a presenter object that is reporting the
-        // results from the use case. The ViewModels are observable, and will
-        // be observed by the Views.
         SearchViewModel searchViewModel = new SearchViewModel();
-//        StorePageViewModel storePageViewModel = new StorePageViewModel();
-//        PersonalPageViewModel personalPageViewModel = new PersonalPageViewModel();
+
         FileWriter fileWriter = new FileWriter("empty.csv");
         String header = "id,title,inventory,URL,price,tags";
         fileWriter.write(header);
@@ -49,11 +44,6 @@ public class SearchMain {
         assert searchView != null;
         views.add(searchView, searchView.viewName);
 
-//        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, storePageViewModel, personalPageViewModel);
-//        views.add(loginView, loginView.viewName);
-
-//        LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
-//        views.add(loggedInView, loggedInView.viewName);
 
         viewManagerModel.setActiveView(searchView.viewName);
         viewManagerModel.firePropertyChanged();

@@ -1,7 +1,6 @@
 package view;
 
 import app.ProductDetailsUseCaseFactory;
-import app.SearchUseCaseFactory;
 import data_access.ProductDAO;
 import entity.Product;
 import entity.ProductFactory;
@@ -12,7 +11,6 @@ import interface_adapter.product.ProductViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
-import interface_adapter.search.SearchViewModel;
 
 import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
@@ -48,14 +46,13 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         LabelTextPanel contentToSearch = new LabelTextPanel(
                 new JLabel(SearchViewModel.SEARCH_LABEL), searchInputField);
 
-        contentToSearch.setAlignmentY(300);
+        contentToSearch.setAlignmentY(150);
 
         JPanel buttons = new JPanel();
         goSearch = new JButton(SearchViewModel.SEARCH_BUTTON_LABEL);
         buttons.add(goSearch);
 
-        JFrame frame = new JFrame("Product List");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame frame = new JFrame(SearchViewModel.PRODUCT_PANEL_LABEL);
         frame.setSize(600, 400);
 
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -67,8 +64,8 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(goSearch)) {
                             SearchState currentState = searchViewModel.getState();
-
                             searchController.execute(currentState.getContent());
+                            frame.setVisible(true);
                         }
                     }
                 }
@@ -97,7 +94,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
         this.add(contentToSearch);
         this.add(buttons);
-        frame.setVisible(true);
+        frame.setVisible(false);
     }
 
     public void actionPerformed(ActionEvent evt) {
@@ -136,15 +133,8 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                 productPanel.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-//                        JFrame application = new JFrame("Product Details");
-//
-//                        CardLayout cardLayout = new CardLayout();
-//
-//                        // The various View objects. Only one view is visible at a time.
-//                        JPanel views = new JPanel(cardLayout);
-//                        application.add(views);
+
                         ViewManagerModel viewManagerModel = new ViewManagerModel();
-//                        new ViewManager(views, cardLayout, viewManagerModel);
                         ProductViewModel pdViewModel = new ProductViewModel();
                         ProductState state = new ProductState(pd.getId(), pd.getURL(), pd.getTitle(), pd.getPrice(), pd.getInventory(), pd.getReview());
                         pdViewModel.setState(state);
@@ -162,12 +152,9 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                         ProductView pdView = ProductDetailsUseCaseFactory.create(viewManagerModel, pdViewModel, pdDAO);
 
                         assert pdView != null;
-//                        views.add(pdView, pdView.viewName);
                         pdView.show();
                         ProductController pdController = pdView.getProductController();
                         pdController.execute(pd.getID());
-
-//                        application.show();
                     }//TODO: make this work
                 });
                 mainPanel.add(productPanel);
@@ -179,10 +166,4 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         }
     }
 
-    public static void main(String[] args) {
-//
-//        SearchController controller = null;
-//        SearchViewModel searchViewModel = null;
-//        new SearchView(null, null);
-    }
 }
