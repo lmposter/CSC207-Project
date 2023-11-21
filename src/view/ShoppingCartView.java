@@ -1,6 +1,6 @@
 package view;
 
-import interface_adapter.shopping_cart;
+import interface_adapter.shopping_cart.ShoppingCartViewModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,6 +19,7 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
     public ShoppingCartView(ShoppingCartViewModel shoppingCartViewModel, JButton checkOut)
     {
         this.shoppingCartViewModel = shoppingCartViewModel;
+        this.checkOut = checkOut;
     }
 
     @Override
