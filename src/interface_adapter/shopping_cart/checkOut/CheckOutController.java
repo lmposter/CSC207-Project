@@ -1,12 +1,12 @@
 package interface_adapter.shopping_cart.checkOut;
 
-import use_case.signup.SignUpUserInputBoundary;
+import use_case.CheckOut.CheckOutInputBoundary;
 
 public class CheckOutController
 {
-    private final SignUpUserInputBoundary checkOutInteractor;
+    private final CheckOutInputBoundary checkOutInteractor;
 
-    public CheckOutController(SignUpUserInputBoundary checkOutInteractor)
+    public CheckOutController(CheckOutInputBoundary checkOutInteractor)
     {
         this.checkOutInteractor = checkOutInteractor;
     }

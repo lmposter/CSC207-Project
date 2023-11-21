@@ -1,4 +1,6 @@
 package use_case.CheckOut;
 
-public interface CheckOutDataAccessInterface {
+public interface CheckOutDataAccessInterface
+{
+
 }

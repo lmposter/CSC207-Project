@@ -10,4 +10,10 @@ public class CheckOutInteractor implements CheckOutInputBoundary
         this.checkOutPresenter = checkOutPresenter;
         this.dataAccessObject = dataAccessObject;
     }
+
+    @Override
+    public void execute()
+    {
+
+    }
 }
