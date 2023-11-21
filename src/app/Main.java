@@ -1,20 +1,22 @@
 package app;
 
-import data_access.UserDataAcessObject;
-//import entity.CommonUserFactory;
+import data_access.UserDataAccessObject;
+import entity.BuyerFactory;
+import entity.SellerFactory;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.store_page.StorePageViewModel;
-import interface_adapter.personal_page.PersonalPageViewModel;
+import use_case.login.LoginUserDataAccessInterface;
+import view.LoggedInView;
 import view.LoginView;
 import view.SignupView;
 import view.ViewManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
-// need dao for signupcase factory and user case factory
 public class Main {
     public static void main(String[] args) {
         // Build the main program window, the main panel containing the
@@ -39,24 +41,24 @@ public class Main {
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
         LoginViewModel loginViewModel = new LoginViewModel();
+        LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
-        StorePageViewModel storePageViewModel = new StorePageViewModel();
-        PersonalPageViewModel personalPageViewModel = new PersonalPageViewModel();
-        UserDataAcessObject dataAcessObject = new UserDataAcessObject();
-//        FileUserDataAccessObject userDataAccessObject;
-//        try {
-//            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, dataAcessObject);
+
+        UserDataAccessObject userDataAccessObject;
+        try {
+            userDataAccessObject = new UserDataAccessObject("./users.csv", new BuyerFactory(), new SellerFactory());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
         views.add(signupView, signupView.viewName);
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, null, null);
-        //LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, storePageViewModel, personalPageViewModel);
+
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, loggedInViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-//        LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
-//        views.add(loggedInView, loggedInView.viewName);
+        LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
+        views.add(loggedInView, loggedInView.viewName);
 
         viewManagerModel.setActiveView(signupView.viewName);
         viewManagerModel.firePropertyChanged();

@@ -11,9 +11,9 @@ import java.beans.PropertyChangeSupport;
  */
 public class LoginViewModel extends ViewModel {
 
-    public final String TITLE_LABEL = "Amazoff Login Page";
-    public final String USERNAME_LABEL = "Username";
-    public final String PASSWORD_LABEL = "Password";
+    public static final String TITLE_LABEL = "Amazoff Login Page";
+    public static final String USERNAME_LABEL = "Username";
+    public static final String PASSWORD_LABEL = "Password";
 
     public static final String LOGIN_BUTTON_LABEL = "Login";
     public static final String GUEST_BUTTON_LABEL = "Continue as a Guest";

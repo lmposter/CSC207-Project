@@ -2,7 +2,7 @@ package use_case.signup;
 
 import java.util.List;
 
-import entity.User;
+import entity.LoginUser;
 
 /**
  * Interface for accessing data related to user signup operations.
@@ -22,7 +22,7 @@ public interface SignUpUserDataAccessInterface {
      *
      * @param user The user object containing the information to be saved.
      */
-    void save(User user);
+    void save(LoginUser user);
 
     /**
      * Check if a user with the given email address already exists.
@@ -38,7 +38,7 @@ public interface SignUpUserDataAccessInterface {
      * @param identifier The unique identifier for the user.
      * @return The user object if found, or null if not found.
      */
-    User getUserByIdentifier(String identifier);
+    LoginUser getUserByIdentifier(String identifier);
 
     /**
      * Deletes the user with the given identifier from the data store.
@@ -52,12 +52,12 @@ public interface SignUpUserDataAccessInterface {
      *
      * @param user The updated user object.
      */
-    void update(User user);
+    void update(LoginUser user);
 
     /**
      * Retrieves a list of all users in the data store.
      *
      * @return List of all users.
      */
-    List<User> getAllUsers();
+    List<LoginUser> getAllUsers();
 }

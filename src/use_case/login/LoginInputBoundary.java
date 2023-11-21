@@ -12,4 +12,6 @@ public interface LoginInputBoundary {
      * @param loginInputData The input data containing username and password for login.
      */
     void execute(LoginInputData loginInputData);
+
+    void switchPage();
 }

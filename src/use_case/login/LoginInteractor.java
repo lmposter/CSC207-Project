@@ -93,4 +93,8 @@ public class LoginInteractor implements LoginInputBoundary {
         userDataAccessObject.deactivateAccount(username);
         LOGGER.log(Level.INFO, "Account deactivated: " + username);
     }
+    @Override
+    public void switchPage(){
+        loginPresenter.switchPage();
+    }
 }

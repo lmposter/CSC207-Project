@@ -19,7 +19,9 @@ public class LoginController {
     public LoginController(LoginInputBoundary loginInteractor) {
         this.loginInteractor = loginInteractor;
     }
-
+    public void switchPage(){
+        loginInteractor.switchPage();
+    }
     /**
      * Executes the login action triggered by the user interface.
      *

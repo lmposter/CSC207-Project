@@ -19,4 +19,6 @@ public interface LoginOutputBoundary {
      * @param errorMessage The error message to be displayed.
      */
     void prepareFailView(String errorMessage);
+
+    void switchPage();
 }

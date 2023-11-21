@@ -1,6 +1,6 @@
 package use_case.signup;
 
-import entity.User;
+import entity.LoginUser;
 import entity.SellerFactory;
 import entity.BuyerFactory;
 
@@ -20,14 +20,14 @@ public class SignUpUserInteractor implements SignUpUserInputBoundary {
      * Constructor for SignUpInteractor.
      *
      * @param signUpUserDataAccessInterface The data access object for user signup operations.
-     * @param signUpUserOutputBoundary     The presenter for user signup output.
-     * @param buyerFactory                 The factory for creating buyer entities.
-     * @param sellerFactory                The factory for creating seller entities.
+     * @param signUpUserOutputBoundary      The presenter for user signup output.
+     * @param buyerFactory                  The factory for creating buyer entities.
+     * @param sellerFactory                 The factory for creating seller entities.
      */
     public SignUpUserInteractor(SignUpUserDataAccessInterface signUpUserDataAccessInterface,
-                            SignUpUserOutputBoundary signUpUserOutputBoundary,
-                            BuyerFactory buyerFactory,
-                            SellerFactory sellerFactory) {
+                                SignUpUserOutputBoundary signUpUserOutputBoundary,
+                                BuyerFactory buyerFactory,
+                                SellerFactory sellerFactory) {
         this.userDataAccessObject = signUpUserDataAccessInterface;
         this.userPresenter = signUpUserOutputBoundary;
         this.buyerFactory = buyerFactory;
@@ -51,13 +51,13 @@ public class SignUpUserInteractor implements SignUpUserInputBoundary {
         }
         // Perform signup based on the user type (buyer or seller)
         else if ("seller".equals(signUpUserInputData.signType())) {
-            User user = sellerFactory.create(signUpUserInputData.username(), signUpUserInputData.password());
+            LoginUser user = sellerFactory.create(signUpUserInputData.username(), signUpUserInputData.password());
             userDataAccessObject.save(user);
             SignUpUserOutputData signUpUserOutputData = new SignUpUserOutputData(user.getName(), false);
             userPresenter.prepareSuccessView(signUpUserOutputData);
         } else {
             // For buyers
-            User user = buyerFactory.create(signUpUserInputData.username(), signUpUserInputData.password());
+            LoginUser user = buyerFactory.create(signUpUserInputData.username(), signUpUserInputData.password());
             userDataAccessObject.save(user);
             SignUpUserOutputData signUpUserOutputData = new SignUpUserOutputData(user.getName(), false);
             userPresenter.prepareSuccessView(signUpUserOutputData);
@@ -65,42 +65,7 @@ public class SignUpUserInteractor implements SignUpUserInputBoundary {
     }
 
     @Override
-    public void switchPage(){
+    public void switchPage() {
         userPresenter.switchPage();
-    }
-
-    @Override
-    public boolean checkUserExists(String identifier) {
-        return false;
-    }
-
-    @Override
-    public void saveUser(User user) {
-
-    }
-
-    @Override
-    public boolean checkUserExistsByEmail(String email) {
-        return false;
-    }
-
-    @Override
-    public User getUserByIdentifier(String identifier) {
-        return null;
-    }
-
-    @Override
-    public void deleteUserByIdentifier(String identifier) {
-
-    }
-
-    @Override
-    public void updateUser(User user) {
-
-    }
-
-    @Override
-    public List<User> getAllUsers() {
-        return null;
     }
 }
