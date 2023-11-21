@@ -14,7 +14,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "sign up";
+    public final String viewName = "Amazoff Signup Page";
 
     private final SignupViewModel signupViewModel;
     private final JTextField usernameInputField = new JTextField(15);
@@ -27,8 +27,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final JButton buyerSignUp;
 
     private final JButton switchToLogIn;
-
-    private final JButton cancel;
 
     public SignupView(SignupController controller, SignupViewModel signupViewModel) {
 
@@ -49,11 +47,9 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         JPanel buttons = new JPanel();
         sellerSignUp = new JButton(SignupViewModel.SELLER_SIGNUP_BUTTON_LABEL);
         buyerSignUp = new JButton(SignupViewModel.BUYER_SIGNUP_BUTTON_LABEL);
-        cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
         switchToLogIn = new JButton(SignupViewModel.SWITCH_TO_LOGIN);
         buttons.add(sellerSignUp);
         buttons.add(buyerSignUp);
-        buttons.add(cancel);
         buttons.add(switchToLogIn);
 
 
@@ -95,19 +91,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(switchToLogIn)) {
-//                            SignupState currentState = signupViewModel.getState();
-//
-//                            signupController.execute(
-//                                    currentState.getUsername(),
-//                                    currentState.getPassword(),
-//                                    currentState.getRepeatPassword()
-                            //);
+                            signupController.switchPage();
                         }
                     }
                 }
         );
-
-        cancel.addActionListener(this);
 
         usernameInputField.addKeyListener(
                 new KeyListener() {

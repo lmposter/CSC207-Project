@@ -10,6 +10,7 @@ import java.util.List;
 public interface SignUpUserInputBoundary {
 
     void execute(SignUpUserInputData signUpUserInputData);
+    void switchPage();
 
     /**
      * Handles the request to check if a user with the given identifier (usually the username) already exists.

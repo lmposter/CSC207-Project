@@ -11,7 +11,7 @@ public interface SignUpUserOutputBoundary {
      * @param signUpOutputData The output data containing information about the signed-up user.
      */
     void prepareSuccessView(SignUpUserOutputData signUpOutputData);
-
+    void switchPage();
     /**
      * Prepares the view for a failed user signup with an error message.
      *
