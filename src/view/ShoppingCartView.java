@@ -1,6 +1,6 @@
 package view;
 
-import interface_adapter.shopping_cart.;
+import interface_adapter.shopping_cart;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
