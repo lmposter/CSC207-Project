@@ -9,7 +9,7 @@ import use_case.productDetails.ProductOutputData;
 
 public class ProductPresenter implements ProductOutPutBoundary{
     private final ProductViewModel productViewModel;
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
     public ProductPresenter(ViewManagerModel viewManagerModel,
                            ProductViewModel productViewModel) {
