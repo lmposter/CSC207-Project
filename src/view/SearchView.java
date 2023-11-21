@@ -1,18 +1,31 @@
 package view;
 
+import app.ProductDetailsUseCaseFactory;
+import app.SearchUseCaseFactory;
+import data_access.ProductDAO;
+import entity.Product;
+import entity.ProductFactory;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.product.ProductController;
+import interface_adapter.product.ProductState;
+import interface_adapter.product.ProductViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
 
+import javax.imageio.IIOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "search";
@@ -22,24 +35,32 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     private final SearchController searchController;
 
     private final JButton goSearch;
+    private JPanel mainPanel;
 
 
     public SearchView(SearchController controller, SearchViewModel searchViewModel) {
 //TODO:add Product pages showing all the products found
         this.searchController = controller;
         this.searchViewModel = searchViewModel;
+        this.mainPanel = new JPanel();
         searchViewModel.addPropertyChangeListener(this);
-
-        JLabel title = new JLabel(SearchViewModel.TITLE_LABEL);
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel contentToSearch = new LabelTextPanel(
                 new JLabel(SearchViewModel.SEARCH_LABEL), searchInputField);
+
+        contentToSearch.setAlignmentY(300);
 
         JPanel buttons = new JPanel();
         goSearch = new JButton(SearchViewModel.SEARCH_BUTTON_LABEL);
         buttons.add(goSearch);
 
+        JFrame frame = new JFrame("Product List");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 400);
+
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
+        frame.add(scrollPane);
 
         goSearch.addActionListener(
                new ActionListener() {
@@ -74,9 +95,9 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.add(title);
         this.add(contentToSearch);
         this.add(buttons);
+        frame.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent evt) {
@@ -87,7 +108,81 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     public void propertyChange(PropertyChangeEvent evt) {
         SearchState state = (SearchState) evt.getNewValue();
         if (state.getProductsError() == null){
+            // Clear existing product panels
+            mainPanel.removeAll();
 
+            // Add new product panels based on the updated search results
+            ArrayList<Product> pdToShow = state.getProducts();
+            for (Product pd : pdToShow){
+                JPanel productPanel = new JPanel();
+                productPanel.setLayout(new BoxLayout(productPanel, BoxLayout.Y_AXIS));
+
+                try {
+                    URL url = new URL(pd.getURL());
+                    Image image = ImageIO.read(url).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+                    ImageIcon imageIcon = new ImageIcon(image);
+                    JLabel imageLabel = new JLabel(imageIcon);
+                    productPanel.add(imageLabel);
+
+
+                } catch (IIOException | MalformedURLException e) {
+                    e.printStackTrace();
+                    productPanel.add(new JLabel("Image not available"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                productPanel.add(new JLabel("Price: $" + pd.getPrice()));
+                productPanel.add(new JLabel("Inventory: " + pd.getInventory()));
+                productPanel.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+//                        JFrame application = new JFrame("Product Details");
+//
+//                        CardLayout cardLayout = new CardLayout();
+//
+//                        // The various View objects. Only one view is visible at a time.
+//                        JPanel views = new JPanel(cardLayout);
+//                        application.add(views);
+                        ViewManagerModel viewManagerModel = new ViewManagerModel();
+//                        new ViewManager(views, cardLayout, viewManagerModel);
+                        ProductViewModel pdViewModel = new ProductViewModel();
+                        ProductState state = new ProductState(pd.getId(), pd.getURL(), pd.getTitle(), pd.getPrice(), pd.getInventory(), pd.getReview());
+                        pdViewModel.setState(state);
+                        FileWriter fileWriter = null;
+                        try {
+                            fileWriter = new FileWriter("empty.csv");
+                            String header = "id,title,inventory,URL,price,tags";
+                            fileWriter.write(header);
+                            fileWriter.close();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
+
+                        ProductView pdView = ProductDetailsUseCaseFactory.create(viewManagerModel, pdViewModel, pdDAO);
+
+                        assert pdView != null;
+//                        views.add(pdView, pdView.viewName);
+                        pdView.show();
+                        ProductController pdController = pdView.getProductController();
+                        pdController.execute(pd.getID());
+
+//                        application.show();
+                    }//TODO: make this work
+                });
+                mainPanel.add(productPanel);
+            }
+
+            // Refresh the mainPanel to show updated results
+            mainPanel.revalidate();
+            mainPanel.repaint();
         }
+    }
+
+    public static void main(String[] args) {
+//
+//        SearchController controller = null;
+//        SearchViewModel searchViewModel = null;
+//        new SearchView(null, null);
     }
 }

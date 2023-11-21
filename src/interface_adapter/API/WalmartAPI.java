@@ -47,7 +47,7 @@ public class WalmartAPI {
                     JSONObject primary = offers.getJSONObject("primary");
                     double price = primary.getDouble("price");
                     Product pd = productFactory.create(title, photo, price, numInventory, new ArrayList<Tag>());
-                    Review review = new Review(stars, "");
+                    Review review = new Review(stars, "This user doesn't leave a comment");
                     pd.addReview(review);
                     pd.setID(id);
                     productList.add(pd);
@@ -93,10 +93,10 @@ public class WalmartAPI {
 
 //        System.out.println(contentS);
         String apiToken = System.getenv("API_TOKEN_WAL");
-        String photoURL = "https://api.bluecartapi.com/request?api_key=".concat(apiToken).concat("&search_term=").concat(contentS).concat("&type=search");
+        String urll = "https://api.bluecartapi.com/request?api_key=".concat(apiToken).concat("&search_term=").concat(contentS).concat("&type=search");
         //"https://api.bluecartapi.com/request?api_key={apiToken}&type=search&search_term=".concat(contentS)
-        System.out.println(photoURL);
-        URL url = new URL(photoURL);
+//        System.out.println(photoURL);
+        URL url = new URL(urll);
         //open a connection to the URL
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -107,9 +107,9 @@ public class WalmartAPI {
 
     public static void main(String[] args) {
 //        code for testing, uncomment to test
-//        String apiToken = System.getenv("API_TOKEN_WAL");
-//        System.out.println(apiToken);
-//
+////        String apiToken = System.getenv("API_TOKEN_WAL");
+////        System.out.println(apiToken);
+////
 //        String[] x = new String[2];
 //        x[0] = "pen";
 //        x[1] = "apple";
