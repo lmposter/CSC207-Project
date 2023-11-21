@@ -35,7 +35,7 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
         productViewModel.addPropertyChangeListener(this);
         this.pdPanel = new JPanel(cardLayout);
 
-        application.setSize(400,300);
+        application.setSize(600,400);
 
         pdPanel.setLayout(new BoxLayout(pdPanel, BoxLayout.Y_AXIS));
 

@@ -29,7 +29,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     public final String viewName = "search";
 
     private final SearchViewModel searchViewModel;
-    private final JTextField searchInputField = new JTextField(100);
+    private final JTextField searchInputField = new JTextField(50);
     private final SearchController searchController;
 
     private final JButton goSearch;
@@ -37,7 +37,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
 
     public SearchView(SearchController controller, SearchViewModel searchViewModel) {
-//TODO:add Product pages showing all the products found
+
         this.searchController = controller;
         this.searchViewModel = searchViewModel;
         this.mainPanel = new JPanel();
@@ -46,7 +46,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         LabelTextPanel contentToSearch = new LabelTextPanel(
                 new JLabel(SearchViewModel.SEARCH_LABEL), searchInputField);
 
-        contentToSearch.setAlignmentY(150);
+        contentToSearch.setSize(200, 20);
 
         JPanel buttons = new JPanel();
         goSearch = new JButton(SearchViewModel.SEARCH_BUTTON_LABEL);
@@ -107,12 +107,13 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         if (state.getProductsError() == null){
             // Clear existing product panels
             mainPanel.removeAll();
-
+            mainPanel.add(new JLabel(state.getMessage()));
             // Add new product panels based on the updated search results
             ArrayList<Product> pdToShow = state.getProducts();
             for (Product pd : pdToShow){
                 JPanel productPanel = new JPanel();
                 productPanel.setLayout(new BoxLayout(productPanel, BoxLayout.Y_AXIS));
+
 
                 try {
                     URL url = new URL(pd.getURL());
@@ -155,7 +156,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                         pdView.show();
                         ProductController pdController = pdView.getProductController();
                         pdController.execute(pd.getID());
-                    }//TODO: make this work
+                    }
                 });
                 mainPanel.add(productPanel);
             }
