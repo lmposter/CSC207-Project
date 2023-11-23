@@ -2,8 +2,10 @@ package entity;
 import java.util.HashMap;
 
 import java.util.*;
+import java.util.function.Consumer;
 
-public class ShoppingCart {
+public class ShoppingCart // implements Iterable<Product>
+{
 
     private HashMap<Product, Integer> cart;
     // Map a product to its number in the cart
@@ -55,8 +57,8 @@ public class ShoppingCart {
 
     /**
      *
-     * @param product
      * @return the number of such product in cart
+     * @param product
      */
     public int getProductQuantity(Product product)
     {
@@ -81,6 +83,7 @@ public class ShoppingCart {
             cart.remove(product);
     }
 
+
     /**
      * Clear the shopping cart
      */
@@ -101,8 +104,36 @@ public class ShoppingCart {
             if(cart.get(i) > i.getInventory())
                 return false;
         }
-        return true
+        return true;
     }
+
+    public HashMap<Product, Integer> getCart()
+    {
+        return (HashMap<Product, Integer>) this.cart.clone();
+    }
+
+//    @Override
+//    public Iterator<Product> iterator()
+//    {
+//        return new Iter();
+//    }
+//
+//    private class Iter implements Iterator<Product>
+//    {
+//        int cursor = 0;
+//
+//        @Override
+//        public boolean hasNext()
+//        {
+//            return cursor != cart.size();
+//        }
+//
+//        @Override
+//        public Product next()
+//        {
+//
+//        }
+//    }
 }
 
 

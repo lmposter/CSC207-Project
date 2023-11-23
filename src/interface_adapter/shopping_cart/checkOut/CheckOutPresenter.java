@@ -17,7 +17,13 @@ public class CheckOutPresenter implements CheckOutOutputBoundary
     }
 
     @Override
-    public void execute(CheckOutOutputData outputData)
+    public void prepareSuccessView(CheckOutOutputData checkOutOutputData)
+    {
+
+    }
+
+    @Override
+    public void soldOutView()
     {
 
     }

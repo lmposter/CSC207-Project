@@ -4,6 +4,7 @@ import entity.Product;
 import entity.ProductFactory;
 import entity.Review;
 import entity.Tag;
+import use_case.CheckOut.CheckOutProductDataAccessInterface;
 import use_case.create_product.CreatePdDAI;
 import use_case.productDetails.ProductDetailsDAI;
 import use_case.search.SearchDAI;
@@ -11,7 +12,8 @@ import use_case.search.SearchDAI;
 import java.io.*;
 import java.util.*;
 
-public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI {
+public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI, CheckOutProductDataAccessInterface
+{
     private final File csvFile;
     private final ProductFactory productFactory;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
@@ -161,8 +163,7 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI {
 //            System.exit(1);
 //        }
 //        return false;
-        if (products.containsKey(PdID)){return true;}
-        return false;
+        return products.containsKey(PdID);
     }
 
     @Override
@@ -170,4 +171,9 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI {
         return products.get(PdID);
     }
 
+    @Override
+    public int getInvertory(String id)
+    {
+        return products.get(id).getInventory();
+    }
 }

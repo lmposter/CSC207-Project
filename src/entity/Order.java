@@ -1,6 +1,7 @@
 package entity;
 
-public class Order {
+public class Order
+{
     private double price;
     private Product product;
     private int quantity;

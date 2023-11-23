@@ -104,4 +104,13 @@ public class Buyer implements LoginUser, User {
     {
         this.cart.removeProduct(product);
     }
+
+    /**
+     *
+     * @return the user's shopping cart
+     */
+    public ShoppingCart getCart()
+    {
+        return this.cart;
+    }
 }
