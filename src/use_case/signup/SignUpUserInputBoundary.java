@@ -11,4 +11,5 @@ public interface SignUpUserInputBoundary {
 
     void execute(SignUpUserInputData signUpUserInputData);
     void switchPage();
+    void guestView();
 }

@@ -27,7 +27,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     final JButton logIn;
     final JButton cancel;
-    final JButton guest;
     final JButton deactivate;
     private final LoginController loginController;
 
@@ -50,8 +49,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         buttons.add(logIn);
         cancel = new JButton(loginViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
-        guest = new JButton(loginViewModel.GUEST_BUTTON_LABEL);
-        buttons.add(guest);
         deactivate = new JButton(loginViewModel.DEACTIVATE_BUTTON_LABEL);
         buttons.add(deactivate);
 

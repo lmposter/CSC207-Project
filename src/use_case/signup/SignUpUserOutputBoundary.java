@@ -18,4 +18,6 @@ public interface SignUpUserOutputBoundary {
      * @param error The error message describing the reason for the signup failure.
      */
     void prepareFailView(String error);
+
+    void prepareGuestView();
 }

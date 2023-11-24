@@ -9,6 +9,9 @@ public class SignupController {
     public SignupController(SignUpUserInputBoundary userSignupUseCaseInteractor) {
         this.userSignupUseCaseInteractor = userSignupUseCaseInteractor;
     }
+    public void guestView(){
+        userSignupUseCaseInteractor.guestView();
+    }
     public void switchPage(){
         userSignupUseCaseInteractor.switchPage();
     }

@@ -1,8 +1,6 @@
 package use_case.signup;
 
-import entity.LoginUser;
-import entity.SellerFactory;
-import entity.BuyerFactory;
+import entity.*;
 
 import java.util.List;
 
@@ -45,9 +43,20 @@ public class SignUpUserInteractor implements SignUpUserInputBoundary {
         if (userDataAccessObject.existsByName(signUpUserInputData.username())) {
             userPresenter.prepareFailView("User already exists.");
         }
+
         // Check if passwords match
         else if (!signUpUserInputData.password().equals(signUpUserInputData.repeatPassword())) {
             userPresenter.prepareFailView("Passwords don't match.");
+        }
+
+        else if (!isLengthValid(signUpUserInputData.password())) {
+            userPresenter.prepareFailView("Your password must be at least 8 characters long.");
+        }
+        else if (!isSpecialValid(signUpUserInputData.password())) {
+            userPresenter.prepareFailView("Your password must contain at least one special character");
+        }
+        else if (!isUppercaseValid(signUpUserInputData.password())) {
+            userPresenter.prepareFailView("Your password must contain at least one uppercase letter");
         }
         // Perform signup based on the user type (buyer or seller)
         else if ("seller".equals(signUpUserInputData.signType())) {
@@ -55,7 +64,7 @@ public class SignUpUserInteractor implements SignUpUserInputBoundary {
             userDataAccessObject.save(user);
             SignUpUserOutputData signUpUserOutputData = new SignUpUserOutputData(user.getName(), false);
             userPresenter.prepareSuccessView(signUpUserOutputData);
-        } else {
+        } else if ("buyer".equals(signUpUserInputData.signType())) {
             // For buyers
             LoginUser user = buyerFactory.create(signUpUserInputData.username(), signUpUserInputData.password());
             userDataAccessObject.save(user);
@@ -63,9 +72,26 @@ public class SignUpUserInteractor implements SignUpUserInputBoundary {
             userPresenter.prepareSuccessView(signUpUserOutputData);
         }
     }
-
+    @Override
+    public void guestView() {
+        userPresenter.prepareGuestView();
+    }
     @Override
     public void switchPage() {
         userPresenter.switchPage();
+    }
+
+    // Methods to check password requirements
+    private boolean isLengthValid(String password) {
+        // Check minimum length
+        return password.length() >= 8;
+    }
+    private boolean isSpecialValid(String password) {
+        // Check for at least one special character
+        return password.matches(".*[!@#$%^&*()-_=+\\|[{]};:'\",<.>/?].*");
+    }
+    private boolean isUppercaseValid(String password) {
+        // Check for at least one uppercase letter
+        return password.matches(".*[A-Z].*");
     }
 }

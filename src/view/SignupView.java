@@ -21,6 +21,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final JPasswordField passwordInputField = new JPasswordField(15);
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
     private final SignupController signupController;
+    private final JButton guestSignUp;
 
     private final JButton sellerSignUp;
 
@@ -45,13 +46,32 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new JLabel(SignupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
 
         JPanel buttons = new JPanel();
+        guestSignUp = new JButton(SignupViewModel.GUEST_SIGNUP_BUTTON_LABEL);
         sellerSignUp = new JButton(SignupViewModel.SELLER_SIGNUP_BUTTON_LABEL);
         buyerSignUp = new JButton(SignupViewModel.BUYER_SIGNUP_BUTTON_LABEL);
         switchToLogIn = new JButton(SignupViewModel.SWITCH_TO_LOGIN);
+
+        buttons.add(guestSignUp);
         buttons.add(sellerSignUp);
         buttons.add(buyerSignUp);
         buttons.add(switchToLogIn);
 
+        guestSignUp.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(guestSignUp)) {
+                            SignupState currentState = signupViewModel.getState();
+
+                            signupController.execute(
+                                    currentState.getUsername(),
+                                    currentState.getPassword(),
+                                    currentState.getRepeatPassword(),
+                                    "seller"
+                            );
+                        }
+                    }
+                }
+        );
 
         sellerSignUp.addActionListener(
                 new ActionListener() {

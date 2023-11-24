@@ -10,7 +10,7 @@ public class SignupPresenter implements SignUpUserOutputBoundary {
 
     private final SignupViewModel signupViewModel;
     private final LoginViewModel loginViewModel;
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
     public SignupPresenter(ViewManagerModel viewManagerModel,
                            SignupViewModel signupViewModel,
@@ -44,5 +44,9 @@ public class SignupPresenter implements SignUpUserOutputBoundary {
         signupState.setUsernameError(error);
         signupViewModel.firePropertyChanged();
     }
+
+    @Override
+    public void prepareGuestView() {
+        //jump to store page
+    }
 }
-//need edit here
