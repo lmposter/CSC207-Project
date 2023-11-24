@@ -1,15 +1,21 @@
 package view;
 
+import entity.Product;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.shopping_cart.ShoppingCartViewModel;
 import interface_adapter.shopping_cart.checkOut.CheckOutController;
 
+import javax.imageio.IIOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class ShoppingCartView extends JPanel implements ActionListener, PropertyChangeListener
 {
@@ -21,6 +27,7 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
 
     private final LoggedInViewModel loggedInViewModel;
 
+    private final JPanel mainPanel;
     private final JButton checkOut;
     private final JButton store;
 
@@ -30,6 +37,7 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
         this.checkOutController = checkOutController;
         this.loggedInViewModel = loggedInViewModel;
 
+        this.mainPanel = new JPanel();
         this.checkOut = new JButton("Check Out");
         this.store = new JButton("Store");
 
@@ -65,19 +73,71 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
                     {
                         if (e.getSource().equals(store))
                         {
-                            //TODO Switch to Store Page
+                            //TODO: Switch to Store Page
                         }
                     }
                 }
         );
 
+        for (Product product : shoppingCartViewModel.getState())
+        {
+            JPanel subpanel = createProductPanel(product.getTitle(), product.getPrice(), product.getURL());
+            this.mainPanel.add(subpanel);
+        }
+
+        this.mainPanel.add(buttons);
 
     }
 
-    private JPanel createProductPanel(String name, double price)
+    /**
+     *
+     * @param name title
+     * @param p price
+     * @param imageUrl url of image
+     * @return a subpanel for this product
+     */
+    private JPanel createProductPanel(String name, double p, String imageUrl)
     {
-        JPanel productpanel = new JPanel();
-        return productpanel;
+        JPanel productPanel = new JPanel();
+
+        JLabel title = new JLabel(name);
+        JLabel price = new JLabel(String.valueOf(p));
+
+        try
+        {
+            URL url = new URL(imageUrl);
+            Image image = ImageIO.read(url).getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+            ImageIcon imageIcon = new ImageIcon(image);
+            JLabel imageLabel = new JLabel(imageIcon);
+            productPanel.add(imageLabel);
+        } catch (IIOException | MalformedURLException e) {
+            productPanel.add(new JLabel("Image not available in ProductView"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        productPanel.add(title);
+        productPanel.add(price);
+
+        JButton remove = new JButton();
+
+        remove.addActionListener(
+                new ActionListener()
+                {
+                @Override
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        if (e.getSource().equals(remove))
+                        {
+                            // TODO: remove this product from shopping cart
+                        }
+                    }
+                }
+        );
+
+        productPanel.add(remove);
+
+        return productPanel;
     }
 
     @Override
