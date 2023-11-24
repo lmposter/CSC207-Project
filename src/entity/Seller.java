@@ -13,12 +13,12 @@ public class Seller implements User, LoginUser {
     /**
      * Unique identifier for the seller.
      */
-    private final String sellerId;
+    private final String id;
 
     /**
      * Name of the seller.
      */
-    private String sellerName;
+    private String name;
 
     /**
      * Password of the seller.
@@ -30,8 +30,8 @@ public class Seller implements User, LoginUser {
      * Generates a unique ID for the seller and sets a default name.
      */
     public Seller(String name, String password) {
-        this.sellerId = "S" + UUID.randomUUID().toString();
-        this.sellerName = name;
+        this.id = "S" + UUID.randomUUID().toString();
+        this.name = name;
         this.password = password;
     }
 
@@ -41,7 +41,7 @@ public class Seller implements User, LoginUser {
      */
     @Override
     public void setName(String name) {
-        this.sellerName = name;
+        this.name = name;
     }
 
     /**
@@ -60,7 +60,7 @@ public class Seller implements User, LoginUser {
      */
     @Override
     public String getId() {
-        return sellerId;
+        return id;
     }
   
     /**
@@ -70,7 +70,7 @@ public class Seller implements User, LoginUser {
      */
     @Override
     public String getName() {
-        return sellerName;
+        return name;
     }
 
     /**

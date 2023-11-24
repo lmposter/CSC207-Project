@@ -11,12 +11,12 @@ public class Buyer implements LoginUser, User {
     /**
      * Unique identifier for the buyer.
      */
-    private final String buyerId;
+    private final String id;
 
     /**
      * Name of the buyer.
      */
-    private String buyerName;
+    private String name;
 
     /**
      * Password of the buyer.
@@ -33,8 +33,8 @@ public class Buyer implements LoginUser, User {
      * Generates a unique ID for the buyer and sets a default name.
      */
     public Buyer(String name, String password) {
-        this.buyerId = "B" + UUID.randomUUID().toString();
-        this.buyerName = name;
+        this.id = "B" + UUID.randomUUID().toString();
+        this.name = name;
         this.password = password;
         this.cart = new ShoppingCart();
     }
@@ -45,7 +45,7 @@ public class Buyer implements LoginUser, User {
      */
     @Override
     public void setName(String name) {
-        this.buyerName = name;
+        this.name = name;
     }
 
     /**
@@ -64,7 +64,7 @@ public class Buyer implements LoginUser, User {
      */
     @Override
     public String getName() {
-        return buyerName;
+        return name;
     }
 
     /**
@@ -74,7 +74,7 @@ public class Buyer implements LoginUser, User {
      */
     @Override
     public String getId() {
-        return buyerId;
+        return id;
     }
 
     /**
