@@ -119,7 +119,7 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
         productPanel.add(title);
         productPanel.add(price);
 
-        JButton remove = new JButton();
+        JButton remove = new JButton("Remove");
 
         remove.addActionListener(
                 new ActionListener()
