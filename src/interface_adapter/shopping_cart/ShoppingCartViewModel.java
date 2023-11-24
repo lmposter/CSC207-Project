@@ -4,10 +4,11 @@ import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 public class ShoppingCartViewModel extends ViewModel
 {
-    private ShoppingCartState state = new ShoppingCartState();
+    private ShoppingCartState state = new ShoppingCartState(new ArrayList<>());
 
     public ShoppingCartViewModel()
     {

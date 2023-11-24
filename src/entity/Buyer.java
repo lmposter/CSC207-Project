@@ -24,6 +24,11 @@ public class Buyer implements LoginUser, User {
     private String password;
 
     /**
+     * Shopping Cart of the buyer.
+     */
+    private ShoppingCart cart;
+
+    /**
      * Default constructor for creating a Buyer.
      * Generates a unique ID for the buyer and sets a default name.
      */
@@ -31,6 +36,7 @@ public class Buyer implements LoginUser, User {
         this.buyerId = "B" + UUID.randomUUID().toString();
         this.buyerName = name;
         this.password = password;
+        this.cart = new ShoppingCart();
     }
 
     /**
@@ -79,5 +85,32 @@ public class Buyer implements LoginUser, User {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    /**
+     * Add a product to the user's shopping cart
+     * @param product
+     */
+    public void addProduct(Product product)
+    {
+        this.cart.addProduct(product);
+    }
+
+    /**
+     * Remove a product from the shopping cart
+     * @param product
+     */
+    public void removeProduct(Product product)
+    {
+        this.cart.removeProduct(product);
+    }
+
+    /**
+     *
+     * @return the user's shopping cart
+     */
+    public ShoppingCart getCart()
+    {
+        return this.cart;
     }
 }
