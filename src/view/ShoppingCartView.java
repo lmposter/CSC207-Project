@@ -76,7 +76,7 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
 
     private JPanel createProductPanel(String name, double price)
     {
-        Jpanel productpanel = new JPanel();
+        JPanel productpanel = new JPanel();
         return productpanel;
     }
 
