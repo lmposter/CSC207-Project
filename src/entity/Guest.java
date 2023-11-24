@@ -11,20 +11,20 @@ public class Guest implements User {
     /**
      * Unique identifier for the guest.
      */
-    private final String guestId;
+    private final String id;
 
     /**
      * Name of the guest.
      */
-    private final String guestName;
+    private final String name;
 
     /**
      * Default constructor for creating a Guest.
      * Generates a unique ID for the guest and sets a default name.
      */
     public Guest() {
-        this.guestId = "G" + UUID.randomUUID().toString();
-        this.guestName = "Guest" + guestId;
+        this.id = "G" + UUID.randomUUID().toString();
+        this.name = "Guest" + id;
     }
 
     /**
@@ -44,7 +44,7 @@ public class Guest implements User {
      */
     @Override
     public String getName() {
-        return guestName;
+        return name;
     }
 
     /**
@@ -54,6 +54,6 @@ public class Guest implements User {
      */
     @Override
     public String getId() {
-        return guestId;
+        return id;
     }
 }

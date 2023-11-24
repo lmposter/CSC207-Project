@@ -46,7 +46,7 @@ public class Main {
 
         UserDataAccessObject userDataAccessObject;
         try {
-            userDataAccessObject = new UserDataAccessObject("./users.csv", new BuyerFactory(), new SellerFactory());
+            userDataAccessObject = new UserDataAccessObject(new BuyerFactory(), new SellerFactory());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
