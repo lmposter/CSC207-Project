@@ -39,9 +39,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         JLabel title = new JLabel(LoginViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        LabelTextPanel usernameInfo = new LabelTextPanel(
+        TempLabelTextPanel usernameInfo = new TempLabelTextPanel(
                 new JLabel(LoginViewModel.USERNAME_LABEL), usernameInputField);
-        LabelTextPanel passwordInfo = new LabelTextPanel(
+        TempLabelTextPanel passwordInfo = new TempLabelTextPanel(
                 new JLabel(LoginViewModel.PASSWORD_LABEL), passwordInputField);
 
         JPanel buttons = new JPanel();
