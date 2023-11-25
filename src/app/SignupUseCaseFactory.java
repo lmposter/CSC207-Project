@@ -1,5 +1,6 @@
 package app;
 
+import entity.GuestFactory;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
@@ -37,12 +38,12 @@ public class SignupUseCaseFactory {
 
         // Notice how we pass this method's parameters to the Presenter.
         SignUpUserOutputBoundary signupUserOutputBoundary = new SignupPresenter(viewManagerModel, signupViewModel, loginViewModel);
-
+        GuestFactory guestFactory = new GuestFactory();
         BuyerFactory buyerFactory = new BuyerFactory();
         SellerFactory sellerFactory = new SellerFactory();
 
         SignUpUserInputBoundary userSignupInteractor = new SignUpUserInteractor(
-                userDataAccessObject, signupUserOutputBoundary, buyerFactory, sellerFactory);
+                userDataAccessObject, signupUserOutputBoundary, guestFactory, buyerFactory, sellerFactory);
 
         return new SignupController(userSignupInteractor);
     }

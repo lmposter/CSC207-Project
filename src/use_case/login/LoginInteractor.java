@@ -1,6 +1,7 @@
 package use_case.login;
 
-import entity.User;
+import entity.LoginUser;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -75,7 +76,7 @@ public class LoginInteractor implements LoginInputBoundary {
                 userDataAccessObject.resetFailedLoginAttempts(username);
 
                 // Retrieve user information and prepare success view
-                User user = userDataAccessObject.get(loginInputData.username());
+                LoginUser user = userDataAccessObject.get(loginInputData.username());
                 LoginOutputData loginOutputData = new LoginOutputData(user.getName(), false);
                 loginPresenter.prepareSuccessView(loginOutputData);
 

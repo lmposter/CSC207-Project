@@ -44,9 +44,4 @@ public class SignupPresenter implements SignUpUserOutputBoundary {
         signupState.setUsernameError(error);
         signupViewModel.firePropertyChanged();
     }
-
-    @Override
-    public void prepareGuestView() {
-        //jump to store page
-    }
 }

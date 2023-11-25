@@ -7,7 +7,7 @@ import java.util.UUID;
  * sellers are users with login credentials.
  */
 
-public class Seller implements User, LoginUser {
+public class Seller implements LoginUser {
 
 
     /**
