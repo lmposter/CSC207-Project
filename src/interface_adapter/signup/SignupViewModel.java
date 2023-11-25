@@ -11,7 +11,7 @@ public class SignupViewModel extends ViewModel {
     public static final String USERNAME_LABEL = "Username";
     public static final String PASSWORD_LABEL = "Password";
     public static final String REPEAT_PASSWORD_LABEL = "Confirm Password";
-
+    public static final String GUEST_SIGNUP_BUTTON_LABEL = "Sign up as a Guest";
     public static final String BUYER_SIGNUP_BUTTON_LABEL = "Sign up as a Buyer";
 
     public static final String SELLER_SIGNUP_BUTTON_LABEL = "Sign up as a Seller";

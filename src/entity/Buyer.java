@@ -6,7 +6,7 @@ import java.util.UUID;
  * The Buyer class represents a buyer user in the system.
  * Buyers are users with login credentials.
  */
-public class Buyer implements LoginUser, User {
+public class Buyer implements LoginUser{
 
     /**
      * Unique identifier for the buyer.

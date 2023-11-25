@@ -1,12 +1,11 @@
 package entity;
 
-public class GuestFactory implements UserFactory {
+public class GuestFactory implements LoginUserFactory {
     /**
      * Requires: None
      */
-
     @Override
-    public User create() {
+    public LoginUser create(String name, String password) {
         return new Guest();
     }
 }

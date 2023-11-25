@@ -11,14 +11,14 @@ import java.beans.PropertyChangeSupport;
  */
 public class LoginViewModel extends ViewModel {
 
-    public static final String TITLE_LABEL = "Amazoff Secure Login";
+    public static final String TITLE_LABEL = "Amazoff Login Portal";
     public static final String USERNAME_LABEL = "Username";
     public static final String PASSWORD_LABEL = "Password";
 
-    public static final String LOGIN_BUTTON_LABEL = "Login";
-    public static final String GUEST_BUTTON_LABEL = "Guest Login";
-    public static final String CANCEL_BUTTON_LABEL = "New to Amazoff?";
-    public static final String DEACTIVATE_BUTTON_LABEL = "Deactivate";
+    public static final String LOGIN_BUTTON_LABEL = "Secure Login";
+    // public static final String GUEST_BUTTON_LABEL = "Guest Login";
+    public static final String CANCEL_BUTTON_LABEL = "New to Amazoff? Get your FREE account now!";
+    public static final String DEACTIVATE_BUTTON_LABEL = "Deactivate this account";
     private LoginState state = new LoginState();
 
     /**

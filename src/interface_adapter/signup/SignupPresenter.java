@@ -10,7 +10,7 @@ public class SignupPresenter implements SignUpUserOutputBoundary {
 
     private final SignupViewModel signupViewModel;
     private final LoginViewModel loginViewModel;
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
     public SignupPresenter(ViewManagerModel viewManagerModel,
                            SignupViewModel signupViewModel,
@@ -45,4 +45,3 @@ public class SignupPresenter implements SignUpUserOutputBoundary {
         signupViewModel.firePropertyChanged();
     }
 }
-//need edit here
