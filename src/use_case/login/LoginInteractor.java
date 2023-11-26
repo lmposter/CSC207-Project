@@ -43,33 +43,36 @@ public class LoginInteractor implements LoginInputBoundary {
         String password = loginInputData.password();
 
         // Check if the account is locked
-        if (userDataAccessObject.isAccountLocked(username)) {
-            loginPresenter.prepareFailView(username + ": Account is locked.");
-            LOGGER.log(Level.WARNING, "Attempted login to locked account: " + username);
-            return;
-        }
+
+//        }
 
         // Check if the account exists
         if (!userDataAccessObject.existsByName(username)) {
             loginPresenter.prepareFailView("Attempted login to non-existent account: " + username);
             LOGGER.log(Level.WARNING, "Attempted login to non-existent account: " + username);
         } else {
-            // Retrieve stored password from the data access object
             String storedPassword = userDataAccessObject.get(username).getPassword();
+            if (userDataAccessObject.isAccountLocked(username)) {
+            loginPresenter.prepareFailView(username + ": Account is locked.");
+            LOGGER.log(Level.WARNING, "Attempted login to locked account: " + username);}
+            // Retrieve stored password from the data access object
 
             // Check if the provided password matches the stored password
-            if (!password.equals(storedPassword)) {
-                loginPresenter.prepareFailView("Incorrect password for " + username);
-                LOGGER.log(Level.WARNING, "Incorrect password for account: " + username);
-
-                // Increment failed login attempts
+            else if (!password.equals(storedPassword)) {
                 userDataAccessObject.incrementFailedLoginAttempts(username);
-
-                // Lock the account if the maximum number of failed attempts is reached
                 if (userDataAccessObject.isMaxFailedAttemptsReached(username)) {
                     userDataAccessObject.lockAccount(username);
+                    loginPresenter.prepareFailView("Account locked due to multiple failed login attempts: " + username);
                     LOGGER.log(Level.WARNING, "Account locked due to multiple failed login attempts: " + username);
                 }
+                else {
+                    loginPresenter.prepareFailView("Incorrect password for " + username);
+                    LOGGER.log(Level.WARNING, "Incorrect password for account: " + username);
+                }
+
+                // Increment failed login attempts
+
+                // Lock the account if the maximum number of failed attempts is reached
 
             } else {
                 // Reset failed login attempts on successful login

@@ -35,6 +35,11 @@ public class Seller implements LoginUser {
         this.password = password;
     }
 
+    public Seller(String name, String password, String id) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
     /**
      * Set the name for the seller.
      * The implementation of this method allows sellers to change their name.
