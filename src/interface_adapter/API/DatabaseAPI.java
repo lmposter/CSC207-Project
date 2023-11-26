@@ -15,6 +15,7 @@ public class DatabaseAPI {
     private static final String INSERT_ONE_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/insertOne";
     private static final String FIND_ONE_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/findOne";
 
+    private static final String UPDATE_ONE_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/updateOne";
     private static final String DELETE_ONE_API_URL = "https://data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/deleteOne";
     private static final String API_TOKEN = System.getenv("API_TOKEN_MongoDB");
 
@@ -26,6 +27,7 @@ public class DatabaseAPI {
         return requestBody;
     }
     public static void insertOne(LoginUser user) {
+        System.out.println("insert one");
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         JSONObject requestBody = createResponseBody();
         JSONObject insert_document = new JSONObject();
@@ -45,18 +47,14 @@ public class DatabaseAPI {
                 .header("Access-Control-Request-Headers", "*")
                 .header("api-key", API_TOKEN)
                 .build();
-//        testing
-//        System.out.println(requestBody.toString());
-//        System.out.println(request.headers());
         try {
             Response response = client.newCall(request).execute();
-//            System.out.println(response.body().string());
         } catch (IOException | JSONException e){
-            System.out.println("saving failed failed");
             e.printStackTrace();
         }
     }
     public static boolean findOne(String field, String value) {
+        System.out.println("findone");
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         JSONObject requestBody = createResponseBody();
         JSONObject insert_document = new JSONObject();
@@ -75,9 +73,6 @@ public class DatabaseAPI {
                 .header("Access-Control-Request-Headers", "*")
                 .header("api-key", API_TOKEN)
                 .build();
-//        Testing :
-//        System.out.println(requestBody.toString());
-//        System.out.println(request.headers());
         try {
             Response response = client.newCall(request).execute();
             String resString = response.body().string();
@@ -85,7 +80,6 @@ public class DatabaseAPI {
             response.body().close();
             return !result;
         } catch (IOException | JSONException e) {
-            System.out.println("Find one by Name failed");
             e.printStackTrace();
             return false;
         }
@@ -102,16 +96,13 @@ public class DatabaseAPI {
         requestBody.put("filter", insert_document);
         RequestBody body = RequestBody.create(requestBody.toString().getBytes(StandardCharsets.UTF_8));
         Request request = new Request.Builder()
-                .url(FIND_ONE_API_URL)
+                    .url(FIND_ONE_API_URL)
                 .post(body)
                 .header("Content-Type", "application/json")
                 .header("Accept", "*/*")
                 .header("Access-Control-Request-Headers", "*")
                 .header("api-key", API_TOKEN)
                 .build();
-//        Testing :
-//        System.out.println(requestBody.toString());
-//        System.out.println(request.headers());
         try {
             Response response = client.newCall(request).execute();
             String resString = response.body().string();
@@ -133,12 +124,12 @@ public class DatabaseAPI {
                 return new Seller(name, password, id);
             }
         } catch (IOException | JSONException e) {
-            System.out.println("Create one by Name failed");
             e.printStackTrace();
             return null;
         }
     }
     public static void delete(String field, String value) {
+        System.out.println("Delete");
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         JSONObject requestBody = createResponseBody();
         JSONObject insert_document = new JSONObject();
@@ -156,7 +147,93 @@ public class DatabaseAPI {
         try {
             Response response = client.newCall(request).execute();
         } catch (IOException | JSONException e) {
-            System.out.println("Delete one by Name failed");
+            e.printStackTrace();
+        }
+    }
+    public static int getAttempts(String field, String value) {
+        System.out.println("Get attempts");
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        JSONObject requestBody = createResponseBody();
+        JSONObject insert_document = new JSONObject();
+        JSONObject projection = new JSONObject();
+        projection.put("_id", 0);
+        insert_document.put(field, value);
+        requestBody.put("projection", projection);
+        requestBody.put("filter", insert_document);
+        RequestBody body = RequestBody.create(requestBody.toString().getBytes(StandardCharsets.UTF_8));
+        Request request = new Request.Builder()
+                .url(FIND_ONE_API_URL)
+                .post(body)
+                .header("Content-Type", "application/json")
+                .header("Accept", "*/*")
+                .header("Access-Control-Request-Headers", "*")
+                .header("api-key", API_TOKEN)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            String resString = response.body().string();
+            response.body().close();
+            JSONObject mainObject = new JSONObject(resString);
+            JSONObject documentObject = mainObject.getJSONObject("document");
+            return documentObject.getInt("attempts");
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    public static void updateAttempts(String field, String value){
+        System.out.println("Update attempts");
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        JSONObject requestBody = createResponseBody();
+        JSONObject insert_document = new JSONObject();
+        JSONObject updateOperation = new JSONObject();
+        JSONObject updatevalue = new JSONObject();
+        updatevalue.put("attempts", 1);
+        updateOperation.put("$inc", updatevalue);
+        insert_document.put(field, value);
+        requestBody.put("filter", insert_document);
+        requestBody.put("update", updateOperation);
+        requestBody.put("upsert", false);
+        RequestBody body = RequestBody.create(requestBody.toString().getBytes(StandardCharsets.UTF_8));
+        Request request = new Request.Builder()
+                .url(UPDATE_ONE_API_URL)
+                .post(body)
+                .header("Content-Type", "application/json")
+                .header("Accept", "*/*")
+                .header("Access-Control-Request-Headers", "*")
+                .header("api-key", API_TOKEN)
+                .build();
+        try {
+            client.newCall(request).execute();
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void resetAttempts(String field, String value){
+        System.out.println("Reset attempts by Name");
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        JSONObject requestBody = createResponseBody();
+        JSONObject insert_document = new JSONObject();
+        JSONObject updateOperation = new JSONObject();
+        JSONObject updatevalue = new JSONObject();
+        insert_document.put(field, value);
+        updatevalue.put("attempts", 0);
+        updateOperation.put("$set", updatevalue);
+        requestBody.put("filter", insert_document);
+        requestBody.put("update", updateOperation);
+        requestBody.put("upsert", false);
+        RequestBody body = RequestBody.create(requestBody.toString().getBytes(StandardCharsets.UTF_8));
+        Request request = new Request.Builder()
+                .url(UPDATE_ONE_API_URL)
+                .post(body)
+                .header("Content-Type", "application/json")
+                .header("Accept", "*/*")
+                .header("Access-Control-Request-Headers", "*")
+                .header("api-key", API_TOKEN)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
     }

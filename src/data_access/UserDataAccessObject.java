@@ -24,7 +24,7 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
     // Save a user to the CSV file
     @Override
     public void save(LoginUser user) {
-            DatabaseAPI.insertOne(user);
+        DatabaseAPI.insertOne(user);
     }
 
     // Check if a user with the given email exists
@@ -71,43 +71,40 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
 
     // Check if an account is locked
     @Override
-    public boolean isAccountLocked(String username) {
-        return false; // Placeholder implementation
+    public boolean isAccountLocked(String username) {; // Placeholder implementation
+        int attempts = DatabaseAPI.getAttempts("name", username);
+        return attempts >= 3;
     }
 
     // Increment the number of failed login attempts
     @Override
     public void incrementFailedLoginAttempts(String username) {
-        // Placeholder implementation
+        DatabaseAPI.updateAttempts("name", username);
     }
 
     // Check if the maximum number of failed login attempts is reached
     @Override
     public boolean isMaxFailedAttemptsReached(String username) {
-        return false; // Placeholder implementation
+        int attempts = DatabaseAPI.getAttempts("name", username);
+        return attempts >= 3; // Placeholder implementation
     }
 
     // Lock a user account
     @Override
     public void lockAccount(String username) {
-        // Placeholder implementation
+        return;
     }
 
     // Reset the number of failed login attempts for a user
     @Override
     public void resetFailedLoginAttempts(String username) {
-        // Placeholder implementation
+        DatabaseAPI.resetAttempts("name", username);
     }
 
     // Deactivate a user account and remove from CSV
     @Override
     public void deactivateAccount(String username) {
-//        LoginUser user = accounts.remove(username); // Remove the user from the map
-//
-//        if (user != null) {
-//            // Save the changes to the CSV file (without the deactivated user)
-//            save();
-//        }
+        DatabaseAPI.delete("name", username);
     }
 
     // Save user data to the CSV file
