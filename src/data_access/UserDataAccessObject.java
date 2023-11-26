@@ -1,15 +1,14 @@
 package data_access;
 
-import entity.*;
+import entity.BuyerFactory;
+import entity.LoginUser;
+import entity.SellerFactory;
 import interface_adapter.API.DatabaseAPI;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.signup.SignUpUserDataAccessInterface;
 
-import java.io.*;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 public class UserDataAccessObject implements SignUpUserDataAccessInterface, LoginUserDataAccessInterface {
 
@@ -25,27 +24,37 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
     // Save a user to the CSV file
     @Override
     public void save(LoginUser user) {
-        DatabaseAPI.insertOne(user);
-//        accounts.put(user.getName(), user);
-//        this.save();
+            DatabaseAPI.insertOne(user);
     }
 
     // Check if a user with the given email exists
     @Override
     public boolean existsByEmail(String email) {
-        return false; // Placeholder implementation
+        return DatabaseAPI.findOne("email", email);
+    }
+
+    @Override
+    public boolean existsByName(String identifier) {
+        return DatabaseAPI.findOne("name", identifier);
     }
 
     // Get a user based on the identifier (username)
     @Override
     public LoginUser getUserByIdentifier(String identifier) {
-        return null; // Placeholder implementation
+        return DatabaseAPI.get("id", identifier, buyerFactory, sellerFactory); // Placeholder implementation
+    }
+
+    // Get a user based on the username
+    @Override
+    public LoginUser get(String username) {
+//        return accounts.get(username);
+        return DatabaseAPI.get("name", username, buyerFactory, sellerFactory);
     }
 
     // Delete a user based on the identifier (username)
     @Override
     public void deleteByIdentifier(String identifier) {
-        // Placeholder implementation
+        DatabaseAPI.delete("id", identifier);
     }
 
     // Update user information
@@ -58,13 +67,6 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
     @Override
     public List<LoginUser> getAllUsers() {
         return null; // Placeholder implementation
-    }
-
-    // Get a user based on the username
-    @Override
-    public LoginUser get(String username) {
-//        return accounts.get(username);
-        return null;
     }
 
     // Check if an account is locked
@@ -115,8 +117,4 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
      * @param identifier the username to check.
      * @return whether a user exists with the specified username
      */
-    @Override
-    public boolean existsByName(String identifier) {
-        return DatabaseAPI.findOneByName(identifier);
-    }
 }

@@ -39,6 +39,13 @@ public class Buyer implements LoginUser{
         this.cart = new ShoppingCart();
     }
 
+    public Buyer(String name, String password, String id, ShoppingCart cart) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.cart = cart;
+    }
+
     /**
      * Set the name for the buyer.
      * The implementation of this method allows buyers to change their name.
