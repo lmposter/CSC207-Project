@@ -5,5 +5,8 @@ import entity.LoginUser;
 public interface CheckOutUserDataAccessInterface
 {
         //get the user
-        public LoginUser get();
+        LoginUser get(String username);
+
+        void clearCart(String username);
+
 }

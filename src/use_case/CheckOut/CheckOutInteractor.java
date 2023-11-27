@@ -1,7 +1,6 @@
 package use_case.CheckOut;
 
 import entity.Buyer;
-import entity.LoginUser;
 import entity.Product;
 
 import java.util.HashMap;
@@ -24,7 +23,7 @@ public class CheckOutInteractor implements CheckOutInputBoundary
     public void execute(CheckOutInputData checkOutInputData)
     {
         String username = checkOutInputData.getUsername();
-        Buyer user = (Buyer) userDataAccess.get();
+        Buyer user = (Buyer) userDataAccess.get(username);
         HashMap<Product, Integer> products = user.getCart().getCart();
         for (Product i : products.keySet())
         {
@@ -34,7 +33,9 @@ public class CheckOutInteractor implements CheckOutInputBoundary
                 return;
             }
         }
-        this.checkOutPresenter.prepareSuccessView(new CheckOutOutputData(user.getCart().getPrice()));
+        CheckOutOutputData outputData = new CheckOutOutputData(user.getCart().getPrice());
+        userDataAccess.clearCart(username);
+        this.checkOutPresenter.prepareSuccessView(outputData);
 
     }
 }
