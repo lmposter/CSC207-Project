@@ -17,9 +17,9 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     public final String viewName = "sign up";
 
     private final SignupViewModel signupViewModel;
-    private final RoundedTextField usernameInputField = new RoundedTextField(15);
-    private final RoundedPasswordField passwordInputField = new RoundedPasswordField (15);
-    private final RoundedPasswordField repeatPasswordInputField = new RoundedPasswordField (15);
+    private final RoundedTextField usernameInputField = new RoundedTextField(10);
+    private final RoundedPasswordField passwordInputField = new RoundedPasswordField (10);
+    private final RoundedPasswordField repeatPasswordInputField = new RoundedPasswordField (10);
     private final SignupController signupController;
     private final JButton guestSignUp;
     private final JButton sellerSignUp;
@@ -160,6 +160,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     }
 
     public void actionPerformed(@NotNull ActionEvent evt) {
+        updateState();
         Object source = evt.getSource();
         SignupState currentState = signupViewModel.getState();
         if (source.equals(guestSignUp)) {
