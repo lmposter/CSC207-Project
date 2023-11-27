@@ -5,7 +5,8 @@ import interface_adapter.ViewModel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class SignupViewModel extends ViewModel {
+public class SignupViewModel extends ViewModel
+{
 
     public static final String TITLE_LABEL = "Join Amazoff Today! New users will receive a 0.1% discount!";
     public static final String USERNAME_LABEL = "Username";
@@ -20,11 +21,13 @@ public class SignupViewModel extends ViewModel {
 
     private SignupState state = new SignupState();
 
-    public SignupViewModel() {
+    public SignupViewModel()
+    {
         super("sign up");
     }
 
-    public void setState(SignupState state) {
+    public void setState(SignupState state)
+    {
         this.state = state;
     }
 
@@ -32,15 +35,18 @@ public class SignupViewModel extends ViewModel {
 
     // This is what the Signup Presenter will call to let the ViewModel know
     // to alert the View
-    public void firePropertyChanged() {
+    public void firePropertyChanged()
+    {
         support.firePropertyChange("state", null, this.state);
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
+    public void addPropertyChangeListener(PropertyChangeListener listener)
+    {
         support.addPropertyChangeListener(listener);
     }
 
-    public SignupState getState() {
+    public SignupState getState()
+    {
         return state;
     }
 }

@@ -24,12 +24,18 @@ public class ShoppingCartViewModel extends ViewModel
     {
         this.state = state;
     }
+
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
     @Override
-    public void firePropertyChanged() {
+    public void firePropertyChanged()
+    {
         support.firePropertyChange("", null, this.state);
     }
 
     @Override
-    public void addPropertyChangeListener(PropertyChangeListener listener) {}
+    public void addPropertyChangeListener(PropertyChangeListener listener)
+    {
+        support.addPropertyChangeListener(listener);
+    }
 }
