@@ -9,14 +9,11 @@ public class ShoppingCart // implements Iterable<Product>
 
     private HashMap<Product, Integer> cart;
     // Map a product to its number in the cart
-    private double price;
-    // keep track of total price
 
     public ShoppingCart()
     {
         // need to shadow copy the object
         this.cart = new HashMap<>();
-        this.price = 0;
     }
 
     /**
@@ -38,7 +35,13 @@ public class ShoppingCart // implements Iterable<Product>
      *
      * @return the total price of all product in the cart
      */
-    public double getPrice() {
+    public double getPrice()
+    {
+        double price = 0.0;
+        for(Product i : cart.keySet())
+        {
+            price += cart.get(i) * i.getPrice();
+        }
         return price;
     }
 
@@ -48,7 +51,6 @@ public class ShoppingCart // implements Iterable<Product>
      */
     public void addProduct(Product product)
     {
-        price += product.getPrice();
         if (this.contains(product))
             cart.put(product, cart.get(product) + 1);
         else
@@ -78,7 +80,6 @@ public class ShoppingCart // implements Iterable<Product>
         if (!this.contains(product))
             throw new NoSuchElementException();
         cart.put(product, cart.get(product) - 1);
-        price -= product.getPrice();
         if (cart.get(product) <= 0)
             cart.remove(product);
     }
@@ -90,7 +91,6 @@ public class ShoppingCart // implements Iterable<Product>
     public void clearCart()
     {
         cart.clear();
-        price = 0.0;
     }
 
     /**
