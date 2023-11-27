@@ -7,5 +7,5 @@ public class ProductInputData {
         ID = id;
     }
 
-    String getID(){return ID;}
+    public String getID(){return ID;}
 }
