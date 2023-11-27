@@ -1,20 +1,21 @@
 package app;
 
+import data_access.ProductDAO;
 import data_access.UserDataAccessObject;
 import entity.BuyerFactory;
+import entity.ProductFactory;
 import entity.SellerFactory;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.search.SearchViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.login.LoginUserDataAccessInterface;
-import view.LoggedInView;
-import view.LoginView;
-import view.SignupView;
-import view.ViewManager;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Main {
@@ -44,6 +45,17 @@ public class Main {
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
 
+        SearchViewModel searchViewModel = new SearchViewModel();
+        try {FileWriter fileWriter = new FileWriter("empty.csv");
+        String header = "id,title,inventory,URL,price,tags";
+        fileWriter.write(header);
+        fileWriter.close();} catch (Exception e){
+            e.printStackTrace();
+        }
+        ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory());
+
+
+
         UserDataAccessObject userDataAccessObject;
         try {
             userDataAccessObject = new UserDataAccessObject(new BuyerFactory(), new SellerFactory());
@@ -59,6 +71,11 @@ public class Main {
 
         LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
         views.add(loggedInView, loggedInView.viewName);
+
+        SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
+        views.add(searchView, searchView.viewName);
+
+//        viewManagerModel.setActiveView(searchView.viewName);
 
         viewManagerModel.setActiveView(signupView.viewName);
         viewManagerModel.firePropertyChanged();
