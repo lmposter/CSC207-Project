@@ -1,6 +1,7 @@
 package view;
 
 import entity.Product;
+import interface_adapter.SwitchPage.SwitchPageController;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.shopping_cart.ShoppingCartViewModel;
 import interface_adapter.shopping_cart.checkOut.CheckOutController;
@@ -25,21 +26,26 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
 
     private final CheckOutController checkOutController;
 
+    private final SwitchPageController switchController;
+
     private final LoggedInViewModel loggedInViewModel;
 
     private final JPanel mainPanel;
     private final JButton checkOut;
     private final JButton store;
+    private final JButton personal;
 
-    public ShoppingCartView(ShoppingCartViewModel shoppingCartViewModel, CheckOutController checkOutController, LoggedInViewModel loggedInViewModel)
+    public ShoppingCartView(ShoppingCartViewModel shoppingCartViewModel, CheckOutController checkOutController, SwitchPageController switchController, LoggedInViewModel loggedInViewModel)
     {
         this.shoppingCartViewModel = shoppingCartViewModel;
         this.checkOutController = checkOutController;
+        this.switchController = switchController;
         this.loggedInViewModel = loggedInViewModel;
 
         this.mainPanel = new JPanel();
         this.checkOut = new JButton("Check Out");
         this.store = new JButton("Store");
+        this.personal = new JButton("Personal");
 
         this.shoppingCartViewModel.addPropertyChangeListener(this);
 
@@ -49,35 +55,45 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
         JPanel buttons = new JPanel();
         buttons.add(this.checkOut);
         buttons.add(this.store);
+        buttons.add(this.personal);
 
-        checkOut.addActionListener(
-                new ActionListener()
+        checkOut.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (e.getSource().equals(checkOut))
                 {
-                    @Override
-                    public void actionPerformed(ActionEvent e)
-                    {
-                        if (e.getSource().equals(checkOut))
-                        {
-                            String username = loggedInViewModel.getLoggedInUser();
-                            checkOutController.execute(username);
-                        }
-                    }
+                    String username = loggedInViewModel.getLoggedInUser();
+                    checkOutController.execute(username);
                 }
-        );
+            }
+        });
 
-        store.addActionListener(
-                new ActionListener()
+        store.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (e.getSource().equals(store))
                 {
-                    @Override
-                    public void actionPerformed(ActionEvent e)
-                    {
-                        if (e.getSource().equals(store))
-                        {
-                            //TODO: Switch to Store Page
-                        }
-                    }
+                    switchController.switchToStore();
                 }
-        );
+            }
+        });
+
+        personal.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (e.getSource().equals(personal))
+                {
+                    switchController.switchToPersonal();
+                }
+
+            }
+        });
 
         for (Product product : shoppingCartViewModel.getState())
         {
@@ -90,9 +106,8 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
     }
 
     /**
-     *
-     * @param name title
-     * @param p price
+     * @param name     title
+     * @param p        price
      * @param imageUrl url of image
      * @return a subpanel for this product
      */
@@ -110,9 +125,11 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
             ImageIcon imageIcon = new ImageIcon(image);
             JLabel imageLabel = new JLabel(imageIcon);
             productPanel.add(imageLabel);
-        } catch (IIOException | MalformedURLException e) {
+        } catch (IIOException | MalformedURLException e)
+        {
             productPanel.add(new JLabel("Image not available in ProductView"));
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             throw new RuntimeException(e);
         }
 
@@ -121,19 +138,17 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
 
         JButton remove = new JButton("Remove");
 
-        remove.addActionListener(
-                new ActionListener()
+        remove.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (e.getSource().equals(remove))
                 {
-                @Override
-                    public void actionPerformed(ActionEvent e)
-                    {
-                        if (e.getSource().equals(remove))
-                        {
-                            // TODO: remove this product from shopping cart
-                        }
-                    }
+                    // TODO: remove this product from shopping cart
                 }
-        );
+            }
+        });
 
         productPanel.add(remove);
 
@@ -141,12 +156,14 @@ public class ShoppingCartView extends JPanel implements ActionListener, Property
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
 
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(PropertyChangeEvent evt)
+    {
 
     }
 }
