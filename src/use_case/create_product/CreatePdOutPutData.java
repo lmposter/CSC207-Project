@@ -1,4 +1,7 @@
 package use_case.create_product;
 
-public class CreatePdOutPutData {
-}
+import entity.Product;
+
+import java.util.ArrayList;
+
+public class CreatePdOutPutData {}

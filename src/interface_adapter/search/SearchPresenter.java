@@ -38,6 +38,7 @@ public class SearchPresenter implements SearchOutPutBoundary {
     public void prepareFailSearchView(String error) {
         SearchState searchState = searchViewModel.getState();
         searchState.setProductsError(error);
+        searchViewModel.setState(searchState);
         searchViewModel.firePropertyChanged();
     }
 }

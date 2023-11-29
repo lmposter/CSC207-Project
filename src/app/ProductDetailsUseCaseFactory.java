@@ -20,13 +20,27 @@ import java.io.IOException;
 public class ProductDetailsUseCaseFactory {
     private ProductDetailsUseCaseFactory(){}
 
-    public static ProductView create(
+    public static ProductView createForBuyer(
             ViewManagerModel viewManagerModel, ProductViewModel productViewModel,
             ProductDAO userProductDAO) {
 
         try{
             ProductController productController = createUserProductUseCase(viewManagerModel, productViewModel, userProductDAO);
-            return new ProductView(productController, productViewModel);
+            return new ProductView(productController, productViewModel, true);
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "Could not open product data file.");
+        }
+
+        return null;
+    }
+
+    public static ProductView createForSeller(
+            ViewManagerModel viewManagerModel, ProductViewModel productViewModel,
+            ProductDAO userProductDAO) {
+
+        try{
+            ProductController productController = createUserProductUseCase(viewManagerModel, productViewModel, userProductDAO);
+            return new ProductView(productController, productViewModel, false);
         } catch (IOException e){
             JOptionPane.showMessageDialog(null, "Could not open product data file.");
         }
