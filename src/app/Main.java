@@ -4,6 +4,7 @@ import data_access.ProductDAO;
 import data_access.UserDataAccessObject;
 import entity.BuyerFactory;
 import entity.ProductFactory;
+import entity.Seller;
 import entity.SellerFactory;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
@@ -75,9 +76,14 @@ public class Main {
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
         views.add(searchView, searchView.viewName);
 
+        Seller seller = new Seller("testSeller", "12345678", "StestID123");
+        view.StorePageView storePageView = new StorePageView(seller);
+        views.add(storePageView, storePageView.viewName);
+
 //        viewManagerModel.setActiveView(searchView.viewName);
 
-        viewManagerModel.setActiveView(signupView.viewName);
+//        viewManagerModel.setActiveView(signupView.viewName);
+        viewManagerModel.setActiveView(storePageView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();

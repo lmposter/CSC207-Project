@@ -6,22 +6,17 @@ import java.util.ArrayList;
 
 import entity.Product;
 import entity.Review;
-import entity.Tag;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ProductTest {
 
     private Product product;
-    private ArrayList<Tag> tags;
 
     @BeforeEach
     void setUp() {
         // Set up a new Product instance with some initial values before each test
-        tags = new ArrayList<>();
-        tags.add(new Tag("Electronics"));
-        tags.add(new Tag("Gadgets"));
-        product = new Product("Laptop", "laptop.jpg", 999.99, 10, tags);
+        product = new Product("Laptop", "laptop.jpg", 999.99, 10);
     }
 
     @Test
@@ -51,20 +46,6 @@ class ProductTest {
     void testSetInventory() {
         product.setInventory(20);
         assertEquals(20, product.getInventory());
-    }
-
-    @Test
-    void testGetTags() {
-        assertEquals(tags, product.getTags());
-    }
-
-    @Test
-    void testUpdateTags() {
-        ArrayList<Tag> newTags = new ArrayList<>();
-        newTags.add(new Tag("Laptops"));
-        newTags.add(new Tag("Electronics"));
-        product.updateTags(newTags);
-        assertEquals(newTags, product.getTags());
     }
 
     @Test

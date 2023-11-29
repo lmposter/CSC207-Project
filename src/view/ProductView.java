@@ -22,12 +22,12 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
     public final String viewName = "Product Details";
     private final ProductViewModel productViewModel;
     private final ProductController productController;
-    private final JButton buy;
-    private final JButton add_to_cart;
-    private final JButton closeButton;
+    private JButton buy;
+    private JButton add_to_cart;
+    private JButton closeButton;
     private final JPanel pdPanel;
 
-    public ProductView(ProductController controller, ProductViewModel productViewModel) {
+    public ProductView(ProductController controller, ProductViewModel productViewModel, boolean showButtons) {
         JFrame application = new JFrame(this.viewName);
         CardLayout cardLayout = new CardLayout();
         this.productController = controller;
@@ -69,36 +69,39 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
         pdPanel.add(inventory);
         pdPanel.add(reviews);
 
-        this.buy = new JButton(ProductViewModel.PURCHASE_LABEL);
-        this.add_to_cart = new JButton(ProductViewModel.ADD_TO_CART_LABEL);
-        this.closeButton = new JButton(ProductViewModel.CLOSE);
-        pdPanel.add(buy);
-        pdPanel.add(add_to_cart);
-        pdPanel.add(closeButton);
+        if (showButtons) {
+            this.buy = new JButton(ProductViewModel.PURCHASE_LABEL);
+            this.add_to_cart = new JButton(ProductViewModel.ADD_TO_CART_LABEL);
+            this.closeButton = new JButton(ProductViewModel.CLOSE);
+            pdPanel.add(buy);
+            pdPanel.add(add_to_cart);
+            pdPanel.add(closeButton);
 
-        buy.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        //TODO: buy this product, set to purchase use case
-                    }
-                }
-        );
 
-        add_to_cart.addActionListener(
-                 new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        //TODO: add_to_cart, go to add to cart use case
+            buy.addActionListener(
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            //TODO: buy this product, set to purchase use case
+                        }
                     }
-                }
-        );
+            );
 
-        closeButton.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        application.dispose();
+            add_to_cart.addActionListener(
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            //TODO: add_to_cart, go to add to cart use case
+                        }
                     }
-                }
-        );
+            );
+
+            closeButton.addActionListener(
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            application.dispose();
+                        }
+                    }
+            );
+        }
 
 
         JLabel title = new JLabel(ProductViewModel.TITLE_LABEL);

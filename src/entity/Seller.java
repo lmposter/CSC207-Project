@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.UUID;
+import java.util.ArrayList;
 
 /**
  * The seller class represents a seller user in the system.
@@ -14,6 +15,7 @@ public class Seller implements LoginUser {
      * Unique identifier for the seller.
      */
     private final String id;
+    private ArrayList<Product> products;
 
     /**
      * Name of the seller.
@@ -33,12 +35,14 @@ public class Seller implements LoginUser {
         this.id = "S" + UUID.randomUUID().toString();
         this.name = name;
         this.password = password;
+        this.products = new ArrayList<>();
     }
 
     public Seller(String name, String password, String id) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.products = new ArrayList<>();
     }
     /**
      * Set the name for the seller.
@@ -87,4 +91,10 @@ public class Seller implements LoginUser {
     public String getPassword() {
         return password;
     }
+
+    public void addProduct(Product pd){products.add(pd);}
+
+    public ArrayList<Product> getProducts(){return products;}
+
+    public void deletePd(Product pd){products.remove(pd);}
 }

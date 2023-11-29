@@ -46,7 +46,7 @@ public class WalmartAPI {
                     JSONObject offers = result.getJSONObject("offers");
                     JSONObject primary = offers.getJSONObject("primary");
                     double price = primary.getDouble("price");
-                    Product pd = productFactory.create(title, photo, price, numInventory, new ArrayList<Tag>());
+                    Product pd = productFactory.create(title, photo, price, numInventory);
                     Review review = new Review(stars, "This user doesn't leave a comment");
                     pd.addReview(review);
                     pd.setID(id);
