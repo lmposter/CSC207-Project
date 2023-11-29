@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.logged_in.LoggedInController;
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
 
@@ -16,20 +17,23 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     public final String viewName = "logged in";
     private final LoggedInViewModel loggedInViewModel;
 
+    private final LoggedInController loggedInController;
+
     JLabel title;
     JLabel usernameLabel;
 
     final JButton logOut;
     final JButton searchItem;
     final JButton sellProduct;
-    final JButton personalPage;
+    final JButton orders;
     final JButton shoppingCart;
 
     /**
      * A window with a title and JButtons for various actions.
      */
-    public LoggedInView(LoggedInViewModel loggedInViewModel) {
+    public LoggedInView(LoggedInViewModel loggedInViewModel, LoggedInController loggedInController) {
         this.loggedInViewModel = loggedInViewModel;
+        this.loggedInController = loggedInController;
         this.loggedInViewModel.addPropertyChangeListener(this);
 
         title = new JLabel("Logged In Screen");
@@ -58,9 +62,9 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         buttons.add(sellProduct);
 
         // Add Personal Page Button
-        personalPage = new JButton(LoggedInViewModel.PERSONAL_PAGE_LABEL);
-        styleButton(personalPage, Color.GRAY, Color.BLACK);
-        buttons.add(personalPage);
+        orders = new JButton(LoggedInViewModel.PERSONAL_PAGE_LABEL);
+        styleButton(orders, Color.GRAY, Color.BLACK);
+        buttons.add(orders);
 
         // Add Shopping Cart Button
         shoppingCart = new JButton(LoggedInViewModel.SHOPPING_CART_LABEL);
@@ -70,7 +74,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         logOut.addActionListener(this);
         searchItem.addActionListener(this);
         sellProduct.addActionListener(this);
-        personalPage.addActionListener(this);
+        orders.addActionListener(this);
         shoppingCart.addActionListener(this);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -106,18 +110,28 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         if (evt.getSource() == logOut) {
             // Perform logout action
             System.out.println("Logging out...");
+            LoggedInState currentState = loggedInViewModel.getState();
+            loggedInController.switchPageLogOut();
         } else if (evt.getSource() == searchItem) {
             // Perform search item action
             System.out.println("Searching for items...");
+            LoggedInState currentState = loggedInViewModel.getState();
+            loggedInController.switchPageSearch();
         } else if (evt.getSource() == sellProduct) {
             // Perform sell product action
             System.out.println("Selling a product...");
-        } else if (evt.getSource() == personalPage) {
+            LoggedInState currentState = loggedInViewModel.getState();
+            loggedInController.switchPageStorePage();
+        } else if (evt.getSource() == orders) {
             // Perform personal page action
             System.out.println("Accessing personal page...");
+            LoggedInState currentState = loggedInViewModel.getState();
+            loggedInController.switchPageOrder();
         } else if (evt.getSource() == shoppingCart) {
             // Perform shopping cart action
             System.out.println("Accessing shopping cart...");
+            LoggedInState currentState = loggedInViewModel.getState();
+            loggedInController.switchPageShoppingCart();
         }
     }
 
