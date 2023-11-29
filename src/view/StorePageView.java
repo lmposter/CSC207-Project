@@ -34,17 +34,21 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
     private JButton createProductButton;
 
     public StorePageView(Seller seller) {
-        JLabel title = new JLabel("My Store Page");
-        this.add(title);
-        setSize(800, 600);
         setLayout(new BorderLayout());
+        JPanel headerPanel = new JPanel();
+        headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel title = new JLabel("My Store Page");
+        headerPanel.add(title);
+
 
         // Seller info
         sellerNameLabel = new JLabel(seller.getName());
         sellerIdLabel = new JLabel("Store ID: " + seller.getId());
-        this.add(sellerNameLabel);
-        this.add(sellerIdLabel);
-
+        headerPanel.add(sellerNameLabel);
+        headerPanel.add(sellerIdLabel);
+        // Add the header panel to the top of the view
+        add(headerPanel, BorderLayout.NORTH);
         // Products
         productsPanel = new JPanel();
         productsPanel.setLayout(new BoxLayout(productsPanel, BoxLayout.Y_AXIS));
@@ -54,11 +58,14 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
 
         // Create product button
         createProductButton = new JButton("Create a New Product");
+        createProductButton.setSize(20, 10);
         createProductButton.addActionListener(e -> actionPerformed(e));
 
 //        add(productsPanel, BorderLayout.NORTH);
-        add(new JScrollPane(productsPanel));
-        add(createProductButton);
+        add(new JScrollPane(productsPanel), BorderLayout.CENTER);
+        add(createProductButton, BorderLayout.SOUTH);
+        // Set the initial size of the view
+        setSize(800, 600);
 
     }
 

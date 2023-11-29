@@ -48,7 +48,7 @@ public class Main {
 
         SearchViewModel searchViewModel = new SearchViewModel();
         try {FileWriter fileWriter = new FileWriter("empty.csv");
-        String header = "id,title,inventory,URL,price,tags";
+        String header = "id,title,inventory,URL,price";
         fileWriter.write(header);
         fileWriter.close();} catch (Exception e){
             e.printStackTrace();
