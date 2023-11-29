@@ -6,12 +6,11 @@ import entity.BuyerFactory;
 import entity.ProductFactory;
 import entity.Seller;
 import entity.SellerFactory;
-import interface_adapter.login.LoginViewModel;
+import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.signup.SignupViewModel;
-import interface_adapter.ViewManagerModel;
-import use_case.login.LoginUserDataAccessInterface;
 import view.*;
 
 import javax.swing.*;
@@ -70,7 +69,7 @@ public class Main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, loggedInViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
+        LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, loggedInViewModel, searchViewModel, null, null, null, userDataAccessObject);
         views.add(loggedInView, loggedInView.viewName);
 
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
@@ -82,8 +81,7 @@ public class Main {
 
 //        viewManagerModel.setActiveView(searchView.viewName);
 
-//        viewManagerModel.setActiveView(signupView.viewName);
-        viewManagerModel.setActiveView(storePageView.viewName);
+        viewManagerModel.setActiveView(signupView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();

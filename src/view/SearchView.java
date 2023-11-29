@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "search";
+    public final String viewName = "Search";
 
     private final SearchViewModel searchViewModel;
     private final JTextField searchInputField = new JTextField(50);
