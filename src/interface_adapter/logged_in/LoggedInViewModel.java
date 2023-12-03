@@ -15,6 +15,12 @@ public class LoggedInViewModel extends ViewModel {
     private LoggedInState state = new LoggedInState();
 
     public static final String LOGOUT_BUTTON_LABEL = "Log out";
+
+    public static final String SEARCH_ITEM_LABEL = "Search Item";
+
+    public static final String SELL_PRODUCT_LABEL = "Sell Product";
+    public static final String PERSONAL_PAGE_LABEL = "Personal Page";
+    public static final String SHOPPING_CART_LABEL = "Shopping Cart";
     private String loggedInUser;
 
     /**

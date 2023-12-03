@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class ProductFactory {
     public ProductFactory(){}
-    public Product create(String title, String url, double price, int inventory, ArrayList<Tag> tags) {
+    public Product create(String title, String url, double price, int inventory) {
 
-        return new Product(title, url, price, inventory, tags);
+        return new Product(title, url, price, inventory);
     }
 }

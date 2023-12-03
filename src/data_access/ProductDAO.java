@@ -41,7 +41,7 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI, Ch
             try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
                 String header = reader.readLine();
 
-                if (header.equals("id,title,inventory,URL,price,tags")) {
+                if (header.equals("id,title,inventory,URL,price")) {
 
                     String row;
                     while ((row = reader.readLine()) != null) {
@@ -51,18 +51,14 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI, Ch
                         int inventory = Integer.parseInt(col[headers.get("inventory")]);
                         String URL = String.valueOf(col[headers.get("URL")]);
                         double price = Double.parseDouble(col[headers.get("price")]);
-                        ArrayList<Tag> tags = new ArrayList<>();
-                        String[] tagContent = col[headers.get("tags")].split(",");
-                        for (String tag: tagContent) {
-                            tags.add(new Tag(tag));
-                        };
+
                         ArrayList<Review> reviews = new ArrayList<>();
                         String[] reviewContent = col[headers.get("review")].split(";");
                         for (String review: reviewContent) {
                             String[] StarAndComment = review.substring(1, review.length() - 1).split(",");
                             reviews.add(new Review(Integer.parseInt(StarAndComment[0]), StarAndComment[1]));
                         };
-                        Product product = productFactory.create(title, URL, price, inventory, tags);
+                        Product product = productFactory.create(title, URL, price, inventory);
                         product.setID(id);
                         for (Review review: reviews){
                             product.addReview(review);}
@@ -88,8 +84,8 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI, Ch
             writer.newLine();
 
             for (Product pd : products.values()) {
-                String line = String.format("%s,%s,%s,%s,%s,%s,%s",
-                        pd.getId(), pd.getTitle(), pd.getInventory(), pd.getURL(), pd.getPrice(), pd.getTags(), pd.getReview());
+                String line = String.format("%s,%s,%s,%s,%s,%s",
+                        pd.getId(), pd.getTitle(), pd.getInventory(), pd.getURL(), pd.getPrice(), pd.getReview());
                 writer.write(line);
                 writer.newLine();
             }

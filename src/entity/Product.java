@@ -9,16 +9,14 @@ public class Product {
     private String photoURL;
     private double price;
     private int inventory;
-    private ArrayList<Tag> tags;
     private ArrayList<Review> reviews;
 
-    public Product(String title, String photoURL, double price, int inventory, ArrayList<Tag> tags){
+    public Product(String title, String photoURL, double price, int inventory){
         this.id = "Pd" + UUID.randomUUID().toString();
         this.title = title;
         this.photoURL = photoURL;
         this.price = price;
         this.inventory = inventory;
-        this.tags = tags;
         this.reviews = new ArrayList<>();
 
     }
@@ -53,13 +51,6 @@ public class Product {
         inventory = newNum;
     };
 
-    public ArrayList<Tag> getTags(){
-        return tags;
-    }
-
-    public void updateTags(ArrayList<Tag> newTags){
-        this.tags = newTags;
-    }
     public void addReview(Review review){
         this.reviews.add(review);
     }

@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "search";
+    public final String viewName = "Search";
 
     private final SearchViewModel searchViewModel;
     private final JTextField searchInputField = new JTextField(50);
@@ -142,7 +142,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                         FileWriter fileWriter = null;
                         try {
                             fileWriter = new FileWriter("empty.csv");
-                            String header = "id,title,inventory,URL,price,tags";
+                            String header = "id,title,inventory,URL,price";
                             fileWriter.write(header);
                             fileWriter.close();
                         } catch (IOException ex) {
@@ -150,7 +150,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                         }
                         ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
 
-                        ProductView pdView = ProductDetailsUseCaseFactory.create(viewManagerModel, pdViewModel, pdDAO);
+                        ProductView pdView = ProductDetailsUseCaseFactory.createForBuyer(viewManagerModel, pdViewModel, pdDAO);
 
                         assert pdView != null;
                         pdView.show();
