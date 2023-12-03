@@ -150,7 +150,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                         }
                         ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
 
-                        ProductView pdView = ProductDetailsUseCaseFactory.createForBuyer(viewManagerModel, pdViewModel, pdDAO);
+                        ProductView pdView = ProductDetailsUseCaseFactory.createForBuyer(viewManagerModel, pdViewModel, pdDAO, searchViewModel);
 
                         assert pdView != null;
                         pdView.show();

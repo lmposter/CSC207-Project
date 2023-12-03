@@ -83,38 +83,38 @@ public class LoggedInInteractor implements LoggedInInputBoundary {
     }
 
     @Override
-    public void switchPageSearch() {
+    public void switchPageSearch(String username) {
         // Business logic for switching to another page
         // ...
 
         // Notify the user interface about the page switch
-        loggedInPresenter.switchPageSearch();
+        loggedInPresenter.switchPageSearch(username);
     }
 
     @Override
-    public void switchPageOrder() {
+    public void switchPageOrder(String username) {
         // Business logic for switching to another page
         // ...
 
         // Notify the user interface about the page switch
-        loggedInPresenter.switchPageOrder();
+        loggedInPresenter.switchPageOrder(username);
     }
 
     @Override
-    public void switchPageShoppingCart() {
+    public void switchPageShoppingCart(String username) {
         // Business logic for switching to another page
         // ...
 
         // Notify the user interface about the page switch
-        loggedInPresenter.switchPageShoppingCart();
+        loggedInPresenter.switchPageShoppingCart(username);
     }
 
     @Override
-    public void switchPageStorePage() {
+    public void switchPageStorePage(String username) {
         // Business logic for switching to another page
         // ...
 
         // Notify the user interface about the page switch
-        loggedInPresenter.switchPageStorePage();
+        loggedInPresenter.switchPageStorePage(username);
     }
 }

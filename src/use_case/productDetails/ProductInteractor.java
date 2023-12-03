@@ -19,4 +19,9 @@ public class ProductInteractor implements ProductInputBoundary {
             userPresenter.prepareSuccessView(productOutputData);
         }
     }
+
+    public void buyProduct(String name, String ID, String title, Double price){
+        productDetailsDAO.buyProduct(name, ID, title, price);
+        userPresenter.prepareSuccessView(null);
+    }
 }

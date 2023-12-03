@@ -220,4 +220,32 @@ public class DatabaseAPI
             e.printStackTrace();
         }
     }
+
+    public static void buyProduct(String field, String value, String id, String title, Double price) {
+        System.out.println("Reset attempts by Name");
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        JSONObject requestBody = createResponseBody();
+        JSONObject insert_document = new JSONObject();
+        JSONObject updateOperation = new JSONObject();
+        JSONObject updatevalue = new JSONObject();
+        String[] product = new String[3];
+        product[0] = id;
+        product[1] = title;
+        product[2] = String.valueOf(price);
+        insert_document.put(field, value);
+        updatevalue.put("products", product);
+        updateOperation.put("$push", updatevalue);
+        requestBody.put("filter", insert_document);
+        requestBody.put("update", updateOperation);
+        requestBody.put("upsert", false);
+        RequestBody body = RequestBody.create(requestBody.toString().getBytes(StandardCharsets.UTF_8));
+        Request request = new Request.Builder().url(UPDATE_ONE_API_URL).post(body).header("Content-Type", "application/json").header("Accept", "*/*").header("Access-Control-Request-Headers", "*").header("api-key", API_TOKEN).build();
+        try
+        {
+            Response response = client.newCall(request).execute();
+        } catch (IOException | JSONException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }

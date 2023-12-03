@@ -3,6 +3,7 @@ package interface_adapter.logged_in;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.orders.Orders;
+import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.shopping_cart.ShoppingCartViewModel;
 import interface_adapter.signup.SignupState;
@@ -59,22 +60,30 @@ public class LoggedInPresenter implements LoggedInOutputBoundary {
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageSearch() {
+    public void switchPageSearch(String username) {
+        SearchState searchState = searchViewModel.getState();
+        searchState.setUsername(username);
         this.viewManagerModel.setActiveView(searchViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageOrder() {
+    public void switchPageOrder(String username) {
+//        SearchState searchState = searchViewModel.getState();
+//        searchState.setUsername(username);
         this.viewManagerModel.setActiveView(orderViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageShoppingCart() {
+    public void switchPageShoppingCart(String username) {
+//        SearchState searchState = searchViewModel.getState();
+//        searchState.setUsername(username);
         this.viewManagerModel.setActiveView(shoppingCartViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageStorePage() {
+    public void switchPageStorePage(String username) {
+//        SearchState searchState = searchViewModel.getState();
+//        searchState.setUsername(username);
         this.viewManagerModel.setActiveView(storePageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }

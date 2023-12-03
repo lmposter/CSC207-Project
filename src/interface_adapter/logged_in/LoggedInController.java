@@ -23,20 +23,20 @@ public class LoggedInController {
         loggedInInteractor.switchPageLogOut();
     }
 
-    public void switchPageSearch(){
-        loggedInInteractor.switchPageSearch();
+    public void switchPageSearch(String username){
+        loggedInInteractor.switchPageSearch(username);
     }
 
-    public void switchPageOrder(){
-        loggedInInteractor.switchPageOrder();
+    public void switchPageOrder(String username){
+        loggedInInteractor.switchPageOrder(username);
     }
 
-    public void switchPageShoppingCart(){
-        loggedInInteractor.switchPageShoppingCart();
+    public void switchPageShoppingCart(String username){
+        loggedInInteractor.switchPageShoppingCart(username);
     }
 
-    public void switchPageStorePage(){
-        loggedInInteractor.switchPageStorePage();
+    public void switchPageStorePage(String username){
+        loggedInInteractor.switchPageStorePage(username);
     }
     public void changePassword(String username, String password){
         loggedInInteractor.changePassword(username, password);

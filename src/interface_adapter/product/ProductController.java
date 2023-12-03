@@ -14,4 +14,7 @@ public class ProductController {
         ProductInputData productInputData = new ProductInputData(pdID);
         productUseCaseInteractor.execute(productInputData);
     }
+    public void buyProduct(String username, String pId, String pTitle, Double pPrice){
+        productUseCaseInteractor.buyProduct(username, pId, pTitle, pPrice);
+    }
 }

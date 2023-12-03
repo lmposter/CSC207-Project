@@ -4,6 +4,8 @@ import entity.Review;
 import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductState;
 import interface_adapter.product.ProductViewModel;
+import interface_adapter.search.SearchState;
+import interface_adapter.search.SearchViewModel;
 
 import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
@@ -20,6 +22,8 @@ import java.util.ArrayList;
 
 public class ProductView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Product Details";
+
+    private final SearchViewModel searchViewModel;
     private final ProductViewModel productViewModel;
     private final ProductController productController;
     private JButton buy;
@@ -27,7 +31,8 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
     private JButton closeButton;
     private final JPanel pdPanel;
 
-    public ProductView(ProductController controller, ProductViewModel productViewModel, boolean showButtons) {
+    public ProductView(ProductController controller, ProductViewModel productViewModel, boolean showButtons, SearchViewModel searchViewModel) {
+        this.searchViewModel = searchViewModel;
         JFrame application = new JFrame(this.viewName);
         CardLayout cardLayout = new CardLayout();
         this.productController = controller;
@@ -81,7 +86,9 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
             buy.addActionListener(
                     new ActionListener() {
                         public void actionPerformed(ActionEvent evt) {
-                            //TODO: buy this product, set to purchase use case
+                            SearchState searchState = searchViewModel.getState();
+                            ProductState productState = productViewModel.getState();
+                            productController.buyProduct(searchState.getUsername(), productState.getID(), productState.getTitle(), productState.getPrice());
                         }
                     }
             );

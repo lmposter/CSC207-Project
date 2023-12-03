@@ -116,22 +116,22 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             // Perform search item action
             System.out.println("Searching for items...");
             LoggedInState currentState = loggedInViewModel.getState();
-            loggedInController.switchPageSearch();
+            loggedInController.switchPageSearch(currentState.getUsername());
         } else if (evt.getSource() == sellProduct) {
             // Perform sell product action
             System.out.println("Selling a product...");
             LoggedInState currentState = loggedInViewModel.getState();
-            loggedInController.switchPageStorePage();
+            loggedInController.switchPageStorePage(currentState.getUsername());
         } else if (evt.getSource() == orders) {
             // Perform personal page action
             System.out.println("Accessing personal page...");
             LoggedInState currentState = loggedInViewModel.getState();
-            loggedInController.switchPageOrder();
+            loggedInController.switchPageOrder(currentState.getUsername());
         } else if (evt.getSource() == shoppingCart) {
             // Perform shopping cart action
             System.out.println("Accessing shopping cart...");
             LoggedInState currentState = loggedInViewModel.getState();
-            loggedInController.switchPageShoppingCart();
+            loggedInController.switchPageShoppingCart(currentState.getUsername());
         }
     }
 

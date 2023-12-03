@@ -6,6 +6,7 @@ import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductPresenter;
 import interface_adapter.product.ProductViewModel;
 
+import interface_adapter.search.SearchViewModel;
 import use_case.productDetails.ProductDetailsDAI;
 import use_case.productDetails.ProductInputBoundary;
 import use_case.productDetails.ProductInteractor;
@@ -22,11 +23,11 @@ public class ProductDetailsUseCaseFactory {
 
     public static ProductView createForBuyer(
             ViewManagerModel viewManagerModel, ProductViewModel productViewModel,
-            ProductDAO userProductDAO) {
+            ProductDAO userProductDAO, SearchViewModel searchViewModel) {
 
         try{
             ProductController productController = createUserProductUseCase(viewManagerModel, productViewModel, userProductDAO);
-            return new ProductView(productController, productViewModel, true);
+            return new ProductView(productController, productViewModel, true, searchViewModel);
         } catch (IOException e){
             JOptionPane.showMessageDialog(null, "Could not open product data file.");
         }
@@ -40,7 +41,7 @@ public class ProductDetailsUseCaseFactory {
 
         try{
             ProductController productController = createUserProductUseCase(viewManagerModel, productViewModel, userProductDAO);
-            return new ProductView(productController, productViewModel, false);
+            return new ProductView(productController, productViewModel, false, null);
         } catch (IOException e){
             JOptionPane.showMessageDialog(null, "Could not open product data file.");
         }

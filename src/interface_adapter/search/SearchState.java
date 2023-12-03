@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class SearchState {
 
+    private String username;
     private String message = "";
 
     private String content = "";
@@ -16,6 +17,7 @@ public class SearchState {
     private String contentError = null;
 
     public SearchState(SearchState copy){
+        this.username = copy.username;
         this.content = copy.content;
         this.contentError = copy.contentError;
         this.message = copy.message;
@@ -51,5 +53,9 @@ public class SearchState {
     public String getProductsError(){
         return productsError;
     }
+
+    public void setUsername(String username){this.username = username;}
+
+    public String getUsername(){return this.username;}
 
 }
