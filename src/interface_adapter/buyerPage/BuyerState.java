@@ -1,16 +1,16 @@
 package interface_adapter.buyerPage;
 
 /**
- * The LoggedInState class represents the state of the logged-in view.
+ * The SellerState class represents the state of the logged-in view.
  * It includes information such as the username of the logged-in user.
  */
 public class BuyerState {
     private String username = "";
 
     /**
-     * Constructs a LoggedInState by copying the values from another LoggedInState.
+     * Constructs a SellerState by copying the values from another SellerState.
      *
-     * @param copy The LoggedInState to copy values from.
+     * @param copy The SellerState to copy values from.
      */
     public BuyerState(BuyerState copy) {
         username = copy.username;

@@ -12,19 +12,22 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * BuyerView represents the graphical user interface for the buyer's dashboard.
+ */
 public class BuyerView extends JPanel implements ActionListener, PropertyChangeListener {
 
+    // Constants
     public final String viewName = "buyer logged in";
     private final BuyerViewModel buyerViewModel;
-
     private final BuyerController buyerController;
 
+    // GUI Components
     JLabel title;
     JLabel usernameLabel;
     JLabel balanceLabel;
     JLabel shopLabel;
     JLabel imageLabel;
-
     final JButton logOut;
     final JButton searchItem;
     final JButton sellProduct;
@@ -32,13 +35,17 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
     final JButton shoppingCart;
 
     /**
-     * A window with a title and JButtons for various actions.
+     * Constructs a BuyerView with the provided view model and controller.
+     *
+     * @param buyerViewModel  The view model for the buyer's dashboard.
+     * @param buyerController The controller for managing buyer actions.
      */
     public BuyerView(BuyerViewModel buyerViewModel, BuyerController buyerController) {
         this.buyerViewModel = buyerViewModel;
         this.buyerController = buyerController;
         this.buyerViewModel.addPropertyChangeListener(this);
 
+        // Initialize GUI components
         title = new JLabel("My Page");
         styleLabel(title, Color.BLACK, new Font("Arial", Font.BOLD, 24));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -86,23 +93,26 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
         styleButton(logOut, Color.GRAY, Color.BLACK);
         buttons.add(logOut);
 
+        // Add action listeners
         logOut.addActionListener(this);
         searchItem.addActionListener(this);
         sellProduct.addActionListener(this);
         orders.addActionListener(this);
         shoppingCart.addActionListener(this);
 
+        // Set up the layout
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
         this.add(usernameLabel);
-
         this.add(imageLabel);
         this.add(balanceLabel);
         this.add(shopLabel);
         this.add(buttons);
     }
 
+    // Helper method to style buttons
     private void styleButton(JButton button, Color bgColor, Color fgColor) {
+        // Styling button appearance
         button.setBackground(bgColor);
         button.setForeground(fgColor);
         button.setFont(new Font("Arial", Font.BOLD, 14));
@@ -116,13 +126,16 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
         button.setOpaque(true);
     }
 
+    // Helper method to style labels
     private void styleLabel(JLabel label, Color color, Font font) {
         label.setForeground(color);
         label.setFont(font);
     }
 
     /**
-     * React to a button click that results in evt.
+     * Handles button click events.
+     *
+     * @param evt The ActionEvent representing the button click event.
      */
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == logOut) {
@@ -153,6 +166,11 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
         }
     }
 
+    /**
+     * Handles property change events.
+     *
+     * @param evt The PropertyChangeEvent representing the change event.
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         BuyerState state = (BuyerState) evt.getNewValue();

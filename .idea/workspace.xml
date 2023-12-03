@@ -5,18 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89cdace0-069a-423e-9809-18877f4de6d2" name="Changes" comment="Dashboard Update">
-      <change afterPath="$PROJECT_DIR$/src/app/BuyerUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/squareup_okhttp3_okhttp.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/squareup_okhttp3_okhttp1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_3_2023_6_09_AM_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_3_2023_6_09_AM__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/SellerUseCaseFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interface_adapter/sellerPage/SellerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interface_adapter/sellerPage/SellerPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interface_adapter/sellerPage/SellerState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interface_adapter/sellerPage/SellerViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerDataAccessInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerInputBoundary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerInputData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerInteractor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerOutputBoundary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerOutputData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/SellerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/BuyerUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/BuyerUseCaseFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/GuestUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/GuestUseCaseFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/InitializeProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/InitializeProject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/LoginUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/LoginUseCaseFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data_access/UserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/UserDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interface_adapter/login/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/login/LoginPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/guestPage/GuestInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/guestPage/GuestInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/signup/SignUpUserInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/signup/SignUpUserInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/BuyerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BuyerView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/GuestView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GuestView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/PersonalPageView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/RoundedTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/RoundedTextField.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/ShoppingCartView.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -224,7 +246,7 @@
       <workItem from="1701603029129" duration="8353000" />
       <workItem from="1701614481187" duration="555000" />
       <workItem from="1701615761090" duration="608000" />
-      <workItem from="1701621106340" duration="14897000" />
+      <workItem from="1701621106340" duration="18243000" />
     </task>
     <task id="LOCAL-00001" summary="Implement Password Requirements. Add dummy methods for guest view.">
       <option name="closed" value="true" />
@@ -314,7 +336,31 @@
       <option name="project" value="LOCAL" />
       <updated>1701631455512</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Dashboard Update">
+      <option name="closed" value="true" />
+      <created>1701636239805</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1701636239805</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Dashboard Update">
+      <option name="closed" value="true" />
+      <created>1701636287605</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1701636287605</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Dashboard Update">
+      <option name="closed" value="true" />
+      <created>1701636443079</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1701636443079</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

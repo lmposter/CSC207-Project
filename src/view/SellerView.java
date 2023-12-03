@@ -1,8 +1,8 @@
 package view;
 
-import interface_adapter.guestPage.GuestController;
-import interface_adapter.guestPage.GuestState;
-import interface_adapter.guestPage.GuestViewModel;
+import interface_adapter.sellerPage.SellerController;
+import interface_adapter.sellerPage.SellerState;
+import interface_adapter.sellerPage.SellerViewModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,17 +11,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import javax.swing.ImageIcon;
 
 /**
- * GuestView represents the graphical user interface for the guest user's dashboard.
+ * SellerView represents the graphical user interface for the seller's dashboard.
  */
-public class GuestView extends JPanel implements ActionListener, PropertyChangeListener {
+public class SellerView extends JPanel implements ActionListener, PropertyChangeListener {
 
     // Constants
-    public final String viewName = "guest logged in";
-    private final GuestViewModel guestViewModel;
-    private final GuestController guestController;
+    public final String viewName = "logged in";
+    private final SellerViewModel sellerViewModel;
+    private final SellerController sellerController;
 
     // GUI Components
     JLabel title;
@@ -31,17 +30,19 @@ public class GuestView extends JPanel implements ActionListener, PropertyChangeL
     JLabel imageLabel;
     final JButton logOut;
     final JButton searchItem;
+    final JButton sellProduct;
+    final JButton orders;
 
     /**
-     * Constructs a GuestView with the provided view model and controller.
+     * Constructs a SellerView with the provided view model and controller.
      *
-     * @param guestViewModel  The view model for the guest user's dashboard.
-     * @param guestController The controller for managing guest user actions.
+     * @param sellerViewModel The view model for the seller's dashboard.
+     * @param sellerController The controller for managing seller actions.
      */
-    public GuestView(GuestViewModel guestViewModel, GuestController guestController) {
-        this.guestViewModel = guestViewModel;
-        this.guestController = guestController;
-        this.guestViewModel.addPropertyChangeListener(this);
+    public SellerView(SellerViewModel sellerViewModel, SellerController sellerController) {
+        this.sellerViewModel = sellerViewModel;
+        this.sellerController = sellerController;
+        this.sellerViewModel.addPropertyChangeListener(this);
 
         // Initialize GUI components
         title = new JLabel("My Page");
@@ -52,7 +53,7 @@ public class GuestView extends JPanel implements ActionListener, PropertyChangeL
         styleLabel(usernameLabel, Color.BLACK, new Font("Arial", Font.PLAIN, 14));
         usernameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        balanceLabel = new JLabel("Please Login to access your balance ...");
+        balanceLabel = new JLabel("Total Money Earned $0.00");
         styleLabel(balanceLabel, Color.BLACK, new Font("Arial", Font.PLAIN, 14));
         balanceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -60,25 +61,37 @@ public class GuestView extends JPanel implements ActionListener, PropertyChangeL
         imageLabel = new JLabel(imageIcon);
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        shopLabel = new JLabel("Please Login to access your shop ...");
+        shopLabel = new JLabel("Sell some stuff ... ");
         styleLabel(shopLabel, Color.BLACK, new Font("Arial", Font.PLAIN, 14));
         shopLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel buttons = new JPanel();
 
         // Add Search Item Button
-        searchItem = new JButton(GuestViewModel.SEARCH_ITEM_LABEL);
+        searchItem = new JButton(SellerViewModel.SEARCH_ITEM_LABEL);
         styleButton(searchItem, Color.GRAY, Color.BLACK);
         buttons.add(searchItem);
 
+        // Add Sell Product Button
+        sellProduct = new JButton(SellerViewModel.SELL_PRODUCT_LABEL);
+        styleButton(sellProduct, Color.GRAY, Color.BLACK);
+        buttons.add(sellProduct);
+
+        // Add Personal Page Button
+        orders = new JButton(SellerViewModel.PERSONAL_PAGE_LABEL);
+        styleButton(orders, Color.GRAY, Color.BLACK);
+        buttons.add(orders);
+
         // Add Log Out Button
-        logOut = new JButton(GuestViewModel.LOGOUT_BUTTON_LABEL);
+        logOut = new JButton(SellerViewModel.LOGOUT_BUTTON_LABEL);
         styleButton(logOut, Color.GRAY, Color.BLACK);
         buttons.add(logOut);
 
         // Add action listeners
         logOut.addActionListener(this);
         searchItem.addActionListener(this);
+        sellProduct.addActionListener(this);
+        orders.addActionListener(this);
 
         // Set up the layout
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -92,6 +105,7 @@ public class GuestView extends JPanel implements ActionListener, PropertyChangeL
 
     // Helper method to style buttons
     private void styleButton(JButton button, Color bgColor, Color fgColor) {
+        // Styling button appearance
         button.setBackground(bgColor);
         button.setForeground(fgColor);
         button.setFont(new Font("Arial", Font.BOLD, 14));
@@ -120,13 +134,23 @@ public class GuestView extends JPanel implements ActionListener, PropertyChangeL
         if (evt.getSource() == logOut) {
             // Perform logout action
             System.out.println("Logging out...");
-            GuestState currentState = guestViewModel.getState();
-            guestController.switchPageLogOut();
+            SellerState currentState = sellerViewModel.getState();
+            sellerController.switchPageLogOut();
         } else if (evt.getSource() == searchItem) {
             // Perform search item action
             System.out.println("Searching for items...");
-            GuestState currentState = guestViewModel.getState();
-            guestController.switchPageSearch(currentState.getUsername());
+            SellerState currentState = sellerViewModel.getState();
+            sellerController.switchPageSearch(currentState.getUsername());
+        } else if (evt.getSource() == sellProduct) {
+            // Perform sell product action
+            System.out.println("Selling a product...");
+            SellerState currentState = sellerViewModel.getState();
+            sellerController.switchPageStorePage(currentState.getUsername());
+        } else if (evt.getSource() == orders) {
+            // Perform personal page action
+            System.out.println("Accessing personal page...");
+            SellerState currentState = sellerViewModel.getState();
+            sellerController.switchPageOrder(currentState.getUsername());
         }
     }
 
@@ -137,8 +161,8 @@ public class GuestView extends JPanel implements ActionListener, PropertyChangeL
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        GuestState state = (GuestState) evt.getNewValue();
+        SellerState state = (SellerState) evt.getNewValue();
         title.setText(state.getUsername() + "'s Personal Dashboard");
-        usernameLabel.setText("Welcome back! Guest " + state.getUsername());
+        usernameLabel.setText("Welcome back! Seller " + state.getUsername());
     }
 }

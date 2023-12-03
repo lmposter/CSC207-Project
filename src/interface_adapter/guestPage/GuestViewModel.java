@@ -6,7 +6,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 /**
- * The LoggedInViewModel class represents the view model for the logged-in view.
+ * The SellerViewModel class represents the view model for the logged-in view.
  * It includes labels, buttons, and the state of the logged-in view.
  */
 public class GuestViewModel extends ViewModel {
@@ -21,7 +21,7 @@ public class GuestViewModel extends ViewModel {
     private String guestUser;
 
     /**
-     * Constructs a LoggedInViewModel with the specified view name.
+     * Constructs a SellerViewModel with the specified view name.
      *
      */
     public GuestViewModel() {
@@ -31,7 +31,7 @@ public class GuestViewModel extends ViewModel {
     /**
      * Sets the state of the logged-in view.
      *
-     * @param state The LoggedInState to set.
+     * @param state The SellerState to set.
      */
     public void setState(GuestState state) {
         this.state = state;
@@ -59,7 +59,7 @@ public class GuestViewModel extends ViewModel {
     /**
      * Gets the current state of the logged-in view.
      *
-     * @return The current LoggedInState.
+     * @return The current SellerState.
      */
     public GuestState getState() {
         return state;

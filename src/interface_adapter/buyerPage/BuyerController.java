@@ -1,57 +1,88 @@
 package interface_adapter.buyerPage;
 
-
 import use_case.buyerPage.BuyerInputBoundary;
 import use_case.buyerPage.BuyerInputData;
 
 /**
- * The LoginController class is responsible for handling user interface actions related to the login functionality.
- * It communicates with the use case through the LoginInputBoundary and processes user input.
+ * The BuyerController class is responsible for handling user interface actions related to the buyer functionality.
+ * It communicates with the use case through the BuyerInputBoundary and processes user input.
  */
 public class BuyerController {
 
     private final BuyerInputBoundary buyerInteractor;
 
     /**
-     * Constructs a LoginController with the provided LoginInputBoundary.
+     * Constructs a BuyerController with the provided BuyerInputBoundary.
      *
-     * @param buyerInteractor The login use case interactor responsible for handling login logic.
+     * @param buyerInteractor The buyer use case interactor responsible for handling buyer logic.
      */
     public BuyerController(BuyerInputBoundary buyerInteractor) {
         this.buyerInteractor = buyerInteractor;
     }
-    public void switchPageLogOut(){
+
+    /**
+     * Switches to the log out page.
+     */
+    public void switchPageLogOut() {
         buyerInteractor.switchPageLogOut();
     }
 
-    public void switchPageSearch(String username){
+    /**
+     * Switches to the search page.
+     *
+     * @param username The username of the buyer.
+     */
+    public void switchPageSearch(String username) {
         buyerInteractor.switchPageSearch(username);
     }
 
-    public void switchPageOrder(String username){
+    /**
+     * Switches to the order page.
+     *
+     * @param username The username of the buyer.
+     */
+    public void switchPageOrder(String username) {
         buyerInteractor.switchPageOrder(username);
     }
 
-    public void switchPageShoppingCart(String username){
+    /**
+     * Switches to the shopping cart page.
+     *
+     * @param username The username of the buyer.
+     */
+    public void switchPageShoppingCart(String username) {
         buyerInteractor.switchPageShoppingCart(username);
     }
 
-    public void switchPageStorePage(String username){
+    /**
+     * Switches to the store page.
+     *
+     * @param username The username of the buyer.
+     */
+    public void switchPageStorePage(String username) {
         buyerInteractor.switchPageStorePage(username);
     }
-    public void changePassword(String username, String password){
+
+    /**
+     * Changes the password of the buyer.
+     *
+     * @param username The username of the buyer.
+     * @param password The new password to set.
+     */
+    public void changePassword(String username, String password) {
         buyerInteractor.changePassword(username, password);
     }
+
     /**
-     * Executes the login action triggered by the user interface.
+     * Executes a buyer action triggered by the user interface.
      *
      * @param username The username entered by the user.
      */
     public void execute(String username) {
-        // Create LoginInputData from user input
+        // Create BuyerInputData from user input
         BuyerInputData buyerInputData = new BuyerInputData(username);
 
-        // Execute the login process through the use case interactor
+        // Execute the buyer process through the use case interactor
         buyerInteractor.execute(buyerInputData);
     }
 }

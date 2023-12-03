@@ -8,12 +8,13 @@ import use_case.CheckOut.CheckOutUserDataAccessInterface;
 import use_case.buyerPage.BuyerDataAccessInterface;
 import use_case.guestPage.GuestUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
+import use_case.sellerPage.SellerDataAccessInterface;
 import use_case.signup.SignUpUserDataAccessInterface;
 
 import java.io.IOException;
 import java.util.List;
 
-public class UserDataAccessObject implements SignUpUserDataAccessInterface, LoginUserDataAccessInterface, CheckOutUserDataAccessInterface, GuestUserDataAccessInterface, BuyerDataAccessInterface
+public class UserDataAccessObject implements SignUpUserDataAccessInterface, LoginUserDataAccessInterface, CheckOutUserDataAccessInterface, GuestUserDataAccessInterface, BuyerDataAccessInterface, SellerDataAccessInterface
 {
 
     private final BuyerFactory buyerFactory;

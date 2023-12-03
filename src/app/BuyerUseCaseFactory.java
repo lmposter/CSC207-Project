@@ -27,11 +27,31 @@ import view.GuestView;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * The BuyerUseCaseFactory class is responsible for creating and setting up the components required for the buyer user case.
+ */
 public class BuyerUseCaseFactory {
 
-    /** Prevent instantiation. */
-    private BuyerUseCaseFactory() {}
+    /**
+     * Prevent instantiation.
+     */
+    private BuyerUseCaseFactory() {
+    }
 
+    /**
+     * Creates a BuyerView for the buyer user case with the provided components and configurations.
+     *
+     * @param viewManagerModel      The ViewManagerModel to manage views.
+     * @param loginViewModel        The LoginViewModel for the login functionality.
+     * @param signupViewModel       The SignupViewModel for the signup functionality.
+     * @param buyerViewModel        The BuyerViewModel for the buyer functionality.
+     * @param searchViewModel       The SearchViewModel for searching items.
+     * @param orderViewModel        The Orders for managing orders.
+     * @param shoppingCartViewModel The ShoppingCartViewModel for managing the shopping cart.
+     * @param storePageViewModel    The StorePageViewModel for store page.
+     * @param userDataAccessObject  The data access object for user data.
+     * @return A BuyerView instance for the buyer user case.
+     */
     public static BuyerView create(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
@@ -44,7 +64,12 @@ public class BuyerUseCaseFactory {
             BuyerDataAccessInterface userDataAccessObject) {
 
         try {
-            BuyerController buyerController = createLoginUseCase(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, searchViewModel, orderViewModel, shoppingCartViewModel, storePageViewModel, userDataAccessObject);
+            // Create the BuyerController and pass it to the BuyerView
+            BuyerController buyerController = createBuyerUseCase(
+                    viewManagerModel, loginViewModel, signupViewModel, buyerViewModel,
+                    searchViewModel, orderViewModel, shoppingCartViewModel, storePageViewModel,
+                    userDataAccessObject);
+
             return new BuyerView(buyerViewModel, buyerController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -53,7 +78,22 @@ public class BuyerUseCaseFactory {
         return null;
     }
 
-    private static BuyerController createLoginUseCase(
+    /**
+     * Creates the BuyerController and sets up the necessary interactions.
+     *
+     * @param viewManagerModel      The ViewManagerModel to manage views.
+     * @param loginViewModel        The LoginViewModel for the login functionality.
+     * @param signupViewModel       The SignupViewModel for the signup functionality.
+     * @param buyerViewModel        The BuyerViewModel for the buyer functionality.
+     * @param searchViewModel       The SearchViewModel for searching items.
+     * @param orderViewModel        The Orders for managing orders.
+     * @param shoppingCartViewModel The ShoppingCartViewModel for managing the shopping cart.
+     * @param storePageViewModel    The StorePageViewModel for store page.
+     * @param userDataAccessObject  The data access object for user data.
+     * @return A BuyerController instance for the buyer user case.
+     * @throws IOException If there is an issue with the data access object.
+     */
+    private static BuyerController createBuyerUseCase(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
             SignupViewModel signupViewModel,
@@ -64,10 +104,12 @@ public class BuyerUseCaseFactory {
             StorePageViewModel storePageViewModel,
             BuyerDataAccessInterface userDataAccessObject) throws IOException {
 
-        // Notice how we pass this method's parameters to the Presenter.
-        BuyerOutputBoundary buyerOutputBoundary = new BuyerPresenter(signupViewModel, viewManagerModel, buyerViewModel, loginViewModel, searchViewModel, orderViewModel, shoppingCartViewModel, storePageViewModel);
+        // Create the BuyerPresenter and pass it to the BuyerController
+        BuyerOutputBoundary buyerOutputBoundary = new BuyerPresenter(
+                signupViewModel, viewManagerModel, buyerViewModel, loginViewModel,
+                searchViewModel, orderViewModel, shoppingCartViewModel, storePageViewModel);
 
-
+        // Create the BuyerInteractor and pass it to the BuyerController
         BuyerInputBoundary buyerInteractor = new BuyerInteractor(
                 userDataAccessObject, buyerOutputBoundary);
 

@@ -11,6 +11,7 @@ import interface_adapter.buyerPage.BuyerViewModel;
 import interface_adapter.guestPage.GuestViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.search.SearchViewModel;
+import interface_adapter.sellerPage.SellerViewModel;
 import interface_adapter.signup.SignupViewModel;
 import view.*;
 
@@ -46,6 +47,7 @@ public class Main {
         LoginViewModel loginViewModel = new LoginViewModel();
         GuestViewModel guestViewModel = new GuestViewModel();
         BuyerViewModel buyerViewModel = new BuyerViewModel();
+        SellerViewModel sellerViewModel = new SellerViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
 
         SearchViewModel searchViewModel = new SearchViewModel();
@@ -72,7 +74,7 @@ public class Main {
         SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, guestViewModel, userDataAccessObject);
         views.add(signupView, signupView.viewName);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, userDataAccessObject);
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, sellerViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
         GuestView guestView = GuestUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, guestViewModel, searchViewModel, null, null, null, userDataAccessObject);
@@ -80,6 +82,9 @@ public class Main {
 
         BuyerView buyerView = BuyerUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, searchViewModel, null, null, null, userDataAccessObject);
         views.add(buyerView, buyerView.viewName);
+
+        SellerView sellerView = SellerUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, sellerViewModel, searchViewModel, null, null, null, userDataAccessObject);
+        views.add(sellerView, sellerView.viewName);
 
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
         views.add(searchView, searchView.viewName);

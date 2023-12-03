@@ -1,4 +1,4 @@
-package interface_adapter.buyerPage;
+package interface_adapter.sellerPage;
 
 import interface_adapter.ViewModel;
 
@@ -9,26 +9,25 @@ import java.beans.PropertyChangeSupport;
  * The SellerViewModel class represents the view model for the logged-in view.
  * It includes labels, buttons, and the state of the logged-in view.
  */
-public class BuyerViewModel extends ViewModel {
+public class SellerViewModel extends ViewModel {
     public final String TITLE_LABEL = "Amazoff";
 
-    private BuyerState state = new BuyerState();
+    private SellerState state = new SellerState();
 
     public static final String LOGOUT_BUTTON_LABEL = "Log out";
 
-    public static final String SEARCH_ITEM_LABEL = "Browse Items";
+    public static final String SEARCH_ITEM_LABEL = "Search Item";
 
-    public static final String SELL_PRODUCT_LABEL = "My Orders";
-    public static final String PERSONAL_PAGE_LABEL = "Personal Page";
-    public static final String SHOPPING_CART_LABEL = "Shopping Cart";
+    public static final String SELL_PRODUCT_LABEL = "My Store";
+    public static final String PERSONAL_PAGE_LABEL = "Order In Progress";
     private String loggedInUser;
 
     /**
      * Constructs a SellerViewModel with the specified view name.
      *
      */
-    public BuyerViewModel() {
-        super("buyer logged in");
+    public SellerViewModel() {
+        super("logged in");
     }
 
     /**
@@ -36,7 +35,7 @@ public class BuyerViewModel extends ViewModel {
      *
      * @param state The SellerState to set.
      */
-    public void setState(BuyerState state) {
+    public void setState(SellerState state) {
         this.state = state;
     }
 
@@ -64,7 +63,7 @@ public class BuyerViewModel extends ViewModel {
      *
      * @return The current SellerState.
      */
-    public BuyerState getState() {
+    public SellerState getState() {
         return state;
     }
 
