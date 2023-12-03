@@ -97,7 +97,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
 
                 ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
 
-                ProductView pdView = ProductDetailsUseCaseFactory.createForSeller(viewManagerModel, pdViewModel, pdDAO);
+                ProductView pdView = ProductDetailsUseCaseFactory.createForSeller(viewManagerModel, pdViewModel, pdDAO, null);
 
                 assert pdView != null;
                 pdView.show();
