@@ -13,7 +13,7 @@ public class InitializeProject {
         window = new JWindow();
         window.getContentPane().add(
                 new JLabel("", new ImageIcon(imagePath), SwingConstants.CENTER));
-        window.setBounds(300, 150, 560, 280);
+        window.setBounds(300, 150, 700, 350);
     }
 
     public void load(int durationInMilliseconds) {

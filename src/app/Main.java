@@ -68,7 +68,7 @@ public class Main {
         }
 
         InitializeProject screen = new InitializeProject("resources/loading.gif");
-        screen.load(3000);
+        screen.load(5500);
 
         SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, loggedInViewModel, userDataAccessObject);
         views.add(signupView, signupView.viewName);
