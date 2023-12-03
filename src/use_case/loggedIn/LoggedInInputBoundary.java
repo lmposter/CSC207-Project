@@ -17,11 +17,11 @@ public interface LoggedInInputBoundary {
 
     void changePassword(String username, String password);
 
-    void switchPageSearch();
+    void switchPageSearch(String username);
 
-    void switchPageOrder();
+    void switchPageOrder(String username);
 
-    void switchPageShoppingCart();
+    void switchPageShoppingCart(String username);
 
-    void switchPageStorePage();
+    void switchPageStorePage(String username);
 }

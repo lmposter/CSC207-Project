@@ -22,11 +22,11 @@ public interface LoggedInOutputBoundary {
 
     void switchPageLogOut();
 
-    void switchPageOrder();
+    void switchPageOrder(String username);
 
-    void switchPageSearch();
+    void switchPageSearch(String username);
 
-    void switchPageShoppingCart();
+    void switchPageShoppingCart(String username);
 
-    void switchPageStorePage();
+    void switchPageStorePage(String username);
 }
