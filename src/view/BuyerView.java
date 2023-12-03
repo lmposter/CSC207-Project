@@ -30,7 +30,7 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
     JLabel imageLabel;
     final JButton logOut;
     final JButton searchItem;
-    final JButton sellProduct;
+    final JButton storePage;
     final JButton orders;
     final JButton shoppingCart;
 
@@ -73,10 +73,10 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
         styleButton(searchItem, Color.GRAY, Color.BLACK);
         buttons.add(searchItem);
 
-        // Add Sell Product Button
-        sellProduct = new JButton(BuyerViewModel.SELL_PRODUCT_LABEL);
-        styleButton(sellProduct, Color.GRAY, Color.BLACK);
-        buttons.add(sellProduct);
+        // Add Store Button
+        storePage = new JButton(BuyerViewModel.STORE_LABEL);
+        styleButton(storePage, Color.GRAY, Color.BLACK);
+        buttons.add(storePage);
 
         // Add Personal Page Button
         orders = new JButton(BuyerViewModel.PERSONAL_PAGE_LABEL);
@@ -96,7 +96,7 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
         // Add action listeners
         logOut.addActionListener(this);
         searchItem.addActionListener(this);
-        sellProduct.addActionListener(this);
+        storePage.addActionListener(this);
         orders.addActionListener(this);
         shoppingCart.addActionListener(this);
 
@@ -146,13 +146,15 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
         } else if (evt.getSource() == searchItem) {
             // Perform search item action
             System.out.println("Searching for items...");
+
             BuyerState currentState = buyerViewModel.getState();
             buyerController.switchPageSearch(currentState.getUsername());
-        } else if (evt.getSource() == sellProduct) {
+        } else if (evt.getSource() == storePage) {
             // Perform sell product action
-            System.out.println("Selling a product...");
+            System.out.println("Accessing store page...");
             BuyerState currentState = buyerViewModel.getState();
             buyerController.switchPageStorePage(currentState.getUsername());
+
         } else if (evt.getSource() == orders) {
             // Perform personal page action
             System.out.println("Accessing personal page...");

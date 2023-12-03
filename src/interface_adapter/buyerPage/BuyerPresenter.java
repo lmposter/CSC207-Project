@@ -8,6 +8,7 @@ import interface_adapter.search.SearchViewModel;
 import interface_adapter.shopping_cart.ShoppingCartViewModel;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.store_page.StorePageState;
 import interface_adapter.store_page.StorePageViewModel;
 import use_case.buyerPage.BuyerOutputBoundary;
 import use_case.buyerPage.BuyerOutputData;
@@ -76,19 +77,33 @@ public class BuyerPresenter implements BuyerOutputBoundary {
     }
 
     public void switchPageOrder(String username) {
+<<<<<<< HEAD:src/interface_adapter/logged_in/LoggedInPresenter.java
+
+=======
         // Switch to the order page
+>>>>>>> f2b7ed05fca187c6036832af52480bef0610c6f1:src/interface_adapter/buyerPage/BuyerPresenter.java
         this.viewManagerModel.setActiveView(orderViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
     public void switchPageShoppingCart(String username) {
+<<<<<<< HEAD:src/interface_adapter/logged_in/LoggedInPresenter.java
+
+=======
         // Switch to the shopping cart page
+>>>>>>> f2b7ed05fca187c6036832af52480bef0610c6f1:src/interface_adapter/buyerPage/BuyerPresenter.java
         this.viewManagerModel.setActiveView(shoppingCartViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
     public void switchPageStorePage(String username) {
+<<<<<<< HEAD:src/interface_adapter/logged_in/LoggedInPresenter.java
+        StorePageState storePageState = storePageViewModel.getState();
+        storePageState.setUsername(username);
+
+=======
         // Switch to the store page
+>>>>>>> f2b7ed05fca187c6036832af52480bef0610c6f1:src/interface_adapter/buyerPage/BuyerPresenter.java
         this.viewManagerModel.setActiveView(storePageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }

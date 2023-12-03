@@ -1,6 +1,6 @@
 package use_case.switch_page;
 
-public class SwitchPageDataAccessInterface
+public interface SwitchPageDataAccessInterface
 {
 
     // Empty

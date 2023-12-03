@@ -1,12 +1,10 @@
 package src;
 
 import app.CreatePdUseCaseFactory;
-import app.SearchUseCaseFactory;
 import data_access.ProductDAO;
 import entity.ProductFactory;
-import interface_adapter.Create_product.CreatePdViewModel;
+import interface_adapter.create_product.CreatePdViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.search.SearchViewModel;
 import view.ViewManager;
 
 import javax.swing.*;

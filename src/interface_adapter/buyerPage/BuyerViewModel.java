@@ -18,7 +18,11 @@ public class BuyerViewModel extends ViewModel {
 
     public static final String SEARCH_ITEM_LABEL = "Browse Items";
 
+<<<<<<< HEAD:src/interface_adapter/logged_in/LoggedInViewModel.java
+    public static final String STORE_LABEL = "Store Page";
+=======
     public static final String SELL_PRODUCT_LABEL = "My Orders";
+>>>>>>> f2b7ed05fca187c6036832af52480bef0610c6f1:src/interface_adapter/buyerPage/BuyerViewModel.java
     public static final String PERSONAL_PAGE_LABEL = "Personal Page";
     public static final String SHOPPING_CART_LABEL = "Shopping Cart";
     private String loggedInUser;
