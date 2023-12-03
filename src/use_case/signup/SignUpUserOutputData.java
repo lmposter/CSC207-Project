@@ -3,7 +3,7 @@ package use_case.signup;
 /**
  * Data class representing output data for the user signup use case.
  */
-public record SignUpUserOutputData(String username, boolean useCaseFailed) {
+public record SignUpUserOutputData(String username, String id, boolean useCaseFailed) {
 
     /**
      * Constructor for SignUpUserOutputData.
@@ -22,6 +22,16 @@ public record SignUpUserOutputData(String username, boolean useCaseFailed) {
     @Override
     public String username() {
         return username;
+    }
+
+    /**
+     * Gets the username of the signed-up user.
+     *
+     * @return The id.
+     */
+    @Override
+    public String id(){
+        return id;
     }
 
     /**

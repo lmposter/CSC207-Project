@@ -1,7 +1,7 @@
 package interface_adapter.signup;
 
-import interface_adapter.logged_in.LoggedInState;
-import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.guestPage.GuestState;
+import interface_adapter.guestPage.GuestViewModel;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.ViewManagerModel;
@@ -17,7 +17,7 @@ public class SignupPresenter implements SignUpUserOutputBoundary {
     private final SignupViewModel signupViewModel;
     private final LoginViewModel loginViewModel;
     private final ViewManagerModel viewManagerModel;
-    private final LoggedInViewModel loggedInViewModel;
+    private final GuestViewModel guestViewModel;
 
     /**
      * Constructor for SignupPresenter.
@@ -25,16 +25,16 @@ public class SignupPresenter implements SignUpUserOutputBoundary {
      * @param viewManagerModel    Model for managing views.
      * @param signupViewModel     ViewModel associated with signup.
      * @param loginViewModel      ViewModel associated with login.
-     * @param loggedInViewModel   ViewModel for logged in state.
+     * @param buyerViewModel   ViewModel for logged in state.
      */
     public SignupPresenter(ViewManagerModel viewManagerModel,
                            SignupViewModel signupViewModel,
                            LoginViewModel loginViewModel,
-                           LoggedInViewModel loggedInViewModel) {
+                           GuestViewModel guestViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.signupViewModel = signupViewModel;
         this.loginViewModel = loginViewModel;
-        this.loggedInViewModel = loggedInViewModel;
+        this.guestViewModel = guestViewModel;
     }
 
     /**
@@ -46,14 +46,14 @@ public class SignupPresenter implements SignUpUserOutputBoundary {
     @Override
     public void prepareSuccessView(SignUpUserOutputData response) {
         // On success, switch to the login view or logged-in view based on the response.
-        if (response.username().startsWith("Guest")){
+        if (response.id().startsWith("G")){
             // Setup and transition to the logged-in view for guest users.
-            LoggedInState loggedInState = loggedInViewModel.getState();
-            loggedInState.setUsername(response.username());
-            this.loggedInViewModel.setState(loggedInState);
-            this.loggedInViewModel.firePropertyChanged();
+            GuestState guestState = guestViewModel.getState();
+            guestState.setUsername(response.username());
+            this.guestViewModel.setState(guestState);
+            this.guestViewModel.firePropertyChanged();
 
-            this.viewManagerModel.setActiveView(loggedInViewModel.getViewName());
+            this.viewManagerModel.setActiveView(guestViewModel.getViewName());
             this.viewManagerModel.firePropertyChanged();
         } else {
             // Setup and transition to the login view for regular users.
