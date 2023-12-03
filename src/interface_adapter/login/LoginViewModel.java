@@ -17,7 +17,7 @@ public class LoginViewModel extends ViewModel {
 
     public static final String LOGIN_BUTTON_LABEL = "Secure Login";
     // public static final String GUEST_BUTTON_LABEL = "Guest Login";
-    public static final String CANCEL_BUTTON_LABEL = "New to Amazoff? Get your FREE account now!";
+    public static final String CANCEL_BUTTON_LABEL = "Get your FREE account now!";
     public static final String DEACTIVATE_BUTTON_LABEL = "Deactivate this account";
     private LoginState state = new LoginState();
 
