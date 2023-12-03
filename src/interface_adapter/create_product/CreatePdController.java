@@ -1,12 +1,8 @@
-package interface_adapter.Create_product;
+package interface_adapter.create_product;
 
 
 import use_case.create_product.CreatePdInputBoundary;
 import use_case.create_product.CreatePdInputData;
-
-import javax.swing.*;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class CreatePdController {
     CreatePdInputBoundary createPdUseCaseInteractor;

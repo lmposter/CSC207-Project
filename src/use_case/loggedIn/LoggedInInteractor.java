@@ -42,6 +42,7 @@ public class LoggedInInteractor implements LoggedInInputBoundary {
 
         // Notify the user interface about the action result
 //        loggedInPresenter.actionExecuted(loggedInInputData);
+        //TODO:delete this method from boundary
     }
 
     /**

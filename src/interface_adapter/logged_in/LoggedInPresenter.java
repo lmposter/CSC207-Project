@@ -8,6 +8,7 @@ import interface_adapter.search.SearchViewModel;
 import interface_adapter.shopping_cart.ShoppingCartViewModel;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.store_page.StorePageState;
 import interface_adapter.store_page.StorePageViewModel;
 import use_case.loggedIn.LoggedInOutputBoundary;
 import use_case.loggedIn.LoggedInOutputData;
@@ -68,22 +69,21 @@ public class LoggedInPresenter implements LoggedInOutputBoundary {
     }
 
     public void switchPageOrder(String username) {
-//        SearchState searchState = searchViewModel.getState();
-//        searchState.setUsername(username);
+
         this.viewManagerModel.setActiveView(orderViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
     public void switchPageShoppingCart(String username) {
-//        SearchState searchState = searchViewModel.getState();
-//        searchState.setUsername(username);
+
         this.viewManagerModel.setActiveView(shoppingCartViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
     public void switchPageStorePage(String username) {
-//        SearchState searchState = searchViewModel.getState();
-//        searchState.setUsername(username);
+        StorePageState storePageState = storePageViewModel.getState();
+        storePageState.setUsername(username);
+
         this.viewManagerModel.setActiveView(storePageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }

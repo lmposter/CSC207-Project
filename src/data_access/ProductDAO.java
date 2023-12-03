@@ -35,7 +35,9 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI, Ch
         headers.put("reviews", 6);
 
         if (csvFile.length() == 0){
-            save();
+//            save();
+
+            return;
         } else {
             createProducts();
         }}

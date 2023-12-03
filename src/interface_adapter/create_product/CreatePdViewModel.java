@@ -1,7 +1,6 @@
-package interface_adapter.Create_product;
+package interface_adapter.create_product;
 
 import interface_adapter.ViewModel;
-import interface_adapter.search.SearchState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

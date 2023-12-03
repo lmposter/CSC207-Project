@@ -24,7 +24,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
 
     final JButton logOut;
     final JButton searchItem;
-    final JButton sellProduct;
+    final JButton storePage;
     final JButton orders;
     final JButton shoppingCart;
 
@@ -57,9 +57,9 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         buttons.add(logOut);
 
         // Add Sell Product Button
-        sellProduct = new JButton(LoggedInViewModel.SELL_PRODUCT_LABEL);
-        styleButton(sellProduct, Color.GRAY, Color.BLACK);
-        buttons.add(sellProduct);
+        storePage = new JButton(LoggedInViewModel.STORE_LABEL);
+        styleButton(storePage, Color.GRAY, Color.BLACK);
+        buttons.add(storePage);
 
         // Add Personal Page Button
         orders = new JButton(LoggedInViewModel.PERSONAL_PAGE_LABEL);
@@ -73,7 +73,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
 
         logOut.addActionListener(this);
         searchItem.addActionListener(this);
-        sellProduct.addActionListener(this);
+        storePage.addActionListener(this);
         orders.addActionListener(this);
         shoppingCart.addActionListener(this);
 
@@ -117,9 +117,9 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             System.out.println("Searching for items...");
             LoggedInState currentState = loggedInViewModel.getState();
             loggedInController.switchPageSearch(currentState.getUsername());
-        } else if (evt.getSource() == sellProduct) {
+        } else if (evt.getSource() == storePage) {
             // Perform sell product action
-            System.out.println("Selling a product...");
+            System.out.println("Accessing store page...");
             LoggedInState currentState = loggedInViewModel.getState();
             loggedInController.switchPageStorePage(currentState.getUsername());
         } else if (evt.getSource() == orders) {

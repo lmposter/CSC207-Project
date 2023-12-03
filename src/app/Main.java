@@ -11,6 +11,7 @@ import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.store_page.StorePageViewModel;
 import view.*;
 
 import javax.swing.*;
@@ -18,9 +19,7 @@ import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 
-import static com.sun.org.apache.xml.internal.security.algorithms.implementations.SignatureDSA.URI;
 
 public class Main {
     public static void main(String[] args) throws MalformedURLException {
@@ -48,6 +47,7 @@ public class Main {
         LoginViewModel loginViewModel = new LoginViewModel();
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
+        StorePageViewModel storePageViewModel = new StorePageViewModel();
 
         SearchViewModel searchViewModel = new SearchViewModel();
         try {FileWriter fileWriter = new FileWriter("empty.csv");
@@ -76,14 +76,15 @@ public class Main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, loggedInViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, loggedInViewModel, searchViewModel, null, null, null, userDataAccessObject);
+        LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel,
+                loggedInViewModel, searchViewModel, null, null,
+                storePageViewModel, userDataAccessObject);
         views.add(loggedInView, loggedInView.viewName);
 
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
         views.add(searchView, searchView.viewName);
 
-        Seller seller = new Seller("testSeller", "12345678", "StestID123");
-        view.StorePageView storePageView = new StorePageView(seller);
+        view.StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject);
         views.add(storePageView, storePageView.viewName);
 
 //        viewManagerModel.setActiveView(searchView.viewName);
