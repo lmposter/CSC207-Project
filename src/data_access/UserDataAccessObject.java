@@ -5,14 +5,16 @@ import entity.LoginUser;
 import entity.SellerFactory;
 import interface_adapter.API.DatabaseAPI;
 import use_case.CheckOut.CheckOutUserDataAccessInterface;
-import use_case.loggedIn.LoggedInUserDataAccessInterface;
+import use_case.buyerPage.BuyerDataAccessInterface;
+import use_case.guestPage.GuestUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
+import use_case.sellerPage.SellerDataAccessInterface;
 import use_case.signup.SignUpUserDataAccessInterface;
 
 import java.io.IOException;
 import java.util.List;
 
-public class UserDataAccessObject implements SignUpUserDataAccessInterface, LoginUserDataAccessInterface, CheckOutUserDataAccessInterface, LoggedInUserDataAccessInterface
+public class UserDataAccessObject implements SignUpUserDataAccessInterface, LoginUserDataAccessInterface, CheckOutUserDataAccessInterface, GuestUserDataAccessInterface, BuyerDataAccessInterface, SellerDataAccessInterface
 {
 
     private final BuyerFactory buyerFactory;
@@ -62,8 +64,13 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
 
     @Override
     public void changePassword(String username, String password) {
-        return;
+
     }
+
+//    @Override
+//    public void changePassword(String username, String password) {
+//        return;
+//    }
 
     @Override
     public void clearCart(String username)

@@ -1,4 +1,4 @@
-package use_case.loggedIn;
+package use_case.sellerPage;
 
 import entity.LoginUser;
 
@@ -6,7 +6,7 @@ import entity.LoginUser;
  * The LoginUserDataAccessInterface interface defines methods for accessing user-related data.
  * It includes operations such as retrieving user information, checking account existence, and managing login attempts.
  */
-public interface LoggedInUserDataAccessInterface {
+public interface SellerDataAccessInterface {
 
     /**
      * Retrieve a LoginUser object based on the given username.

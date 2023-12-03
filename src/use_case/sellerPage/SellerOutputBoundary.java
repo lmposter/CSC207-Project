@@ -1,17 +1,17 @@
-package use_case.loggedIn;
+package use_case.sellerPage;
 
 /**
  * The LoginOutputBoundary interface defines methods for presenting the output of the login use case.
  * It includes operations for preparing views in case of successful and failed login attempts.
  */
-public interface LoggedInOutputBoundary {
+public interface SellerOutputBoundary {
 
     /**
      * Prepare the view for a successful login attempt.
      *
-     * @param loggedInOutputData The output data containing user information.
+     * @param sellerOutputData The output data containing user information.
      */
-    void prepareSuccessView(LoggedInOutputData loggedInOutputData);
+    void prepareSuccessView(SellerOutputData sellerOutputData);
 
     /**
      * Prepare the view for a failed login attempt.

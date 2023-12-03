@@ -1,17 +1,17 @@
-package use_case.loggedIn;
+package use_case.buyerPage;
 
 /**
  * The LoginInputBoundary interface defines the input boundary for the login use case.
  * It specifies the methods required to handle user login inputs.
  */
-public interface LoggedInInputBoundary {
+public interface BuyerInputBoundary {
 
     /**
      * Executes the login process based on the provided login input data.
      *
-     * @param loggedInInputData The input data containing username and password for login.
+     * @param buyerInputData The input data containing username and password for login.
      */
-    void execute(LoggedInInputData loggedInInputData);
+    void execute(BuyerInputData buyerInputData);
 
     void switchPageLogOut();
 

@@ -2,6 +2,8 @@ package app;
 
 import data_access.ProductDAO;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.add_to_cart.AddController;
+import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchPresenter;
 import interface_adapter.search.SearchViewModel;
@@ -14,26 +16,27 @@ import view.SearchView;
 import javax.swing.*;
 import java.io.IOException;
 
-public class SearchUseCaseFactory {
+public class SearchUseCaseFactory
+{
     private SearchUseCaseFactory(){}
 
-    public static SearchView create(
-            ViewManagerModel viewManagerModel, SearchViewModel searchViewModel,
-            ProductDAO userProductDAO) {
+    public static SearchView create(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel, ProductDAO userProductDAO, LoggedInViewModel loggedInViewModel, AddController addController)
+    {
 
-        try{
+        try
+        {
             SearchController searchController = createUserSearchUseCase(viewManagerModel, searchViewModel, userProductDAO);
-            return new SearchView(searchController, searchViewModel);
-        } catch (IOException e){
+            return new SearchView(searchController, searchViewModel, loggedInViewModel, addController);
+        } catch (IOException e)
+        {
             JOptionPane.showMessageDialog(null, "Could not open product data file.");
         }
 
         return null;
     }
 
-    private static SearchController createUserSearchUseCase(ViewManagerModel viewManagerModel,
-                                                            SearchViewModel searchViewModel, SearchDAI userProductDAO)
-    throws IOException{
+    private static SearchController createUserSearchUseCase(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel, SearchDAI userProductDAO) throws IOException
+    {
         SearchOutPutBoundary searchOutPutBoundary = new SearchPresenter(searchViewModel, viewManagerModel);
 
         SearchInputBoundary userSearchInteractor = new SearchInteractor(userProductDAO, searchOutPutBoundary);

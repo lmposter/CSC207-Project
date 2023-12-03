@@ -1,7 +1,7 @@
 package app;
 
 import entity.GuestFactory;
-import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.guestPage.GuestViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
@@ -35,14 +35,14 @@ public class SignupUseCaseFactory {
      * @param viewManagerModel     Model for managing views.
      * @param loginViewModel       ViewModel associated with login.
      * @param signupViewModel      ViewModel for signup.
-     * @param loggedInViewModel    ViewModel for logged in state.
+     * @param guestViewModel    ViewModel for logged in state.
      * @param userDataAccessObject Data access object for user data.
      * @return SignupView instance or null in case of failure.
      */
     public static SignupView create(
-            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel, LoggedInViewModel loggedInViewModel, SignUpUserDataAccessInterface userDataAccessObject) {
+            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel, GuestViewModel guestViewModel, SignUpUserDataAccessInterface userDataAccessObject) {
         try {
-            SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, loginViewModel, loggedInViewModel, userDataAccessObject);
+            SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, loginViewModel, guestViewModel, userDataAccessObject);
             return new SignupView(signupController, signupViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -58,16 +58,16 @@ public class SignupUseCaseFactory {
      * @param viewManagerModel     Model for managing views.
      * @param signupViewModel      ViewModel for signup.
      * @param loginViewModel       ViewModel associated with login.
-     * @param loggedInViewModel    ViewModel for logged in state.
+     * @param guestViewModel    ViewModel for logged in state.
      * @param userDataAccessObject Data access object for user data.
      * @return SignupController instance.
      * @throws IOException If there is an issue accessing user data.
      */
-    private static SignupController createUserSignupUseCase(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel, LoggedInViewModel loggedInViewModel, SignUpUserDataAccessInterface userDataAccessObject) throws IOException {
+    private static SignupController createUserSignupUseCase(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel, GuestViewModel guestViewModel, SignUpUserDataAccessInterface userDataAccessObject) throws IOException {
 
         // Create presenter for signup.
         SignUpUserOutputBoundary signupUserOutputBoundary =
-                new SignupPresenter(viewManagerModel, signupViewModel, loginViewModel, loggedInViewModel);
+                new SignupPresenter(viewManagerModel, signupViewModel, loginViewModel, guestViewModel);
 
         // Factories for different user types.
         GuestFactory guestFactory = new GuestFactory();

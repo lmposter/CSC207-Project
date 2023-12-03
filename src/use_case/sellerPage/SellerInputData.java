@@ -1,17 +1,17 @@
-package use_case.loggedIn;
+package use_case.sellerPage;
 
 /**
  * The LoginInputData class represents the input data for the user login process.
  * It holds information such as the username and password.
  */
-public record LoggedInInputData(String username) {
+public record SellerInputData(String username) {
 
     /**
      * Constructs a LoginInputData object with the provided username and password.
      *
      * @param username The username for the login attempt.
      */
-    public LoggedInInputData {
+    public SellerInputData {
     }
 
     /**

@@ -1,18 +1,17 @@
-package use_case.login;
+package use_case.guestPage;
 
 /**
  * The LoginInputData class represents the input data for the user login process.
  * It holds information such as the username and password.
  */
-public record LoginInputData(String username, String password) {
+public record GuestInputData(String username) {
 
     /**
      * Constructs a LoginInputData object with the provided username and password.
      *
      * @param username The username for the login attempt.
-     * @param password The password for the login attempt.
      */
-    public LoginInputData {
+    public GuestInputData {
     }
 
     /**
@@ -25,13 +24,4 @@ public record LoginInputData(String username, String password) {
         return username;
     }
 
-    /**
-     * Gets the password.
-     *
-     * @return The password for the login attempt.
-     */
-    @Override
-    public String password() {
-        return password;
-    }
 }

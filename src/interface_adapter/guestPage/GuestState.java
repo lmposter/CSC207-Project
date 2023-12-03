@@ -1,23 +1,23 @@
-package interface_adapter.logged_in;
+package interface_adapter.guestPage;
 
 /**
- * The LoggedInState class represents the state of the logged-in view.
+ * The SellerState class represents the state of the logged-in view.
  * It includes information such as the username of the logged-in user.
  */
-public class LoggedInState {
+public class GuestState {
     private String username = "";
 
     /**
-     * Constructs a LoggedInState by copying the values from another LoggedInState.
+     * Constructs a SellerState by copying the values from another SellerState.
      *
-     * @param copy The LoggedInState to copy values from.
+     * @param copy The SellerState to copy values from.
      */
-    public LoggedInState(LoggedInState copy) {
+    public GuestState(GuestState copy) {
         username = copy.username;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
-    public LoggedInState() {}
+    public GuestState() {}
 
     /**
      * Gets the username of the logged-in user.

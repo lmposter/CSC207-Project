@@ -5,6 +5,8 @@ import data_access.ProductDAO;
 import entity.Product;
 import entity.ProductFactory;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.add_to_cart.AddController;
+import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductState;
 import interface_adapter.product.ProductViewModel;
@@ -25,26 +27,31 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class SearchView extends JPanel implements ActionListener, PropertyChangeListener {
+public class SearchView extends JPanel implements ActionListener, PropertyChangeListener
+{
     public final String viewName = "Search";
 
     private final SearchViewModel searchViewModel;
     private final JTextField searchInputField = new JTextField(50);
     private final SearchController searchController;
+    private final AddController addController;
+    private final LoggedInViewModel loggedInViewModel;
 
     private final JButton goSearch;
     private JPanel mainPanel;
 
 
-    public SearchView(SearchController controller, SearchViewModel searchViewModel) {
+    public SearchView(SearchController controller, SearchViewModel searchViewModel,LoggedInViewModel loggedInViewModel, AddController addController)
+    {
 
         this.searchController = controller;
+        this.addController = addController;
         this.searchViewModel = searchViewModel;
+        this.loggedInViewModel = loggedInViewModel;
         this.mainPanel = new JPanel();
         searchViewModel.addPropertyChangeListener(this);
 
-        LabelTextPanel contentToSearch = new LabelTextPanel(
-                new JLabel(SearchViewModel.SEARCH_LABEL), searchInputField);
+        LabelTextPanel contentToSearch = new LabelTextPanel(new JLabel(SearchViewModel.SEARCH_LABEL), searchInputField);
 
         contentToSearch.setSize(200, 20);
 
@@ -59,36 +66,40 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         JScrollPane scrollPane = new JScrollPane(mainPanel);
         frame.add(scrollPane);
 
-        goSearch.addActionListener(
-               new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(goSearch)) {
-                            SearchState currentState = searchViewModel.getState();
-                            searchController.execute(currentState.getContent());
-                            frame.setVisible(true);
-                        }
-                    }
+        goSearch.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent evt)
+            {
+                if (evt.getSource().equals(goSearch))
+                {
+                    SearchState currentState = searchViewModel.getState();
+                    searchController.execute(currentState.getContent());
+                    frame.setVisible(true);
                 }
-        );
+            }
+        });
 
-        searchInputField.addKeyListener(
-                new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-                        SearchState currentState = searchViewModel.getState();
-                        String text = searchInputField.getText() + e.getKeyChar();
-                        currentState.setContent(text);
-                        searchViewModel.setState(currentState);
-                    }
+        searchInputField.addKeyListener(new KeyListener()
+        {
+            @Override
+            public void keyTyped(KeyEvent e)
+            {
+                SearchState currentState = searchViewModel.getState();
+                String text = searchInputField.getText() + e.getKeyChar();
+                currentState.setContent(text);
+                searchViewModel.setState(currentState);
+            }
 
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-                    }
+            @Override
+            public void keyPressed(KeyEvent e)
+            {
+            }
 
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                    }
-                });
+            @Override
+            public void keyReleased(KeyEvent e)
+            {
+            }
+        });
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -97,25 +108,30 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         frame.setVisible(false);
     }
 
-    public void actionPerformed(ActionEvent evt) {
+    public void actionPerformed(ActionEvent evt)
+    {
         JOptionPane.showConfirmDialog(this, "Not implemented yet.");
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(PropertyChangeEvent evt)
+    {
         SearchState state = (SearchState) evt.getNewValue();
-        if (state.getProductsError() == null){
+        if (state.getProductsError() == null)
+        {
             // Clear existing product panels
             mainPanel.removeAll();
             mainPanel.add(new JLabel(state.getMessage()));
             // Add new product panels based on the updated search results
             ArrayList<Product> pdToShow = state.getProducts();
-            for (Product pd : pdToShow){
+            for (Product pd : pdToShow)
+            {
                 JPanel productPanel = new JPanel();
                 productPanel.setLayout(new BoxLayout(productPanel, BoxLayout.Y_AXIS));
 
 
-                try {
+                try
+                {
                     URL url = new URL(pd.getURL());
                     Image image = ImageIO.read(url).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
                     ImageIcon imageIcon = new ImageIcon(image);
@@ -123,34 +139,40 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                     productPanel.add(imageLabel);
 
 
-                } catch (IIOException | MalformedURLException e) {
+                } catch (IIOException | MalformedURLException e)
+                {
                     e.printStackTrace();
                     productPanel.add(new JLabel("Image not available"));
-                } catch (IOException e) {
+                } catch (IOException e)
+                {
                     throw new RuntimeException(e);
                 }
                 productPanel.add(new JLabel("Price: $" + pd.getPrice()));
                 productPanel.add(new JLabel("Inventory: " + pd.getInventory()));
-                productPanel.addMouseListener(new MouseAdapter() {
+                productPanel.addMouseListener(new MouseAdapter()
+                {
                     @Override
-                    public void mouseClicked(MouseEvent e) {
+                    public void mouseClicked(MouseEvent e)
+                    {
 
                         ViewManagerModel viewManagerModel = new ViewManagerModel();
                         ProductViewModel pdViewModel = new ProductViewModel();
                         ProductState state = new ProductState(pd.getId(), pd.getURL(), pd.getTitle(), pd.getPrice(), pd.getInventory(), pd.getReview());
                         pdViewModel.setState(state);
                         FileWriter fileWriter = null;
-                        try {
+                        try
+                        {
                             fileWriter = new FileWriter("empty.csv");
                             String header = "id,title,inventory,URL,price";
                             fileWriter.write(header);
                             fileWriter.close();
-                        } catch (IOException ex) {
+                        } catch (IOException ex)
+                        {
                             throw new RuntimeException(ex);
                         }
                         ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
 
-                        ProductView pdView = ProductDetailsUseCaseFactory.createForBuyer(viewManagerModel, pdViewModel, pdDAO, searchViewModel);
+                        ProductView pdView = ProductDetailsUseCaseFactory.createForBuyer(viewManagerModel, pdViewModel, pdDAO, searchViewModel, loggedInViewModel, addController);
 
                         assert pdView != null;
                         pdView.show();

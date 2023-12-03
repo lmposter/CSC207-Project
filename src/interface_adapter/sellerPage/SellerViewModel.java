@@ -1,4 +1,4 @@
-package interface_adapter.logged_in;
+package interface_adapter.sellerPage;
 
 import interface_adapter.ViewModel;
 
@@ -6,37 +6,36 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 /**
- * The LoggedInViewModel class represents the view model for the logged-in view.
+ * The SellerViewModel class represents the view model for the logged-in view.
  * It includes labels, buttons, and the state of the logged-in view.
  */
-public class LoggedInViewModel extends ViewModel {
+public class SellerViewModel extends ViewModel {
     public final String TITLE_LABEL = "Amazoff";
 
-    private LoggedInState state = new LoggedInState();
+    private SellerState state = new SellerState();
 
     public static final String LOGOUT_BUTTON_LABEL = "Log out";
 
     public static final String SEARCH_ITEM_LABEL = "Search Item";
 
-    public static final String STORE_LABEL = "Store Page";
-    public static final String PERSONAL_PAGE_LABEL = "Personal Page";
-    public static final String SHOPPING_CART_LABEL = "Shopping Cart";
+    public static final String SELL_PRODUCT_LABEL = "My Store";
+    public static final String PERSONAL_PAGE_LABEL = "Order In Progress";
     private String loggedInUser;
 
     /**
-     * Constructs a LoggedInViewModel with the specified view name.
+     * Constructs a SellerViewModel with the specified view name.
      *
      */
-    public LoggedInViewModel() {
+    public SellerViewModel() {
         super("logged in");
     }
 
     /**
      * Sets the state of the logged-in view.
      *
-     * @param state The LoggedInState to set.
+     * @param state The SellerState to set.
      */
-    public void setState(LoggedInState state) {
+    public void setState(SellerState state) {
         this.state = state;
     }
 
@@ -62,9 +61,9 @@ public class LoggedInViewModel extends ViewModel {
     /**
      * Gets the current state of the logged-in view.
      *
-     * @return The current LoggedInState.
+     * @return The current SellerState.
      */
-    public LoggedInState getState() {
+    public SellerState getState() {
         return state;
     }
 
