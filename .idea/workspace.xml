@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="89cdace0-069a-423e-9809-18877f4de6d2" name="Changes" comment="Dashboard Update">
+      <change afterPath="$PROJECT_DIR$/src/app/BuyerUseCaseFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/squareup_okhttp3_okhttp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/squareup_okhttp3_okhttp1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/LoginUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/LoginUseCaseFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_access/UserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/UserDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/login/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/login/LoginPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/guestPage/GuestInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/guestPage/GuestInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/signup/SignUpUserInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/signup/SignUpUserInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GuestView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GuestView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/PersonalPageView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ShoppingCartView.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="mahe/FrontendDesign-GuestLogin" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2YbkpcLT34Fw69eZZCAvDD7iJAV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "mahe/dashboard",
+    "last_opened_file_path": "C:/Users/pangc/Downloads/CSC207-Project-modified",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pangc\IdeaProjects\CSC207-Project\resources" />
+      <recent name="C:\Users\pangc\IdeaProjects\CSC207-Project\src\app" />
+      <recent name="C:\Users\pangc\IdeaProjects\CSC207-Project\img" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-20" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <envs>
+        <env name="API_TOKEN_MongoDB" value="qlBBaXwBBuTuSNlyO18s4qZgh72jnvR5w0d2siIQ0xehEhxQu6KA7hHxJvOihbfC" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="app.Main" />
+      <module name="CSC207-Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductInteractorTest.execute_productDoesNotExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CSC207-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src" />
+      <option name="MAIN_CLASS_NAME" value="src.ProductInteractorTest" />
+      <option name="METHOD_NAME" value="execute_productDoesNotExist" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductInteractorTest.execute_productExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CSC207-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src" />
+      <option name="MAIN_CLASS_NAME" value="src.ProductInteractorTest" />
+      <option name="METHOD_NAME" value="execute_productExists" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SearchInteractorTest.execute_withNoMatchingProducts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CSC207-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.search" />
+      <option name="MAIN_CLASS_NAME" value="use_case.search.SearchInteractorTest" />
+      <option name="METHOD_NAME" value="execute_withNoMatchingProducts" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SearchInteractorTest.testExecute_ItemsFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CSC207-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src" />
+      <option name="MAIN_CLASS_NAME" value="src.SearchInteractorTest" />
+      <option name="METHOD_NAME" value="testExecute_ItemsFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SearchInteractorTest.testExecute_NoItemsFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CSC207-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src" />
+      <option name="MAIN_CLASS_NAME" value="src.SearchInteractorTest" />
+      <option name="METHOD_NAME" value="testExecute_NoItemsFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.ProductInteractorTest.execute_productDoesNotExist" />
+      <item itemvalue="JUnit.ProductInteractorTest.execute_productExists" />
+      <item itemvalue="JUnit.SearchInteractorTest.execute_withNoMatchingProducts" />
+      <item itemvalue="JUnit.SearchInteractorTest.testExecute_ItemsFound" />
+      <item itemvalue="JUnit.SearchInteractorTest.testExecute_NoItemsFound" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SearchInteractorTest.testExecute_NoItemsFound" />
+        <item itemvalue="JUnit.SearchInteractorTest.testExecute_ItemsFound" />
+        <item itemvalue="JUnit.SearchInteractorTest.execute_withNoMatchingProducts" />
+        <item itemvalue="JUnit.ProductInteractorTest.execute_productExists" />
+        <item itemvalue="JUnit.ProductInteractorTest.execute_productDoesNotExist" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="89cdace0-069a-423e-9809-18877f4de6d2" name="Changes" comment="" />
+      <created>1700801854852</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700801854852</updated>
+      <workItem from="1700801861362" duration="3410000" />
+      <workItem from="1700805369556" duration="84000" />
+      <workItem from="1700900796303" duration="312000" />
+      <workItem from="1700901416097" duration="7280000" />
+      <workItem from="1700908828167" duration="7060000" />
+      <workItem from="1701109115408" duration="6483000" />
+      <workItem from="1701601350164" duration="1124000" />
+      <workItem from="1701602924115" duration="60000" />
+      <workItem from="1701603029129" duration="8353000" />
+      <workItem from="1701614481187" duration="555000" />
+      <workItem from="1701615761090" duration="608000" />
+      <workItem from="1701621106340" duration="14897000" />
+    </task>
+    <task id="LOCAL-00001" summary="Implement Password Requirements. Add dummy methods for guest view.">
+      <option name="closed" value="true" />
+      <created>1700805292573</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700805292573</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Implement Password Requirements. Add dummy methods for guest view.">
+      <option name="closed" value="true" />
+      <created>1700805447550</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700805447550</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Implement Password Requirements; Revise Signup structure; Add test files for SignupInteractor">
+      <option name="closed" value="true" />
+      <created>1700906863313</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700906863313</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Frontend Update">
+      <option name="closed" value="true" />
+      <created>1700915139723</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700915139723</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Inputfield bug fixed">
+      <option name="closed" value="true" />
+      <created>1701112539350</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701112539350</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add more tests">
+      <option name="closed" value="true" />
+      <created>1701115599211</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701115599211</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Import Requirements">
+      <option name="closed" value="true" />
+      <created>1701601681582</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701601681582</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update frontend design for the login portal; The Signup page is now capable of handling guests.">
+      <option name="closed" value="true" />
+      <created>1701608228507</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1701608228507</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Loading Screen Update">
+      <option name="closed" value="true" />
+      <created>1701611450795</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1701611450795</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Loading Screen Update">
+      <option name="closed" value="true" />
+      <created>1701614557869</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1701614557869</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Dashboard Update">
+      <option name="closed" value="true" />
+      <created>1701631455512</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1701631455512</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implement Password Requirements. Add dummy methods for guest view." />
+    <MESSAGE value="Implement Password Requirements; Revise Signup structure; Add test files for SignupInteractor" />
+    <MESSAGE value="Frontend Update" />
+    <MESSAGE value="Inputfield bug fixed" />
+    <MESSAGE value="Add more tests" />
+    <MESSAGE value="Import Requirements" />
+    <MESSAGE value="Update frontend design for the login portal; The Signup page is now capable of handling guests." />
+    <MESSAGE value="Loading Screen Update" />
+    <MESSAGE value="Dashboard Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dashboard Update" />
+  </component>
+</project>

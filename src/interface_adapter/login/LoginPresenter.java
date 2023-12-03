@@ -2,6 +2,8 @@ package interface_adapter.login;
 
 import interface_adapter.ViewManagerModel;
 //import interface_adapter.buyerPage.BuyerViewModel;
+import interface_adapter.buyerPage.BuyerState;
+import interface_adapter.buyerPage.BuyerViewModel;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
 //import interface_adapter.buyerPage.BuyerState;
@@ -11,18 +13,18 @@ import use_case.login.LoginOutputData;
 public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
-//    private final BuyerViewModel buyerViewModel;
+    private final BuyerViewModel buyerViewModel;
 //    private final SellerViewModel sellerViewModel;
     private final SignupViewModel signupViewModel;
     private ViewManagerModel viewManagerModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
-//                          BuyerViewModel buyerViewModel,
+                          BuyerViewModel buyerViewModel,
 //                          SellerViewModel sellerViewModel,
                           LoginViewModel loginViewModel,
                           SignupViewModel signupViewModel) {
         this.viewManagerModel = viewManagerModel;
-//        this.buyerViewModel = buyerViewModel;
+        this.buyerViewModel = buyerViewModel;
 //        this.sellerViewModel = sellerViewModel;
         this.loginViewModel = loginViewModel;
         this.signupViewModel = signupViewModel;
@@ -30,14 +32,15 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     @Override
     public void prepareSuccessView(LoginOutputData response) {
-//        if (response.id().startsWith("B")){
-//            BuyerState guestState = BuyerViewModel.getState();
-//            guestState.setUsername(response.username());
-//            this.buyerViewModel.setState(guestState);
-//            this.buyerViewModel.firePropertyChanged();
-//
-//            this.viewManagerModel.setActiveView(buyerViewModel.getViewName());
-//            this.viewManagerModel.firePropertyChanged();
+        if (response.id().startsWith("B")) {
+            BuyerState buyerState = buyerViewModel.getState();
+            buyerState.setUsername(response.username());
+            this.buyerViewModel.setState(buyerState);
+            this.buyerViewModel.firePropertyChanged();
+
+            this.viewManagerModel.setActiveView(buyerViewModel.getViewName());
+            this.viewManagerModel.firePropertyChanged();
+        }
 //        } else {
 //            // On success, switch to the logged in view.
 //            SellerState sellerState = sellerViewModel.getState();

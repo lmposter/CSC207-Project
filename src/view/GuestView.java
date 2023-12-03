@@ -42,7 +42,7 @@ public class GuestView extends JPanel implements ActionListener, PropertyChangeL
         styleLabel(title, Color.BLACK, new Font("Arial", Font.BOLD, 24));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        usernameLabel = new JLabel("Welcome back! Guest ");
+        usernameLabel = new JLabel("Welcome back!");
         styleLabel(usernameLabel, Color.BLACK, new Font("Arial", Font.PLAIN, 14));
         usernameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 

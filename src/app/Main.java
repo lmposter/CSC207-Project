@@ -7,6 +7,7 @@ import entity.ProductFactory;
 import entity.Seller;
 import entity.SellerFactory;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.buyerPage.BuyerViewModel;
 import interface_adapter.guestPage.GuestViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.search.SearchViewModel;
@@ -44,6 +45,7 @@ public class Main {
         // be observed by the Views.
         LoginViewModel loginViewModel = new LoginViewModel();
         GuestViewModel guestViewModel = new GuestViewModel();
+        BuyerViewModel buyerViewModel = new BuyerViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
 
         SearchViewModel searchViewModel = new SearchViewModel();
@@ -70,11 +72,14 @@ public class Main {
         SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, guestViewModel, userDataAccessObject);
         views.add(signupView, signupView.viewName);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
         GuestView guestView = GuestUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, guestViewModel, searchViewModel, null, null, null, userDataAccessObject);
         views.add(guestView, guestView.viewName);
+
+        BuyerView buyerView = BuyerUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, searchViewModel, null, null, null, userDataAccessObject);
+        views.add(buyerView, buyerView.viewName);
 
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
         views.add(searchView, searchView.viewName);

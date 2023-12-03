@@ -1,6 +1,7 @@
 package app;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.buyerPage.BuyerViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
@@ -23,12 +24,12 @@ public class LoginUseCaseFactory {
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
             SignupViewModel signupViewModel,
-//            BuyerViewModel buyerViewModel,
+            BuyerViewModel buyerViewModel,
 //            SellerViewModel sellerViewModel,
             LoginUserDataAccessInterface userDataAccessObject) {
 
         try {
-            LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
+            LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, userDataAccessObject);
             return new LoginView(loginViewModel, loginController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -41,12 +42,12 @@ public class LoginUseCaseFactory {
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
             SignupViewModel signupViewModel,
-//            BuyerViewModel buyerViewModel,
+            BuyerViewModel buyerViewModel,
 //            SellerViewModel sellerViewModel,
             LoginUserDataAccessInterface userDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, loginViewModel, signupViewModel);
+        LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,  buyerViewModel, loginViewModel, signupViewModel);
 
 
         LoginInputBoundary loginInteractor = new LoginInteractor(

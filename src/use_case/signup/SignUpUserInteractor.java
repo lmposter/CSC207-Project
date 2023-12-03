@@ -59,17 +59,17 @@ public class SignUpUserInteractor implements SignUpUserInputBoundary {
                 userPresenter.prepareFailView("Passwords don't match.");
             }
             // Validate password length
-            else if (!isLengthValid(signUpUserInputData.password())) {
-                userPresenter.prepareFailView("Your password must be at least 8 characters long.");
-            }
-            // Validate special character in password
-            else if (!isSpecialValid(signUpUserInputData.password())) {
-                userPresenter.prepareFailView("Your password must contain at least one special character");
-            }
-            // Validate uppercase character in password
-            else if (!isUppercaseValid(signUpUserInputData.password())) {
-                userPresenter.prepareFailView("Your password must contain at least one uppercase letter");
-            }
+//            else if (!isLengthValid(signUpUserInputData.password())) {
+//                userPresenter.prepareFailView("Your password must be at least 8 characters long.");
+//            }
+//            // Validate special character in password
+//            else if (!isSpecialValid(signUpUserInputData.password())) {
+//                userPresenter.prepareFailView("Your password must contain at least one special character");
+//            }
+//            // Validate uppercase character in password
+//            else if (!isUppercaseValid(signUpUserInputData.password())) {
+//                userPresenter.prepareFailView("Your password must contain at least one uppercase letter");
+//            }
             // Handle seller signup
             else if ("seller".equals(signUpUserInputData.signType())) {
                 LoginUser user = sellerFactory.create(signUpUserInputData.username(), signUpUserInputData.password());

@@ -3,7 +3,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * The LoggedInInteractor class handles the logic for user logged-in functionality.
+ * The BuyerInteractor class handles the logic for user logged-in functionality.
  * It interacts with the data access layer and presents the results through an output boundary.
  */
 public class GuestInteractor implements GuestInputBoundary {
@@ -18,7 +18,7 @@ public class GuestInteractor implements GuestInputBoundary {
     private static final Logger LOGGER = Logger.getLogger(GuestInteractor.class.getName());
 
     /**
-     * Constructs a LoggedInInteractor with the provided dependencies.
+     * Constructs a BuyerInteractor with the provided dependencies.
      *
      * @param userDataAccessInterface The data access object for user-related operations.
      * @param guestOutputBoundary  The presenter for displaying logged-in results.
