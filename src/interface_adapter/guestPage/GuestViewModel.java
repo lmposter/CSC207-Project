@@ -1,4 +1,4 @@
-package interface_adapter.logged_in;
+package interface_adapter.guestPage;
 
 import interface_adapter.ViewModel;
 
@@ -9,26 +9,23 @@ import java.beans.PropertyChangeSupport;
  * The LoggedInViewModel class represents the view model for the logged-in view.
  * It includes labels, buttons, and the state of the logged-in view.
  */
-public class LoggedInViewModel extends ViewModel {
+public class GuestViewModel extends ViewModel {
     public final String TITLE_LABEL = "Amazoff";
 
-    private LoggedInState state = new LoggedInState();
+    private GuestState state = new GuestState();
 
-    public static final String LOGOUT_BUTTON_LABEL = "Log out";
+    public static final String LOGOUT_BUTTON_LABEL = "Login to access more features!";
 
-    public static final String SEARCH_ITEM_LABEL = "Search Item";
-
-    public static final String SELL_PRODUCT_LABEL = "Sell Product";
-    public static final String PERSONAL_PAGE_LABEL = "Personal Page";
-    public static final String SHOPPING_CART_LABEL = "Shopping Cart";
-    private String loggedInUser;
+    public static final String SEARCH_ITEM_LABEL = "Browse Items";
+    
+    private String guestUser;
 
     /**
      * Constructs a LoggedInViewModel with the specified view name.
      *
      */
-    public LoggedInViewModel() {
-        super("logged in");
+    public GuestViewModel() {
+        super("guest logged in");
     }
 
     /**
@@ -36,7 +33,7 @@ public class LoggedInViewModel extends ViewModel {
      *
      * @param state The LoggedInState to set.
      */
-    public void setState(LoggedInState state) {
+    public void setState(GuestState state) {
         this.state = state;
     }
 
@@ -64,7 +61,7 @@ public class LoggedInViewModel extends ViewModel {
      *
      * @return The current LoggedInState.
      */
-    public LoggedInState getState() {
+    public GuestState getState() {
         return state;
     }
 
@@ -73,16 +70,16 @@ public class LoggedInViewModel extends ViewModel {
      *
      * @return The username of the logged-in user.
      */
-    public String getLoggedInUser() {
-        return loggedInUser;
+    public String getGuestUser() {
+        return guestUser;
     }
 
     /**
      * Sets the username of the logged-in user.
      *
-     * @param loggedInUser The username to set.
+     * @param guestUser The username to set.
      */
-    public void setLoggedInUser(String loggedInUser) {
-        this.loggedInUser = loggedInUser;
+    public void setGuestUser(String guestUser) {
+        this.guestUser = guestUser;
     }
 }

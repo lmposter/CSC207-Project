@@ -1,17 +1,17 @@
-package use_case.loggedIn;
+package use_case.guestPage;
 
 /**
  * The LoginOutputBoundary interface defines methods for presenting the output of the login use case.
  * It includes operations for preparing views in case of successful and failed login attempts.
  */
-public interface LoggedInOutputBoundary {
+public interface GuestOutputBoundary {
 
     /**
      * Prepare the view for a successful login attempt.
      *
-     * @param loggedInOutputData The output data containing user information.
+     * @param guestOutputData The output data containing user information.
      */
-    void prepareSuccessView(LoggedInOutputData loggedInOutputData);
+    void prepareSuccessView(GuestOutputData guestOutputData);
 
     /**
      * Prepare the view for a failed login attempt.
@@ -22,11 +22,5 @@ public interface LoggedInOutputBoundary {
 
     void switchPageLogOut();
 
-    void switchPageOrder(String username);
-
     void switchPageSearch(String username);
-
-    void switchPageShoppingCart(String username);
-
-    void switchPageStorePage(String username);
 }

@@ -7,7 +7,7 @@ import entity.ProductFactory;
 import entity.Seller;
 import entity.SellerFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.guestPage.GuestViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.signup.SignupViewModel;
@@ -18,9 +18,6 @@ import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
-
-import static com.sun.org.apache.xml.internal.security.algorithms.implementations.SignatureDSA.URI;
 
 public class Main {
     public static void main(String[] args) throws MalformedURLException {
@@ -46,7 +43,7 @@ public class Main {
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
         LoginViewModel loginViewModel = new LoginViewModel();
-        LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
+        GuestViewModel guestViewModel = new GuestViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
 
         SearchViewModel searchViewModel = new SearchViewModel();
@@ -68,16 +65,16 @@ public class Main {
         }
 
         InitializeProject screen = new InitializeProject("resources/loading.gif");
-        screen.load(5500);
+        screen.load(5);
 
-        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, loggedInViewModel, userDataAccessObject);
+        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, guestViewModel, userDataAccessObject);
         views.add(signupView, signupView.viewName);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, loggedInViewModel, userDataAccessObject);
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, loggedInViewModel, searchViewModel, null, null, null, userDataAccessObject);
-        views.add(loggedInView, loggedInView.viewName);
+        GuestView guestView = GuestUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, guestViewModel, searchViewModel, null, null, null, userDataAccessObject);
+        views.add(guestView, guestView.viewName);
 
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
         views.add(searchView, searchView.viewName);

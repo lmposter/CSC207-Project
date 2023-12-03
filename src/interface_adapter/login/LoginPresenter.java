@@ -1,40 +1,53 @@
 package interface_adapter.login;
 
-import interface_adapter.logged_in.LoggedInState;
-import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.ViewManagerModel;
+//import interface_adapter.buyerPage.BuyerViewModel;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
+//import interface_adapter.buyerPage.BuyerState;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
 
 public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
-    private final LoggedInViewModel loggedInViewModel;
+//    private final BuyerViewModel buyerViewModel;
+//    private final SellerViewModel sellerViewModel;
     private final SignupViewModel signupViewModel;
     private ViewManagerModel viewManagerModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
-                          LoggedInViewModel loggedInViewModel,
+//                          BuyerViewModel buyerViewModel,
+//                          SellerViewModel sellerViewModel,
                           LoginViewModel loginViewModel,
                           SignupViewModel signupViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
+//        this.buyerViewModel = buyerViewModel;
+//        this.sellerViewModel = sellerViewModel;
         this.loginViewModel = loginViewModel;
         this.signupViewModel = signupViewModel;
     }
 
     @Override
     public void prepareSuccessView(LoginOutputData response) {
-        // On success, switch to the logged in view.
-        LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername(response.username());
-        this.loggedInViewModel.setState(loggedInState);
-        this.loggedInViewModel.firePropertyChanged();
-
-        this.viewManagerModel.setActiveView(loggedInViewModel.getViewName());
-        this.viewManagerModel.firePropertyChanged();
+//        if (response.id().startsWith("B")){
+//            BuyerState guestState = BuyerViewModel.getState();
+//            guestState.setUsername(response.username());
+//            this.buyerViewModel.setState(guestState);
+//            this.buyerViewModel.firePropertyChanged();
+//
+//            this.viewManagerModel.setActiveView(buyerViewModel.getViewName());
+//            this.viewManagerModel.firePropertyChanged();
+//        } else {
+//            // On success, switch to the logged in view.
+//            SellerState sellerState = sellerViewModel.getState();
+//            sellerState.setUsername(response.username());
+//            this.sellerViewModel.setState(loggedInState);
+//            this.sellerViewModel.firePropertyChanged();
+//
+//            this.viewManagerModel.setActiveView(sellerViewModel.getViewName());
+//            this.viewManagerModel.firePropertyChanged();
+//        }
     }
 
     @Override

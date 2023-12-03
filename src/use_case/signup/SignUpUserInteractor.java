@@ -47,7 +47,7 @@ public class SignUpUserInteractor implements SignUpUserInputBoundary {
         if ("guest".equals(signUpUserInputData.signType())) {
             LoginUser user = guestFactory.create("null", "null");
             userDataAccessObject.save(user);
-            SignUpUserOutputData signUpUserOutputData = new SignUpUserOutputData(user.getName(), false);
+            SignUpUserOutputData signUpUserOutputData = new SignUpUserOutputData(user.getName(), user.getId(),false);
             userPresenter.prepareSuccessView(signUpUserOutputData);
         } else {
             // Handle existing user check
@@ -74,14 +74,14 @@ public class SignUpUserInteractor implements SignUpUserInputBoundary {
             else if ("seller".equals(signUpUserInputData.signType())) {
                 LoginUser user = sellerFactory.create(signUpUserInputData.username(), signUpUserInputData.password());
                 userDataAccessObject.save(user);
-                SignUpUserOutputData signUpUserOutputData = new SignUpUserOutputData(user.getName(), false);
+                SignUpUserOutputData signUpUserOutputData = new SignUpUserOutputData(user.getName(), user.getId(),false);
                 userPresenter.prepareSuccessView(signUpUserOutputData);
             }
             // Handle buyer signup
             else if ("buyer".equals(signUpUserInputData.signType())) {
                 LoginUser user = buyerFactory.create(signUpUserInputData.username(), signUpUserInputData.password());
                 userDataAccessObject.save(user);
-                SignUpUserOutputData signUpUserOutputData = new SignUpUserOutputData(user.getName(), false);
+                SignUpUserOutputData signUpUserOutputData = new SignUpUserOutputData(user.getName(), user.getId(),false);
                 userPresenter.prepareSuccessView(signUpUserOutputData);
             }
         }

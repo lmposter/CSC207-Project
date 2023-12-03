@@ -4,7 +4,7 @@ package use_case.login;
  * The LoginOutputData class represents the output data for the login use case.
  * It holds information to be presented in the view after a login attempt.
  */
-public record LoginOutputData(String username, boolean successful) {
+public record LoginOutputData(String username, String id, boolean successful) {
 
     /**
      * Constructs a LoginOutputData object with the provided username and success status.
@@ -24,6 +24,14 @@ public record LoginOutputData(String username, boolean successful) {
     public String username() {
         return username;
     }
+
+    /**
+     * Gets the id associated with the login attempt.
+     *
+     * @return The username.
+     */
+    @Override
+    public String id(){return id;}
 
     /**
      * Checks if the login was successful.

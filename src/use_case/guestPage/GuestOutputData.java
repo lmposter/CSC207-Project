@@ -1,10 +1,10 @@
-package use_case.loggedIn;
+package use_case.guestPage;
 
 /**
  * The LoginOutputData class represents the output data for the login use case.
  * It holds information to be presented in the view after a login attempt.
  */
-public record LoggedInOutputData(String username, boolean successful) {
+public record GuestOutputData(String username, boolean successful) {
 
     /**
      * Constructs a LoginOutputData object with the provided username and success status.
@@ -12,7 +12,7 @@ public record LoggedInOutputData(String username, boolean successful) {
      * @param username   The username associated with the login attempt.
      * @param successful True if the login was successful, false otherwise.
      */
-    public LoggedInOutputData {
+    public GuestOutputData {
     }
 
     /**

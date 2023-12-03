@@ -23,8 +23,8 @@ public class Guest implements LoginUser {
      * Generates a unique ID for the guest and sets a default name.
      */
     public Guest() {
-        this.id = UUID.randomUUID().toString();
-        this.name = "Guest" + id;
+        this.id = "G" + UUID.randomUUID().toString();
+        this.name = id;
     }
 
     /**
