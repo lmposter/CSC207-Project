@@ -1,6 +1,7 @@
 package app;
 
 import entity.GuestFactory;
+import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
@@ -16,16 +17,32 @@ import entity.BuyerFactory;
 
 import javax.swing.*;
 import java.io.IOException;
-// need to add dao later
+
+/**
+ * Factory class for creating instances related to the Signup use case.
+ * This class handles the setup of controllers, presenters, and views for the signup process.
+ */
 public class SignupUseCaseFactory {
 
-    /** Prevent instantiation. */
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
     private SignupUseCaseFactory() {}
 
+    /**
+     * Creates and returns a SignupView instance with all necessary dependencies.
+     *
+     * @param viewManagerModel     Model for managing views.
+     * @param loginViewModel       ViewModel associated with login.
+     * @param signupViewModel      ViewModel for signup.
+     * @param loggedInViewModel    ViewModel for logged in state.
+     * @param userDataAccessObject Data access object for user data.
+     * @return SignupView instance or null in case of failure.
+     */
     public static SignupView create(
-            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel, SignUpUserDataAccessInterface userDataAccessObject) {
+            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel, LoggedInViewModel loggedInViewModel, SignUpUserDataAccessInterface userDataAccessObject) {
         try {
-            SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, loginViewModel, userDataAccessObject);
+            SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, loginViewModel, loggedInViewModel, userDataAccessObject);
             return new SignupView(signupController, signupViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -34,17 +51,34 @@ public class SignupUseCaseFactory {
         return null;
     }
 
-    private static SignupController createUserSignupUseCase(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel, SignUpUserDataAccessInterface userDataAccessObject) throws IOException {
+    /**
+     * Private helper method to create a SignupController.
+     * Sets up the necessary interactions and dependencies for the signup process.
+     *
+     * @param viewManagerModel     Model for managing views.
+     * @param signupViewModel      ViewModel for signup.
+     * @param loginViewModel       ViewModel associated with login.
+     * @param loggedInViewModel    ViewModel for logged in state.
+     * @param userDataAccessObject Data access object for user data.
+     * @return SignupController instance.
+     * @throws IOException If there is an issue accessing user data.
+     */
+    private static SignupController createUserSignupUseCase(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel, LoggedInViewModel loggedInViewModel, SignUpUserDataAccessInterface userDataAccessObject) throws IOException {
 
-        // Notice how we pass this method's parameters to the Presenter.
-        SignUpUserOutputBoundary signupUserOutputBoundary = new SignupPresenter(viewManagerModel, signupViewModel, loginViewModel);
+        // Create presenter for signup.
+        SignUpUserOutputBoundary signupUserOutputBoundary =
+                new SignupPresenter(viewManagerModel, signupViewModel, loginViewModel, loggedInViewModel);
+
+        // Factories for different user types.
         GuestFactory guestFactory = new GuestFactory();
         BuyerFactory buyerFactory = new BuyerFactory();
         SellerFactory sellerFactory = new SellerFactory();
 
+        // Create the interactor for user signup.
         SignUpUserInputBoundary userSignupInteractor = new SignUpUserInteractor(
                 userDataAccessObject, signupUserOutputBoundary, guestFactory, buyerFactory, sellerFactory);
 
+        // Return a new controller for the signup.
         return new SignupController(userSignupInteractor);
     }
 
