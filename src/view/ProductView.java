@@ -48,6 +48,7 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
         productViewModel.addPropertyChangeListener(this);
         this.pdPanel = new JPanel(cardLayout);
         String username = this.loggedInViewModel.getState().getUsername();
+        String product = this.productViewModel.getState().getID();
 
         application.setSize(600, 400);
 
@@ -110,7 +111,7 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
             {
                 public void actionPerformed(ActionEvent evt)
                 {
-                    addController.execute(username);
+                    addController.execute(username, product);
                 }
             });
 

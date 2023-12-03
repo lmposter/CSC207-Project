@@ -13,9 +13,9 @@ public class AddController
         this.addInteractor = addInteractor;
     }
 
-    public void execute(String username)
+    public void execute(String username, String id)
     {
-        AddInputData input = new AddInputData(username);
+        AddInputData input = new AddInputData(username, id);
         addInteractor.execute(input);
     }
 }
