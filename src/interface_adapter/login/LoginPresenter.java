@@ -1,10 +1,10 @@
 package interface_adapter.login;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.buyerPage.BuyerState;
-import interface_adapter.buyerPage.BuyerViewModel;
-import interface_adapter.sellerPage.SellerState;
-import interface_adapter.sellerPage.SellerViewModel;
+import interface_adapter.AllUserPage.buyerPage.BuyerState;
+import interface_adapter.AllUserPage.buyerPage.BuyerViewModel;
+import interface_adapter.AllUserPage.sellerPage.SellerState;
+import interface_adapter.AllUserPage.sellerPage.SellerViewModel;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
 import use_case.login.LoginOutputBoundary;

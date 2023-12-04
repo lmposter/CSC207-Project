@@ -1,28 +1,20 @@
 package app;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.buyerPage.BuyerController;
-import interface_adapter.buyerPage.BuyerPresenter;
-import interface_adapter.buyerPage.BuyerViewModel;
-import interface_adapter.guestPage.GuestController;
-import interface_adapter.guestPage.GuestPresenter;
-import interface_adapter.guestPage.GuestViewModel;
+import interface_adapter.AllUserPage.buyerPage.BuyerController;
+import interface_adapter.AllUserPage.buyerPage.BuyerPresenter;
+import interface_adapter.AllUserPage.buyerPage.BuyerViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.orders.Orders;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.shopping_cart.ShoppingCartViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.store_page.StorePageViewModel;
-import use_case.buyerPage.BuyerDataAccessInterface;
-import use_case.buyerPage.BuyerInputBoundary;
-import use_case.buyerPage.BuyerInteractor;
-import use_case.buyerPage.BuyerOutputBoundary;
-import use_case.guestPage.GuestInputBoundary;
-import use_case.guestPage.GuestInteractor;
-import use_case.guestPage.GuestOutputBoundary;
-import use_case.guestPage.GuestUserDataAccessInterface;
+import use_case.allUser.buyerPage.BuyerDataAccessInterface;
+import use_case.allUser.buyerPage.BuyerInputBoundary;
+import use_case.allUser.buyerPage.BuyerInteractor;
+import use_case.allUser.buyerPage.BuyerOutputBoundary;
 import view.BuyerView;
-import view.GuestView;
 
 import javax.swing.*;
 import java.io.IOException;

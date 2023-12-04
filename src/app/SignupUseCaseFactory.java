@@ -1,7 +1,7 @@
 package app;
 
 import entity.GuestFactory;
-import interface_adapter.guestPage.GuestViewModel;
+import interface_adapter.AllUserPage.guestPage.GuestViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;

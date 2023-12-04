@@ -1,8 +1,8 @@
 package view;
 
-import interface_adapter.guestPage.GuestController;
-import interface_adapter.guestPage.GuestState;
-import interface_adapter.guestPage.GuestViewModel;
+import interface_adapter.AllUserPage.guestPage.GuestController;
+import interface_adapter.AllUserPage.guestPage.GuestState;
+import interface_adapter.AllUserPage.guestPage.GuestViewModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
