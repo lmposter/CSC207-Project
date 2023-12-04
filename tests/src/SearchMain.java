@@ -42,7 +42,7 @@ public class SearchMain
         fileWriter.close();
         ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
 
-        view.SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO, true);
+        view.SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
         assert searchView != null;
         views.add(searchView, searchView.viewName);
 
