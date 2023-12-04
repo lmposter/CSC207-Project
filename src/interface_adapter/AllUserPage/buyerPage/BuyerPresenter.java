@@ -25,14 +25,7 @@ public class BuyerPresenter implements BuyerOutputBoundary
     private final StorePageViewModel storePageViewModel;
 
     // Constructor to initialize the presenter with required dependencies
-    public BuyerPresenter(SignupViewModel signupViewModel,
-                          ViewManagerModel viewManagerModel,
-                          BuyerViewModel buyerViewModel,
-                          LoginViewModel loginViewModel,
-                          SearchViewModel searchViewModel,
-                          Orders orderViewModel,
-                          ShoppingCartViewModel shoppingCartViewModel,
-                          StorePageViewModel storePageViewModel)
+    public BuyerPresenter(SignupViewModel signupViewModel, ViewManagerModel viewManagerModel, BuyerViewModel buyerViewModel, LoginViewModel loginViewModel, SearchViewModel searchViewModel, Orders orderViewModel, ShoppingCartViewModel shoppingCartViewModel, StorePageViewModel storePageViewModel)
     {
         // Initialize view models and models
         this.signupViewModel = signupViewModel;
@@ -77,6 +70,7 @@ public class BuyerPresenter implements BuyerOutputBoundary
         // Set the username in the search view model and switch to the search page
         SearchState searchState = searchViewModel.getState();
         searchState.setUsername(username);
+        searchState.setBuyer(true);
         this.viewManagerModel.setActiveView(searchViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }

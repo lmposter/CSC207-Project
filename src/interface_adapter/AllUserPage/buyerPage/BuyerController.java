@@ -7,7 +7,8 @@ import use_case.allUser.buyerPage.BuyerInputData;
  * The BuyerController class is responsible for handling user interface actions related to the buyer functionality.
  * It communicates with the use case through the BuyerInputBoundary and processes user input.
  */
-public class BuyerController {
+public class BuyerController
+{
 
     private final BuyerInputBoundary buyerInteractor;
 
@@ -16,14 +17,16 @@ public class BuyerController {
      *
      * @param buyerInteractor The buyer use case interactor responsible for handling buyer logic.
      */
-    public BuyerController(BuyerInputBoundary buyerInteractor) {
+    public BuyerController(BuyerInputBoundary buyerInteractor)
+    {
         this.buyerInteractor = buyerInteractor;
     }
 
     /**
      * Switches to the log out page.
      */
-    public void switchPageLogOut() {
+    public void switchPageLogOut()
+    {
         buyerInteractor.switchPageLogOut();
     }
 
@@ -32,7 +35,8 @@ public class BuyerController {
      *
      * @param username The username of the buyer.
      */
-    public void switchPageSearch(String username) {
+    public void switchPageSearch(String username)
+    {
         buyerInteractor.switchPageSearch(username);
     }
 
@@ -41,7 +45,8 @@ public class BuyerController {
      *
      * @param username The username of the buyer.
      */
-    public void switchPageOrder(String username) {
+    public void switchPageOrder(String username)
+    {
         buyerInteractor.switchPageOrder(username);
     }
 
@@ -50,7 +55,8 @@ public class BuyerController {
      *
      * @param username The username of the buyer.
      */
-    public void switchPageShoppingCart(String username) {
+    public void switchPageShoppingCart(String username)
+    {
         buyerInteractor.switchPageShoppingCart(username);
     }
 
@@ -59,7 +65,8 @@ public class BuyerController {
      *
      * @param username The username of the buyer.
      */
-    public void switchPageStorePage(String username) {
+    public void switchPageStorePage(String username)
+    {
         buyerInteractor.switchPageStorePage(username);
     }
 
@@ -69,7 +76,8 @@ public class BuyerController {
      * @param username The username of the buyer.
      * @param password The new password to set.
      */
-    public void changePassword(String username, String password) {
+    public void changePassword(String username, String password)
+    {
         buyerInteractor.changePassword(username, password);
     }
 
@@ -78,7 +86,8 @@ public class BuyerController {
      *
      * @param username The username entered by the user.
      */
-    public void execute(String username) {
+    public void execute(String username)
+    {
         // Create BuyerInputData from user input
         BuyerInputData buyerInputData = new BuyerInputData(username);
 

@@ -1,14 +1,14 @@
-package use_case.allUser.buyerPage;
+package use_case.buyerPage;
 
-import use_case.allUser.AllUserInteractor;
-
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * The BuyerInteractor class handles the logic for user logged-in functionality.
  * It interacts with the data access layer and presents the results through an output boundary.
  */
-public class BuyerInteractor extends AllUserInteractor implements BuyerInputBoundary {
+public class BuyerInteractor implements BuyerInputBoundary
+{
 
     // Data access object for user-related operations
     private final BuyerDataAccessInterface userDataAccessObject;
@@ -23,10 +23,10 @@ public class BuyerInteractor extends AllUserInteractor implements BuyerInputBoun
      * Constructs a BuyerInteractor with the provided dependencies.
      *
      * @param userDataAccessInterface The data access object for user-related operations.
-     * @param buyerOutputBoundary  The presenter for displaying logged-in results.
+     * @param buyerOutputBoundary     The presenter for displaying logged-in results.
      */
-    public BuyerInteractor(BuyerDataAccessInterface userDataAccessInterface,
-                           BuyerOutputBoundary buyerOutputBoundary) {
+    public BuyerInteractor(BuyerDataAccessInterface userDataAccessInterface, BuyerOutputBoundary buyerOutputBoundary)
+    {
         this.userDataAccessObject = userDataAccessInterface;
         this.buyerPresenter = buyerOutputBoundary;
     }

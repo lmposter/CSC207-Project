@@ -13,8 +13,10 @@ import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class SearchMain {
-    public static void main(String[] args) throws IOException {
+public class SearchMain
+{
+    public static void main(String[] args) throws IOException
+    {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.
 
