@@ -13,6 +13,7 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.sellerPage.SellerViewModel;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.store_page.StorePageViewModel;
 import view.*;
 
 import javax.swing.*;
@@ -49,6 +50,7 @@ public class Main {
         BuyerViewModel buyerViewModel = new BuyerViewModel();
         SellerViewModel sellerViewModel = new SellerViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
+        StorePageViewModel storePageViewModel = new StorePageViewModel();
 
         SearchViewModel searchViewModel = new SearchViewModel();
         try {FileWriter fileWriter = new FileWriter("empty.csv");
@@ -89,8 +91,7 @@ public class Main {
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
         views.add(searchView, searchView.viewName);
 
-        Seller seller = new Seller("testSeller", "12345678", "StestID123");
-        view.StorePageView storePageView = new StorePageView(seller);
+        view.StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject);
         views.add(storePageView, storePageView.viewName);
 
 //        viewManagerModel.setActiveView(searchView.viewName);
