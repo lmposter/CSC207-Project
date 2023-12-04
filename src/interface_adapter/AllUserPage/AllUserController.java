@@ -4,7 +4,7 @@ import use_case.allUser.AllUserInputBoundary;
 import use_case.allUser.buyerPage.BuyerInputBoundary;
 import use_case.allUser.buyerPage.BuyerInputData;
 
-public class AllUserController {
+public abstract class AllUserController {
     private final AllUserInputBoundary allUserInteractor;
     public AllUserController(AllUserInputBoundary allUserInteractor) {
         this.allUserInteractor = allUserInteractor;

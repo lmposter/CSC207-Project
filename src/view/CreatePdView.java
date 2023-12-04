@@ -200,18 +200,21 @@ public class CreatePdView extends JPanel implements ActionListener, PropertyChan
     @Override
     public void propertyChange(PropertyChangeEvent e) {
         CreatePdState state = (CreatePdState) e.getNewValue();
-        if (state.getTitleError() != null) {
-            JOptionPane.showMessageDialog(this, state.getMessage());
-        }
-        else if (state.getPriceError() != null) {
-            JOptionPane.showMessageDialog(this, state.getMessage());
-        }
-        else if (state.getInventoryError() != null) {
-            JOptionPane.showMessageDialog(this, state.getMessage());
-        }else if (state.getUrlError() != null) {
-            JOptionPane.showMessageDialog(this, state.getMessage());
-        }
+//        if (state.getTitleError() != null) {
+//            JOptionPane.showMessageDialog(this, state.getMessage());
+//        }
+//        else if (state.getPriceError() != null) {
+//            JOptionPane.showMessageDialog(this, state.getMessage());
+//        }
+//        else if (state.getInventoryError() != null) {
+//            JOptionPane.showMessageDialog(this, state.getMessage());
+//        }else if (state.getUrlError() != null) {
+//            JOptionPane.showMessageDialog(this, state.getMessage());
+//        }else{
+//            JOptionPane.showMessageDialog(this, state.getMessage());
+//        }
+
     }
-    //TODO: weird, always show url not valid
+
     //TODO: it saves the product several times instead of just once
 }

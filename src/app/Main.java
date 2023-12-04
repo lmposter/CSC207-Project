@@ -97,7 +97,7 @@ public class Main
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
         views.add(searchView, searchView.viewName);
 
-        view.StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject);
+        StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject);
         views.add(storePageView, storePageView.viewName);
 
         viewManagerModel.setActiveView(signupView.viewName);

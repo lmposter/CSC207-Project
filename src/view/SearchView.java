@@ -117,7 +117,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
 
     public void actionPerformed(ActionEvent evt)
     {
-        JOptionPane.showConfirmDialog(this, "Not implemented yet.");
+        System.out.println("Click " + evt.getActionCommand());
     }
 
     @Override
