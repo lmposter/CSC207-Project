@@ -12,7 +12,8 @@ import interface_adapter.store_page.StorePageViewModel;
 import use_case.allUser.buyerPage.BuyerOutputBoundary;
 import use_case.allUser.buyerPage.BuyerOutputData;
 
-public class BuyerPresenter implements BuyerOutputBoundary {
+public class BuyerPresenter implements BuyerOutputBoundary
+{
     // Fields for various view models and models
     private final SignupViewModel signupViewModel;
     private final ViewManagerModel viewManagerModel;
