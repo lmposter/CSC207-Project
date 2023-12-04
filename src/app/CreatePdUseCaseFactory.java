@@ -1,9 +1,9 @@
 package app;
 
 import data_access.ProductDAO;
-import interface_adapter.create_product.CreatePdController;
-import interface_adapter.create_product.CreatePdPresenter;
-import interface_adapter.create_product.CreatePdViewModel;
+import interface_adapter.Create_product.CreatePdController;
+import interface_adapter.Create_product.CreatePdPresenter;
+import interface_adapter.Create_product.CreatePdViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.create_product.CreatePdDAI;
 import use_case.create_product.CreatePdInputBoundary;

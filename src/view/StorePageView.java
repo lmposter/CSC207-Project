@@ -1,20 +1,15 @@
 package view;
 import app.ProductDetailsUseCaseFactory;
 import data_access.ProductDAO;
-import data_access.UserDataAccessObject;
 import entity.LoginUser;
 import entity.Product;
 import entity.ProductFactory;
 import entity.Seller;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginViewModel;
 import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductState;
 import interface_adapter.product.ProductViewModel;
-import interface_adapter.search.SearchViewModel;
 import interface_adapter.signup.SignupViewModel;
-import interface_adapter.store_page.StorePageViewModel;
 
 import javax.imageio.IIOException;
 import javax.swing.*;
@@ -37,50 +32,40 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
     private JLabel sellerIdLabel;
     private JPanel productsPanel;
     private JButton createProductButton;
-    private final StorePageViewModel storePageViewModel;
-    private UserDataAccessObject userDAO;
 
-    public StorePageView(StorePageViewModel storePageViewModel, UserDataAccessObject userDAO) {
-        this.storePageViewModel = storePageViewModel;
-        this.userDAO = userDAO;
-        Seller seller = (Seller)userDAO.get(storePageViewModel.getState().getUsername());
-
+    public StorePageView(Seller seller) {
         setLayout(new BorderLayout());
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JLabel title = new JLabel("My Store Page");
         headerPanel.add(title);
-        if (seller == null){
-            sellerNameLabel = new JLabel("Seller do not exist");
-            headerPanel.add(sellerNameLabel);
-        }else {
 
-            // Seller info
-            sellerNameLabel = new JLabel(seller.getName());
-            sellerIdLabel = new JLabel("Store ID: " + seller.getId());
-            headerPanel.add(sellerNameLabel);
-            headerPanel.add(sellerIdLabel);
-            // Add the header panel to the top of the view
-            add(headerPanel, BorderLayout.NORTH);
-            // Products
-            productsPanel = new JPanel();
-            productsPanel.setLayout(new BoxLayout(productsPanel, BoxLayout.Y_AXIS));
-            for (Product product : seller.getProducts()) {
-                addProduct(product);
-            }
 
-            // Create product button
-            createProductButton = new JButton("Create a New Product");
-            createProductButton.setSize(20, 10);
-            createProductButton.addActionListener(e -> actionPerformed(e));
+        // Seller info
+        sellerNameLabel = new JLabel(seller.getName());
+        sellerIdLabel = new JLabel("Store ID: " + seller.getId());
+        headerPanel.add(sellerNameLabel);
+        headerPanel.add(sellerIdLabel);
+        // Add the header panel to the top of the view
+        add(headerPanel, BorderLayout.NORTH);
+        // Products
+        productsPanel = new JPanel();
+        productsPanel.setLayout(new BoxLayout(productsPanel, BoxLayout.Y_AXIS));
+        for (Product product : seller.getProducts()) {
+            addProduct(product);
+        }
+
+        // Create product button
+        createProductButton = new JButton("Create a New Product");
+        createProductButton.setSize(20, 10);
+        createProductButton.addActionListener(e -> actionPerformed(e));
 
 //        add(productsPanel, BorderLayout.NORTH);
-            add(new JScrollPane(productsPanel), BorderLayout.CENTER);
-            add(createProductButton, BorderLayout.SOUTH);
-            // Set the initial size of the view
-            setSize(800, 600);
-        }
+        add(new JScrollPane(productsPanel), BorderLayout.CENTER);
+        add(createProductButton, BorderLayout.SOUTH);
+        // Set the initial size of the view
+        setSize(800, 600);
 
     }
 
@@ -124,7 +109,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
         productsPanel.add(productPanel);
         productsPanel.revalidate();
     }
-//TODO: panel size weird.
+//TODO: problem here, does not show title/name, create button too big, panel size weird.
     @Override
     public void actionPerformed(ActionEvent e) {
         //TODO: go to createPd view

@@ -1,4 +1,4 @@
-package interface_adapter.create_product;
+package interface_adapter.Create_product;
 
 public class CreatePdState {
     private String title = "";
