@@ -12,7 +12,8 @@ import interface_adapter.store_page.StorePageViewModel;
 import use_case.buyerPage.BuyerOutputBoundary;
 import use_case.buyerPage.BuyerOutputData;
 
-public class BuyerPresenter implements BuyerOutputBoundary {
+public class BuyerPresenter implements BuyerOutputBoundary
+{
     // Fields for various view models and models
     private final SignupViewModel signupViewModel;
     private final ViewManagerModel viewManagerModel;
@@ -31,7 +32,8 @@ public class BuyerPresenter implements BuyerOutputBoundary {
                           SearchViewModel searchViewModel,
                           Orders orderViewModel,
                           ShoppingCartViewModel shoppingCartViewModel,
-                          StorePageViewModel storePageViewModel) {
+                          StorePageViewModel storePageViewModel)
+    {
         // Initialize view models and models
         this.signupViewModel = signupViewModel;
         this.viewManagerModel = viewManagerModel;
@@ -45,13 +47,15 @@ public class BuyerPresenter implements BuyerOutputBoundary {
 
     // Implementing interface method to prepare the view for successful operation
     @Override
-    public void prepareSuccessView(BuyerOutputData buyerOutputData) {
+    public void prepareSuccessView(BuyerOutputData buyerOutputData)
+    {
         // Implement this method to handle the view when a successful operation occurs
     }
 
     // Implementing interface method to prepare the view for a failed operation
     @Override
-    public void prepareFailView(String errorMessage) {
+    public void prepareFailView(String errorMessage)
+    {
         // Set the error message in the signup view model and notify of the property change
         SignupState loginState = signupViewModel.getState();
         loginState.setUsernameError(errorMessage);
@@ -60,14 +64,16 @@ public class BuyerPresenter implements BuyerOutputBoundary {
 
     // Method to switch to the login page when the user logs out
     @Override
-    public void switchPageLogOut() {
+    public void switchPageLogOut()
+    {
         // Set the active view to the login view and notify of the property change
         this.viewManagerModel.setActiveView(loginViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
     // Methods to switch to different pages in the application
-    public void switchPageSearch(String username) {
+    public void switchPageSearch(String username)
+    {
         // Set the username in the search view model and switch to the search page
         SearchState searchState = searchViewModel.getState();
         searchState.setUsername(username);
@@ -75,19 +81,22 @@ public class BuyerPresenter implements BuyerOutputBoundary {
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageOrder(String username) {
+    public void switchPageOrder(String username)
+    {
         // Switch to the order page
         this.viewManagerModel.setActiveView(orderViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageShoppingCart(String username) {
+    public void switchPageShoppingCart(String username)
+    {
         // Switch to the shopping cart page
         this.viewManagerModel.setActiveView(shoppingCartViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageStorePage(String username) {
+    public void switchPageStorePage(String username)
+    {
         // Switch to the store page
         this.viewManagerModel.setActiveView(storePageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();

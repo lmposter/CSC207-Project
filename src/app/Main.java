@@ -22,8 +22,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-public class Main {
-    public static void main(String[] args) throws MalformedURLException {
+public class Main
+{
+    public static void main(String[] args) throws MalformedURLException
+    {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.
 
@@ -53,20 +55,25 @@ public class Main {
         StorePageViewModel storePageViewModel = new StorePageViewModel();
 
         SearchViewModel searchViewModel = new SearchViewModel();
-        try {FileWriter fileWriter = new FileWriter("empty.csv");
-        String header = "id,title,inventory,URL,price";
-        fileWriter.write(header);
-        fileWriter.close();} catch (Exception e){
+        try
+        {
+            FileWriter fileWriter = new FileWriter("empty.csv");
+            String header = "id,title,inventory,URL,price";
+            fileWriter.write(header);
+            fileWriter.close();
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
         ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory());
 
 
-
         UserDataAccessObject userDataAccessObject;
-        try {
+        try
+        {
             userDataAccessObject = new UserDataAccessObject(new BuyerFactory(), new SellerFactory());
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             throw new RuntimeException(e);
         }
 
@@ -94,7 +101,7 @@ public class Main {
         view.StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject);
         views.add(storePageView, storePageView.viewName);
 
-//        viewManagerModel.setActiveView(searchView.viewName);
+        //        viewManagerModel.setActiveView(searchView.viewName);
 
         viewManagerModel.setActiveView(signupView.viewName);
         viewManagerModel.firePropertyChanged();
