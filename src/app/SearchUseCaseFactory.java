@@ -2,8 +2,6 @@ package app;
 
 import data_access.ProductDAO;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.add_to_cart.AddController;
-import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.search.SearchController;
 import interface_adapter.search.SearchPresenter;
 import interface_adapter.search.SearchViewModel;
@@ -20,13 +18,13 @@ public class SearchUseCaseFactory
 {
     private SearchUseCaseFactory(){}
 
-    public static SearchView create(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel, ProductDAO userProductDAO, LoggedInViewModel loggedInViewModel, AddController addController)
+    public static SearchView create(ViewManagerModel viewManagerModel, SearchViewModel searchViewModel, ProductDAO userProductDAO)
     {
 
         try
         {
             SearchController searchController = createUserSearchUseCase(viewManagerModel, searchViewModel, userProductDAO);
-            return new SearchView(searchController, searchViewModel, loggedInViewModel, addController);
+            return new SearchView(searchController, searchViewModel);
         } catch (IOException e)
         {
             JOptionPane.showMessageDialog(null, "Could not open product data file.");

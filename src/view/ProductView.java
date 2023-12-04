@@ -1,8 +1,6 @@
 package view;
 
 import entity.Review;
-import interface_adapter.add_to_cart.AddController;
-import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductState;
 import interface_adapter.product.ProductViewModel;
@@ -28,27 +26,21 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
 
     private final SearchViewModel searchViewModel;
     private final ProductViewModel productViewModel;
-    private final LoggedInViewModel loggedInViewModel;
     private final ProductController productController;
-    private final AddController addController;
     private JButton buy;
     private JButton add_to_cart;
     private JButton closeButton;
     private final JPanel pdPanel;
 
-    public ProductView(ProductController controller, ProductViewModel productViewModel, LoggedInViewModel loggedInViewModel, boolean showButtons, SearchViewModel searchViewModel, AddController addController)
+    public ProductView(ProductController controller, ProductViewModel productViewModel, boolean showButtons, SearchViewModel searchViewModel)
     {
         this.searchViewModel = searchViewModel;
         JFrame application = new JFrame(this.viewName);
         CardLayout cardLayout = new CardLayout();
         this.productController = controller;
-        this.addController = addController;
         this.productViewModel = productViewModel;
-        this.loggedInViewModel = loggedInViewModel;
         productViewModel.addPropertyChangeListener(this);
         this.pdPanel = new JPanel(cardLayout);
-        String username = this.loggedInViewModel.getState().getUsername();
-        String product = this.productViewModel.getState().getID();
 
         application.setSize(600, 400);
 
@@ -111,7 +103,7 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
             {
                 public void actionPerformed(ActionEvent evt)
                 {
-                    addController.execute(username, product);
+                    //TODO: add_to_cart, go to add to cart use case
                 }
             });
 
@@ -149,5 +141,8 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
         JOptionPane.showConfirmDialog(this, "Not implemented yet.");
     }
 
-    public ProductController getProductController(){return productController;}
+    public ProductController getProductController()
+    {
+        return productController;
+    }
 }

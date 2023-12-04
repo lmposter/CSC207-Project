@@ -1,4 +1,5 @@
 package view;
+
 import app.ProductDetailsUseCaseFactory;
 import data_access.ProductDAO;
 import data_access.UserDataAccessObject;
@@ -26,12 +27,14 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.store_page.StorePageViewModel;
 
-public class StorePageView extends JPanel implements ActionListener, PropertyChangeListener {
+public class StorePageView extends JPanel implements ActionListener, PropertyChangeListener
+{
     public final String viewName = "Store Page";
     private JLabel sellerNameLabel;
     private JLabel sellerIdLabel;
@@ -41,10 +44,11 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
     private final StorePageViewModel storePageViewModel;
     private UserDataAccessObject userDAO;
 
-    public StorePageView(StorePageViewModel storePageViewModel, UserDataAccessObject userDAO) {
+    public StorePageView(StorePageViewModel storePageViewModel, UserDataAccessObject userDAO)
+    {
         this.storePageViewModel = storePageViewModel;
         this.userDAO = userDAO;
-        Seller seller = (Seller)userDAO.get(storePageViewModel.getState().getUsername());
+        Seller seller = (Seller) userDAO.get(storePageViewModel.getState().getUsername());
         setLayout(new BorderLayout());
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -53,10 +57,12 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
         headerPanel.add(title);
 
 
-        if (seller == null){
+        if (seller == null)
+        {
             sellerNameLabel = new JLabel("Seller do not exist");
             headerPanel.add(sellerNameLabel);
-        }else {
+        } else
+        {
 
             // Seller info
             sellerNameLabel = new JLabel(seller.getName());
@@ -68,33 +74,38 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
             // Products
             productsPanel = new JPanel();
             productsPanel.setLayout(new BoxLayout(productsPanel, BoxLayout.Y_AXIS));
-            for (Product product : seller.getProducts()) {
+            for (Product product : seller.getProducts())
+            {
                 addProduct(product);
             }
 
-        // Create product button
-        createProductButton = new JButton("Create a New Product");
-        createProductButton.setSize(20, 10);
-        createProductButton.addActionListener(e -> actionPerformed(e));
+            // Create product button
+            createProductButton = new JButton("Create a New Product");
+            createProductButton.setSize(20, 10);
+            createProductButton.addActionListener(e -> actionPerformed(e));
 
-//        add(productsPanel, BorderLayout.NORTH);
-        add(new JScrollPane(productsPanel), BorderLayout.CENTER);
-        add(createProductButton, BorderLayout.SOUTH);
-        // Set the initial size of the view
-        setSize(800, 600);
+            //        add(productsPanel, BorderLayout.NORTH);
+            add(new JScrollPane(productsPanel), BorderLayout.CENTER);
+            add(createProductButton, BorderLayout.SOUTH);
+            // Set the initial size of the view
+            setSize(800, 600);
 
-    }}
+        }
+    }
 
-    private void addProduct(Product product) {
+    private void addProduct(Product product)
+    {
         JPanel productPanel = new JPanel();
         productPanel.setLayout(new BoxLayout(productPanel, BoxLayout.X_AXIS));
 
-        try {
+        try
+        {
             URL url = new URL(product.getURL());
             ImageIcon imageIcon = new ImageIcon(url);
             JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
             productPanel.add(imageLabel);
-        } catch (MalformedURLException e) {
+        } catch (MalformedURLException e)
+        {
             e.printStackTrace();
             productPanel.add(new JLabel("ImageURL is broken"));
         }
@@ -102,9 +113,11 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
         productPanel.add(new JLabel(product.getTitle()));
         productPanel.add(new JLabel("Price: $" + product.getPrice()));
         productPanel.add(new JLabel("Inventory: " + product.getInventory()));
-        productPanel.addMouseListener(new MouseAdapter() {
+        productPanel.addMouseListener(new MouseAdapter()
+        {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e)
+            {
 
                 ViewManagerModel viewManagerModel = new ViewManagerModel();
                 ProductViewModel pdViewModel = new ProductViewModel();
@@ -113,7 +126,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
 
                 ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
 
-                ProductView pdView = ProductDetailsUseCaseFactory.createForSeller(viewManagerModel, pdViewModel, pdDAO, null);
+                ProductView pdView = ProductDetailsUseCaseFactory.createForSeller(viewManagerModel, pdViewModel, pdDAO);
 
                 assert pdView != null;
                 pdView.show();
@@ -125,14 +138,17 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
         productsPanel.add(productPanel);
         productsPanel.revalidate();
     }
-//TODO: panel size weird.
+
+    //TODO: panel size weird.
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
         //TODO: go to createPd view
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-//TODO: implement this
+    public void propertyChange(PropertyChangeEvent evt)
+    {
+        //TODO: implement this
     }
 }
