@@ -38,7 +38,7 @@ public class SearchMain {
         String header = "id,title,inventory,URL,price";
         fileWriter.write(header);
         fileWriter.close();
-        ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
+        ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory());
 
         view.SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
         assert searchView != null;

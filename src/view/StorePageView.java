@@ -1,5 +1,6 @@
 package view;
 
+import app.CreatePdUseCaseFactory;
 import app.ProductDetailsUseCaseFactory;
 import data_access.ProductDAO;
 import data_access.UserDataAccessObject;
@@ -7,10 +8,13 @@ import entity.LoginUser;
 import entity.Product;
 import entity.ProductFactory;
 import entity.Seller;
+import interface_adapter.Create_product.CreatePdState;
+import interface_adapter.Create_product.CreatePdViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductState;
 import interface_adapter.product.ProductViewModel;
+import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
 
 import javax.imageio.IIOException;
@@ -31,6 +35,7 @@ import java.util.ArrayList;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.search.SearchViewModel;
+import interface_adapter.store_page.StorePageState;
 import interface_adapter.store_page.StorePageViewModel;
 
 public class StorePageView extends JPanel implements ActionListener, PropertyChangeListener
@@ -48,21 +53,15 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
     {
         this.storePageViewModel = storePageViewModel;
         this.userDAO = userDAO;
-        Seller seller = (Seller) userDAO.get(storePageViewModel.getState().getUsername());
         setLayout(new BorderLayout());
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JLabel title = new JLabel("My Store Page");
         headerPanel.add(title);
-
-
-        if (seller == null)
-        {
-            sellerNameLabel = new JLabel("Seller do not exist");
-            headerPanel.add(sellerNameLabel);
-        } else
-        {
+        add(headerPanel, BorderLayout.NORTH);
+        if (storePageViewModel.getState().getUsername()!=null){
+            Seller seller = (Seller) userDAO.get(storePageViewModel.getState().getUsername());
 
             // Seller info
             sellerNameLabel = new JLabel(seller.getName());
@@ -70,7 +69,6 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
             headerPanel.add(sellerNameLabel);
             headerPanel.add(sellerIdLabel);
             // Add the header panel to the top of the view
-            add(headerPanel, BorderLayout.NORTH);
             // Products
             productsPanel = new JPanel();
             productsPanel.setLayout(new BoxLayout(productsPanel, BoxLayout.Y_AXIS));
@@ -90,6 +88,9 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
             // Set the initial size of the view
             setSize(800, 600);
 
+        }else{
+            sellerNameLabel = new JLabel("Seller do not exist");
+            headerPanel.add(sellerNameLabel);
         }
     }
 
@@ -139,16 +140,57 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
         productsPanel.revalidate();
     }
 
-    //TODO: panel size weird.
+
     @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        //TODO: go to createPd view
+    public void actionPerformed(ActionEvent e) {
+        JFrame application = new JFrame("Create Product");
+
+        CardLayout cardLayout = new CardLayout();
+
+        // The various View objects. Only one view is visible at a time.
+        JPanel views = new JPanel(cardLayout);
+        application.add(views);
+
+        // This keeps track of and manages which view is currently showing.
+        ViewManagerModel viewManagerModel = new ViewManagerModel();
+        new ViewManager(views, cardLayout, viewManagerModel);
+
+        CreatePdViewModel createPdViewModel = new CreatePdViewModel();
+
+        try {
+            FileWriter fileWriter = new FileWriter("empty.csv");
+            String header = "id,title,inventory,URL,price";
+            fileWriter.write(header);
+            fileWriter.close();
+            ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory());
+            view.CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO);
+            assert createPdView != null;
+            views.add(createPdView, createPdView.viewName);
+
+            viewManagerModel.setActiveView(createPdView.viewName);
+            viewManagerModel.firePropertyChanged();
+
+            application.pack();
+            application.setVisible(true);
+        } catch(IOException ex){
+            JOptionPane.showMessageDialog(this, "Error reading file");//TODO: change to database
+        }
+
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt)
     {
-        //TODO: implement this
+        Object state = evt.getNewValue();
+        if (state instanceof StorePageState) {
+            StorePageState storePageState = (StorePageState) state;
+            if (storePageState.getUsernameError() != null) {
+                JOptionPane.showMessageDialog(this, storePageState.getUsernameError());
+            }if (storePageState.getIdError() != null) {
+                JOptionPane.showMessageDialog(this, storePageState.getIdError());
+            }if (storePageState.getProductsError() != null) {
+                JOptionPane.showMessageDialog(this, storePageState.getProductsError());
+            }
+        }
     }
 }

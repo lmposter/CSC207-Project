@@ -93,9 +93,10 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
             {
                 public void actionPerformed(ActionEvent evt)
                 {
-                    SearchState searchState = searchViewModel.getState();
-                    ProductState productState = productViewModel.getState();
-                    productController.buyProduct(searchState.getUsername(), productState.getID(), productState.getTitle(), productState.getPrice());
+//                    SearchState searchState = searchViewModel.getState();
+//                    ProductState productState = productViewModel.getState();
+//                    productController.buyProduct(searchState.getUsername(), productState.getID(), productState.getTitle(), productState.getPrice());
+                    JOptionPane.showConfirmDialog(pdPanel,"Purchase feature is coming soon!");
                 }
             });
 
@@ -103,7 +104,7 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
             {
                 public void actionPerformed(ActionEvent evt)
                 {
-                    //TODO: add_to_cart, go to add to cart use case
+                    JOptionPane.showConfirmDialog(pdPanel,"Shopping cart feature is coming soon!");
                 }
             });
 
@@ -138,7 +139,7 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        JOptionPane.showConfirmDialog(this, "Not implemented yet.");
+        System.out.println("Click " + e.getActionCommand());
     }
 
     public ProductController getProductController()
