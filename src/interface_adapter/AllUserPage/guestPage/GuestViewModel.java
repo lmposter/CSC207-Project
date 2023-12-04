@@ -1,5 +1,6 @@
 package interface_adapter.AllUserPage.guestPage;
 
+import interface_adapter.AllUserPage.AllUserState;
 import interface_adapter.AllUserPage.AllUserViewModel;
 import interface_adapter.ViewModel;
 
@@ -25,9 +26,8 @@ public class GuestViewModel extends AllUserViewModel {
         super("guest logged in");
     }
 
-    /**
-     * Sets the state of the logged-in view.
-     *
-     * @param state The SellerState to set.
-     */
+
+    public GuestState getState() {
+        return state;
+    }
 }

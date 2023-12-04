@@ -1,5 +1,6 @@
 package interface_adapter.AllUserPage.sellerPage;
 
+import interface_adapter.AllUserPage.AllUserState;
 import interface_adapter.AllUserPage.AllUserViewModel;
 import interface_adapter.ViewModel;
 
@@ -27,6 +28,9 @@ public class SellerViewModel extends AllUserViewModel {
      */
     public SellerViewModel() {
         super("logged in");
+    }
+    public SellerState getState() {
+        return state;
     }
 
 
