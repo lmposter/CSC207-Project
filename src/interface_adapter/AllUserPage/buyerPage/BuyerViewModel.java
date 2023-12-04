@@ -1,7 +1,6 @@
 package interface_adapter.AllUserPage.buyerPage;
 
 import interface_adapter.AllUserPage.AllUserState;
-import interface_adapter.AllUserPage.AllUserViewModel;
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
@@ -11,8 +10,19 @@ import java.beans.PropertyChangeSupport;
  * The SellerViewModel class represents the view model for the logged-in view.
  * It includes labels, buttons, and the state of the logged-in view.
  */
-public class BuyerViewModel extends AllUserViewModel {
+public class BuyerViewModel extends ViewModel {
+    public final String TITLE_LABEL = "Amazoff";
 
+    public static final String SEARCH_ITEM_LABEL = "Search Item";
+    private String user;
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     private BuyerState state = new BuyerState();
 
