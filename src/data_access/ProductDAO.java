@@ -22,7 +22,8 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI, Ch
     private final Map<String, Integer> headers = new LinkedHashMap<>();
     private Map<String, Product> products;
 
-    public ProductDAO(String csvPath, ProductFactory productFactory){
+    public ProductDAO(String csvPath, ProductFactory productFactory)
+    {
         this.productFactory = productFactory;
         this.csvFile = new File(csvPath);
         this.products = new HashMap<>();
@@ -34,79 +35,100 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI, Ch
         headers.put("tags", 5);
         headers.put("reviews", 6);
 
-        if (csvFile.length() == 0){
-//            save();
-        } else {
+        if (csvFile.length() == 0)
+        {
+            //            save();
+        } else
+        {
             createProducts();
-        }}
+        }
+    }
 
-    private void createProducts(){
-            try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-                String header = reader.readLine();
+    private void createProducts()
+    {
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile)))
+        {
+            String header = reader.readLine();
 
-                if (header.equals("id,title,inventory,URL,price")) {
+            if (header.equals("id,title,inventory,URL,price"))
+            {
 
-                    String row;
-                    while ((row = reader.readLine()) != null) {
-                        String[] col = row.split(",");
-                        String id = String.valueOf(col[headers.get("id")]);
-                        String title = String.valueOf(col[headers.get("title")]);
-                        int inventory = Integer.parseInt(col[headers.get("inventory")]);
-                        String URL = String.valueOf(col[headers.get("URL")]);
-                        double price = Double.parseDouble(col[headers.get("price")]);
+                String row;
+                while ((row = reader.readLine()) != null)
+                {
+                    String[] col = row.split(",");
+                    String id = String.valueOf(col[headers.get("id")]);
+                    String title = String.valueOf(col[headers.get("title")]);
+                    int inventory = Integer.parseInt(col[headers.get("inventory")]);
+                    String URL = String.valueOf(col[headers.get("URL")]);
+                    double price = Double.parseDouble(col[headers.get("price")]);
 
-                        ArrayList<Review> reviews = new ArrayList<>();
-                        String[] reviewContent = col[headers.get("review")].split(";");
-                        for (String review: reviewContent) {
-                            String[] StarAndComment = review.substring(1, review.length() - 1).split(",");
-                            reviews.add(new Review(Integer.parseInt(StarAndComment[0]), StarAndComment[1]));
-                        };
-                        Product product = productFactory.create(title, URL, price, inventory);
-                        product.setID(id);
-                        for (Review review: reviews){
-                            product.addReview(review);}
-                        products.put(id, product);
-
+                    ArrayList<Review> reviews = new ArrayList<>();
+                    String[] reviewContent = col[headers.get("review")].split(";");
+                    for (String review : reviewContent)
+                    {
+                        String[] StarAndComment = review.substring(1, review.length() - 1).split(",");
+                        reviews.add(new Review(Integer.parseInt(StarAndComment[0]), StarAndComment[1]));
                     }
-                }else{
-                    throw new IOException();
-                }
+                    ;
+                    Product product = productFactory.create(title, URL, price, inventory);
+                    product.setID(id);
+                    for (Review review : reviews)
+                    {
+                        product.addReview(review);
+                    }
+                    products.put(id, product);
 
-            } catch (IOException e) {
-                System.out.println("Can't read file in ProductDAO createProducts");
-                System.exit(1);
+                }
+            } else
+            {
+                throw new IOException();
             }
+
+        } catch (IOException e)
+        {
+            System.out.println("Can't read file in ProductDAO createProducts");
+            System.exit(1);
+        }
     }
 
 
-    private void save() {
+    private void save()
+    {
         BufferedWriter writer;
-        try {
+        try
+        {
             writer = new BufferedWriter(new FileWriter(csvFile));
             writer.write(String.join(",", headers.keySet()));
             writer.newLine();
 
-            for (Product pd : products.values()) {
-                String line = String.format("%s,%s,%s,%s,%s,%s",
-                        pd.getId(), pd.getTitle(), pd.getInventory(), pd.getURL(), pd.getPrice(), pd.getReview());
+            for (Product pd : products.values())
+            {
+                String line = String.format("%s,%s,%s,%s,%s,%s", pd.getId(), pd.getTitle(), pd.getInventory(), pd.getURL(), pd.getPrice(), pd.getReview());
                 writer.write(line);
                 writer.newLine();
             }
 
             writer.close();
 
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             throw new RuntimeException(e);
         }
     }
+
     @Override
-    public int numItemsFound(String content) {
+    public int numItemsFound(String content)
+    {
         String[] KeyWords = content.split(" ");
         int s = 0;
-        for (Product pd : products.values()){
+        for (Product pd : products.values())
+        {
             String title = pd.getTitle();
-            for (String word: KeyWords){
-                if (title.contains(word)){
+            for (String word : KeyWords)
+            {
+                if (title.contains(word))
+                {
                     s++;
                 }
             }
@@ -116,13 +138,17 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI, Ch
 
 
     @Override
-    public ArrayList<Product> getItems(String content) {
+    public ArrayList<Product> getItems(String content)
+    {
         ArrayList<Product> pdList = new ArrayList<>();
         String[] KeyWords = content.split(" ");
-        for (Product pd : products.values()){
+        for (Product pd : products.values())
+        {
             String title = pd.getTitle();
-            for (String word: KeyWords){
-                if (title.contains(word)){
+            for (String word : KeyWords)
+            {
+                if (title.contains(word))
+                {
                     pdList.add(pd);
                 }
             }
@@ -131,47 +157,51 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI, Ch
     }
 
     @Override
-    public void save(Product product) {
+    public void save(Product product)
+    {
         products.put(product.getID(), product);
         this.save();
     }
 
 
     @Override
-    public boolean productExists(String PdID) {
-//        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-//            String header = reader.readLine();
-//
-//            if (header.equals("id,title,inventory,URL,price")) {
-//
-//                String row;
-//                while ((row = reader.readLine()) != null) {
-//                    String[] col = row.split(",");
-//                    String id = String.valueOf(col[headers.get("id")]);
-//                    if (Objects.equals(id, PdID)){
-//                        return true;
-//                    }
-//                }
-//                return false;
-//            } else {
-//                throw new IOException();
-//            }
-//
-//        } catch (IOException e) {
-//            System.out.println("Can't read file in ProductDAO productExists");
-//            System.exit(1);
-//        }
-//        return false;
+    public boolean productExists(String PdID)
+    {
+        //        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+        //            String header = reader.readLine();
+        //
+        //            if (header.equals("id,title,inventory,URL,price")) {
+        //
+        //                String row;
+        //                while ((row = reader.readLine()) != null) {
+        //                    String[] col = row.split(",");
+        //                    String id = String.valueOf(col[headers.get("id")]);
+        //                    if (Objects.equals(id, PdID)){
+        //                        return true;
+        //                    }
+        //                }
+        //                return false;
+        //            } else {
+        //                throw new IOException();
+        //            }
+        //
+        //        } catch (IOException e) {
+        //            System.out.println("Can't read file in ProductDAO productExists");
+        //            System.exit(1);
+        //        }
+        //        return false;
         return products.containsKey(PdID);
     }
 
     @Override
-    public Product getPd(String PdID) {
+    public Product getPd(String PdID)
+    {
         return products.get(PdID);
     }
 
     @Override
-    public void buyProduct(String name, String id, String title, Double price) {
+    public void buyProduct(String name, String id, String title, Double price)
+    {
         DatabaseAPI.buyProduct("name", name, id, title, price);
     }
 

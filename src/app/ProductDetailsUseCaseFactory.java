@@ -2,8 +2,6 @@ package app;
 
 import data_access.ProductDAO;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.add_to_cart.AddController;
-import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductPresenter;
 import interface_adapter.product.ProductViewModel;
@@ -24,13 +22,13 @@ public class ProductDetailsUseCaseFactory
 {
     private ProductDetailsUseCaseFactory(){}
 
-    public static ProductView createForBuyer(ViewManagerModel viewManagerModel, ProductViewModel productViewModel, ProductDAO userProductDAO, SearchViewModel searchViewModel, LoggedInViewModel loggedInViewModel, AddController addController)
+    public static ProductView createForBuyer(ViewManagerModel viewManagerModel, ProductViewModel productViewModel, ProductDAO userProductDAO, SearchViewModel searchViewModel)
     {
 
         try
         {
             ProductController productController = createUserProductUseCase(viewManagerModel, productViewModel, userProductDAO);
-            return new ProductView(productController, productViewModel, loggedInViewModel, true, searchViewModel, addController);
+            return new ProductView(productController, productViewModel, true, searchViewModel);
         } catch (IOException e)
         {
             JOptionPane.showMessageDialog(null, "Could not open product data file.");
@@ -39,13 +37,13 @@ public class ProductDetailsUseCaseFactory
         return null;
     }
 
-    public static ProductView createForSeller(ViewManagerModel viewManagerModel, ProductViewModel productViewModel, ProductDAO userProductDAO, LoggedInViewModel loggedInViewModel)
+    public static ProductView createForSeller(ViewManagerModel viewManagerModel, ProductViewModel productViewModel, ProductDAO userProductDAO)
     {
 
         try
         {
             ProductController productController = createUserProductUseCase(viewManagerModel, productViewModel, userProductDAO);
-            return new ProductView(productController, productViewModel, loggedInViewModel, false, null, null);
+            return new ProductView(productController, productViewModel, false, null);
         } catch (IOException e)
         {
             JOptionPane.showMessageDialog(null, "Could not open product data file.");

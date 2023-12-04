@@ -5,8 +5,6 @@ import data_access.ProductDAO;
 import entity.Product;
 import entity.ProductFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.add_to_cart.AddController;
-import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductState;
 import interface_adapter.product.ProductViewModel;
@@ -34,20 +32,16 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     private final SearchViewModel searchViewModel;
     private final JTextField searchInputField = new JTextField(50);
     private final SearchController searchController;
-    private final AddController addController;
-    private final LoggedInViewModel loggedInViewModel;
 
     private final JButton goSearch;
     private JPanel mainPanel;
 
 
-    public SearchView(SearchController controller, SearchViewModel searchViewModel,LoggedInViewModel loggedInViewModel, AddController addController)
+    public SearchView(SearchController controller, SearchViewModel searchViewModel)
     {
 
         this.searchController = controller;
-        this.addController = addController;
         this.searchViewModel = searchViewModel;
-        this.loggedInViewModel = loggedInViewModel;
         this.mainPanel = new JPanel();
         searchViewModel.addPropertyChangeListener(this);
 
@@ -172,7 +166,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                         }
                         ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
 
-                        ProductView pdView = ProductDetailsUseCaseFactory.createForBuyer(viewManagerModel, pdViewModel, pdDAO, searchViewModel, loggedInViewModel, addController);
+                        ProductView pdView = ProductDetailsUseCaseFactory.createForBuyer(viewManagerModel, pdViewModel, pdDAO, searchViewModel);
 
                         assert pdView != null;
                         pdView.show();
