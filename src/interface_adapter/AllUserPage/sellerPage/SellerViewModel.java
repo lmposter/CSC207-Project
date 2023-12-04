@@ -1,6 +1,4 @@
 package interface_adapter.AllUserPage.sellerPage;
-
-import interface_adapter.AllUserPage.AllUserState;
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
@@ -13,20 +11,11 @@ import java.beans.PropertyChangeSupport;
 public class SellerViewModel extends ViewModel {
     public final String TITLE_LABEL = "Amazoff";
 
-    public static final String SEARCH_ITEM_LABEL = "Search Item";
-    private String user;
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     private SellerState state = new SellerState();
 
     public static final String LOGOUT_BUTTON_LABEL = "Log out";
+
+    public static final String SEARCH_ITEM_LABEL = "Search Item";
 
     public static final String SELL_PRODUCT_LABEL = "My Store";
     public static final String PERSONAL_PAGE_LABEL = "Order In Progress";
@@ -37,22 +26,62 @@ public class SellerViewModel extends ViewModel {
      *
      */
     public SellerViewModel() {
-        super("seller logged in");
+        super("logged in");
     }
-    public SellerState getState() {
-        return state;
-    }
+
+    /**
+     * Sets the state of the logged-in view.
+     *
+     * @param state The SellerState to set.
+     */
     public void setState(SellerState state) {
         this.state = state;
     }
+
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
+    /**
+     * Notifies listeners that a property has changed.
+     * This is called to alert the view when the state changes.
+     */
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);
     }
+
+    /**
+     * Adds a property change listener.
+     *
+     * @param listener The listener to add.
+     */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
 
+    /**
+     * Gets the current state of the logged-in view.
+     *
+     * @return The current SellerState.
+     */
+    public SellerState getState() {
+        return state;
+    }
 
+    /**
+     * Gets the username of the logged-in user.
+     *
+     * @return The username of the logged-in user.
+     */
+    public String getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    /**
+     * Sets the username of the logged-in user.
+     *
+     * @param loggedInUser The username to set.
+     */
+    public void setLoggedInUser(String loggedInUser) {
+        this.loggedInUser = loggedInUser;
+    }
 }
+

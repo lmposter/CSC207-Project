@@ -23,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ca-design-pattern" />
+        <entry key="$PROJECT_DIR$" value="mahe/dashboard" />
         <entry key="$PROJECT_DIR$" value="mahe/FrontendDesign-GuestLogin" />
       </map>
     </option>
@@ -218,7 +218,7 @@
       <workItem from="1701651811547" duration="7017000" />
       <workItem from="1701659541197" duration="406000" />
       <workItem from="1701715484900" duration="4929000" />
-      <workItem from="1701721112064" duration="3512000" />
+      <workItem from="1701721112064" duration="3936000" />
     </task>
     <task id="LOCAL-00001" summary="Implement Password Requirements. Add dummy methods for guest view.">
       <option name="closed" value="true" />
