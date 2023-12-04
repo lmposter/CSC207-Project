@@ -1,19 +1,19 @@
 package app;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.guestPage.GuestController;
-import interface_adapter.guestPage.GuestPresenter;
-import interface_adapter.guestPage.GuestViewModel;
+import interface_adapter.AllUserPage.guestPage.GuestController;
+import interface_adapter.AllUserPage.guestPage.GuestPresenter;
+import interface_adapter.AllUserPage.guestPage.GuestViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.orders.Orders;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.shopping_cart.ShoppingCartViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.store_page.StorePageViewModel;
-import use_case.guestPage.GuestInputBoundary;
-import use_case.guestPage.GuestInteractor;
-import use_case.guestPage.GuestOutputBoundary;
-import use_case.guestPage.GuestUserDataAccessInterface;
+import use_case.allUser.guestPage.GuestInputBoundary;
+import use_case.allUser.guestPage.GuestInteractor;
+import use_case.allUser.guestPage.GuestOutputBoundary;
+import use_case.allUser.guestPage.GuestUserDataAccessInterface;
 import view.GuestView;
 
 import javax.swing.*;

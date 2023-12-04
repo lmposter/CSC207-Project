@@ -1,7 +1,7 @@
 package interface_adapter.signup;
 
-import interface_adapter.guestPage.GuestState;
-import interface_adapter.guestPage.GuestViewModel;
+import interface_adapter.AllUserPage.guestPage.GuestState;
+import interface_adapter.AllUserPage.guestPage.GuestViewModel;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.ViewManagerModel;
