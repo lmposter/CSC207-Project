@@ -1,4 +1,4 @@
-package interface_adapter.create_product;
+package interface_adapter.Create_product;
 
 import interface_adapter.ViewManagerModel;
 import use_case.create_product.CreatePdOutPutBoundary;

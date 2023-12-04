@@ -1,8 +1,12 @@
 package view;
 
-import interface_adapter.create_product.CreatePdController;
-import interface_adapter.create_product.CreatePdState;
-import interface_adapter.create_product.CreatePdViewModel;
+import interface_adapter.Create_product.CreatePdController;
+import interface_adapter.Create_product.CreatePdState;
+import interface_adapter.Create_product.CreatePdViewModel;
+import interface_adapter.search.SearchState;
+import interface_adapter.search.SearchViewModel;
+import interface_adapter.signup.SignupState;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +16,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.net.URL;
 
 public class CreatePdView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Create Product";
@@ -207,5 +212,6 @@ public class CreatePdView extends JPanel implements ActionListener, PropertyChan
             JOptionPane.showMessageDialog(this, state.getMessage());
         }
     }
+    //TODO: weird, always show url not valid
     //TODO: it saves the product several times instead of just once
 }

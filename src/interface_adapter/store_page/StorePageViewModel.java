@@ -1,5 +1,6 @@
 package interface_adapter.store_page;
 
+import interface_adapter.Create_product.CreatePdState;
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
