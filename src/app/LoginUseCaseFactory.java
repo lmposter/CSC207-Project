@@ -1,11 +1,11 @@
 package app;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.buyerPage.BuyerViewModel;
+import interface_adapter.AllUserPage.buyerPage.BuyerViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.sellerPage.SellerViewModel;
+import interface_adapter.AllUserPage.sellerPage.SellerViewModel;
 import interface_adapter.signup.SignupViewModel;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginOutputBoundary;

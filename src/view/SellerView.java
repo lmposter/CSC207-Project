@@ -1,8 +1,8 @@
 package view;
 
-import interface_adapter.sellerPage.SellerController;
-import interface_adapter.sellerPage.SellerState;
-import interface_adapter.sellerPage.SellerViewModel;
+import interface_adapter.AllUserPage.sellerPage.SellerController;
+import interface_adapter.AllUserPage.sellerPage.SellerState;
+import interface_adapter.AllUserPage.sellerPage.SellerViewModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;

@@ -5,10 +5,10 @@ import entity.LoginUser;
 import entity.SellerFactory;
 import interface_adapter.API.DatabaseAPI;
 import use_case.CheckOut.CheckOutUserDataAccessInterface;
-import use_case.buyerPage.BuyerDataAccessInterface;
-import use_case.guestPage.GuestUserDataAccessInterface;
+import use_case.allUser.buyerPage.BuyerDataAccessInterface;
+import use_case.allUser.guestPage.GuestUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
-import use_case.sellerPage.SellerDataAccessInterface;
+import use_case.allUser.sellerPage.SellerDataAccessInterface;
 import use_case.signup.SignUpUserDataAccessInterface;
 
 import java.io.IOException;
