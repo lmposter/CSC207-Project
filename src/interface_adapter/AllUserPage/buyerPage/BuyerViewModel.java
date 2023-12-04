@@ -1,5 +1,6 @@
 package interface_adapter.AllUserPage.buyerPage;
 
+import interface_adapter.AllUserPage.AllUserState;
 import interface_adapter.AllUserPage.AllUserViewModel;
 import interface_adapter.ViewModel;
 
@@ -27,6 +28,9 @@ public class BuyerViewModel extends AllUserViewModel {
      */
     public BuyerViewModel() {
         super("buyer logged in");
+    }
+    public BuyerState getState() {
+        return state;
     }
 
 }

@@ -32,9 +32,7 @@ public abstract class AllUserViewModel extends ViewModel {
     public void setState(AllUserState state) {
         this.state = state;
     }
-    public AllUserState getState() {
-        return state;
-    }
+
 
     public String getUser() {
         return user;
