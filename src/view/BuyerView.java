@@ -15,7 +15,8 @@ import java.beans.PropertyChangeListener;
 /**
  * BuyerView represents the graphical user interface for the buyer's dashboard.
  */
-public class BuyerView extends JPanel implements ActionListener, PropertyChangeListener {
+public class BuyerView extends JPanel implements ActionListener, PropertyChangeListener
+{
 
     // Constants
     public final String viewName = "buyer logged in";
@@ -40,7 +41,8 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
      * @param buyerViewModel  The view model for the buyer's dashboard.
      * @param buyerController The controller for managing buyer actions.
      */
-    public BuyerView(BuyerViewModel buyerViewModel, BuyerController buyerController) {
+    public BuyerView(BuyerViewModel buyerViewModel, BuyerController buyerController)
+    {
         this.buyerViewModel = buyerViewModel;
         this.buyerController = buyerController;
         this.buyerViewModel.addPropertyChangeListener(this);
@@ -111,7 +113,8 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
     }
 
     // Helper method to style buttons
-    private void styleButton(JButton button, Color bgColor, Color fgColor) {
+    private void styleButton(JButton button, Color bgColor, Color fgColor)
+    {
         // Styling button appearance
         button.setBackground(bgColor);
         button.setForeground(fgColor);
@@ -127,7 +130,8 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
     }
 
     // Helper method to style labels
-    private void styleLabel(JLabel label, Color color, Font font) {
+    private void styleLabel(JLabel label, Color color, Font font)
+    {
         label.setForeground(color);
         label.setFont(font);
     }
@@ -137,28 +141,34 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
      *
      * @param evt The ActionEvent representing the button click event.
      */
-    public void actionPerformed(ActionEvent evt) {
-        if (evt.getSource() == logOut) {
+    public void actionPerformed(ActionEvent evt)
+    {
+        if (evt.getSource() == logOut)
+        {
             // Perform logout action
             System.out.println("Logging out...");
             BuyerState currentState = buyerViewModel.getState();
             buyerController.switchPageLogOut();
-        } else if (evt.getSource() == searchItem) {
+        } else if (evt.getSource() == searchItem)
+        {
             // Perform search item action
             System.out.println("Searching for items...");
             BuyerState currentState = buyerViewModel.getState();
             buyerController.switchPageSearch(currentState.getUsername());
-        } else if (evt.getSource() == sellProduct) {
+        } else if (evt.getSource() == sellProduct)
+        {
             // Perform sell product action
             System.out.println("Selling a product...");
             BuyerState currentState = buyerViewModel.getState();
             buyerController.switchPageStorePage(currentState.getUsername());
-        } else if (evt.getSource() == orders) {
+        } else if (evt.getSource() == orders)
+        {
             // Perform personal page action
             System.out.println("Accessing personal page...");
             BuyerState currentState = buyerViewModel.getState();
             buyerController.switchPageOrder(currentState.getUsername());
-        } else if (evt.getSource() == shoppingCart) {
+        } else if (evt.getSource() == shoppingCart)
+        {
             // Perform shopping cart action
             System.out.println("Accessing shopping cart...");
             BuyerState currentState = buyerViewModel.getState();
@@ -172,7 +182,8 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
      * @param evt The PropertyChangeEvent representing the change event.
      */
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(PropertyChangeEvent evt)
+    {
         BuyerState state = (BuyerState) evt.getNewValue();
         title.setText(state.getUsername() + "'s Personal Dashboard");
         usernameLabel.setText("Welcome back! Customer " + state.getUsername());

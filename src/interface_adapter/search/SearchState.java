@@ -5,18 +5,22 @@ import entity.Product;
 
 import java.util.ArrayList;
 
-public class SearchState {
+public class SearchState
+{
 
     private String username;
     private String message = "";
 
     private String content = "";
 
+    private boolean isBuyer;
+
     private ArrayList<Product> products = new ArrayList<>();
     private String productsError = null;
     private String contentError = null;
 
-    public SearchState(SearchState copy){
+    public SearchState(SearchState copy)
+    {
         this.username = copy.username;
         this.content = copy.content;
         this.contentError = copy.contentError;
@@ -27,30 +31,51 @@ public class SearchState {
 
     public SearchState(){}
 
-    public String getMessage(){ return message;}
+    public boolean isBuyer()
+    {
+        return isBuyer;
+    }
 
-    public void setMessage(String message) { this.message = message;}
+    public void setBuyer(boolean buyer)
+    {
+        isBuyer = buyer;
+    }
 
-    public String getContent() {return content;}
+    public String getMessage(){return message;}
 
-    public void setContent(String text) {
+    public void setMessage(String message){this.message = message;}
+
+    public String getContent(){return content;}
+
+    public void setContent(String text)
+    {
         this.content = text;
     }
-    public void setContentError(String contentError){
+
+    public void setContentError(String contentError)
+    {
         this.contentError = contentError;
     }
 
-    public String getContentError(){
+    public String getContentError()
+    {
         return contentError;
     }
-    public void setProducts(ArrayList<Product> newPds) {
+
+    public void setProducts(ArrayList<Product> newPds)
+    {
         this.products = newPds;
     }
-    public void setProductsError(String productsError){
+
+    public void setProductsError(String productsError)
+    {
         this.productsError = productsError;
     }
-    public ArrayList<Product> getProducts() {return products;}
-    public String getProductsError(){
+
+    public ArrayList<Product> getProducts(){return products;}
+
+    public String getProductsError()
+    {
         return productsError;
     }
 

@@ -13,8 +13,10 @@ import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class SearchMain {
-    public static void main(String[] args) throws IOException {
+public class SearchMain
+{
+    public static void main(String[] args) throws IOException
+    {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.
 
@@ -40,7 +42,7 @@ public class SearchMain {
         fileWriter.close();
         ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
 
-        view.SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
+        view.SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO, true);
         assert searchView != null;
         views.add(searchView, searchView.viewName);
 

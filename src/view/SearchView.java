@@ -33,13 +33,13 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     private final JTextField searchInputField = new JTextField(50);
     private final SearchController searchController;
 
+    private final JButton returnPage;
     private final JButton goSearch;
     private JPanel mainPanel;
 
 
     public SearchView(SearchController controller, SearchViewModel searchViewModel)
     {
-
         this.searchController = controller;
         this.searchViewModel = searchViewModel;
         this.mainPanel = new JPanel();
@@ -50,8 +50,10 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
         contentToSearch.setSize(200, 20);
 
         JPanel buttons = new JPanel();
+        returnPage = new JButton("return");
         goSearch = new JButton(SearchViewModel.SEARCH_BUTTON_LABEL);
         buttons.add(goSearch);
+        buttons.add(returnPage);
 
         JFrame frame = new JFrame(SearchViewModel.PRODUCT_PANEL_LABEL);
         frame.setSize(600, 400);
@@ -69,6 +71,17 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                     SearchState currentState = searchViewModel.getState();
                     searchController.execute(currentState.getContent());
                     frame.setVisible(true);
+                }
+            }
+        });
+
+        returnPage.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent evt)
+            {
+                if (evt.getSource().equals(returnPage))
+                {
+                    searchController.switchPage();
                 }
             }
         });

@@ -101,8 +101,6 @@ public class Main
         view.StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject);
         views.add(storePageView, storePageView.viewName);
 
-        //        viewManagerModel.setActiveView(searchView.viewName);
-
         viewManagerModel.setActiveView(signupView.viewName);
         viewManagerModel.firePropertyChanged();
 

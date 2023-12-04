@@ -7,7 +7,8 @@ import java.util.logging.Logger;
  * The BuyerInteractor class handles the logic for user logged-in functionality.
  * It interacts with the data access layer and presents the results through an output boundary.
  */
-public class BuyerInteractor implements BuyerInputBoundary {
+public class BuyerInteractor implements BuyerInputBoundary
+{
 
     // Data access object for user-related operations
     private final BuyerDataAccessInterface userDataAccessObject;
@@ -22,10 +23,10 @@ public class BuyerInteractor implements BuyerInputBoundary {
      * Constructs a BuyerInteractor with the provided dependencies.
      *
      * @param userDataAccessInterface The data access object for user-related operations.
-     * @param buyerOutputBoundary  The presenter for displaying logged-in results.
+     * @param buyerOutputBoundary     The presenter for displaying logged-in results.
      */
-    public BuyerInteractor(BuyerDataAccessInterface userDataAccessInterface,
-                           BuyerOutputBoundary buyerOutputBoundary) {
+    public BuyerInteractor(BuyerDataAccessInterface userDataAccessInterface, BuyerOutputBoundary buyerOutputBoundary)
+    {
         this.userDataAccessObject = userDataAccessInterface;
         this.buyerPresenter = buyerOutputBoundary;
     }
@@ -36,28 +37,30 @@ public class BuyerInteractor implements BuyerInputBoundary {
      * @param username    The username of the logged-in user.
      * @param newPassword The new password to set.
      */
-    public void changePassword(String username, String newPassword) {
-//        if (!userDataAccessObject.existsByName(username)) {
-//            buyerPresenter.prepareFailView("Attempted change password on a non-existent account: " + username);
-//            LOGGER.log(Level.WARNING, "Attempted change password on a non-existent account: " + username);
-//        } else {
-//            // Retrieve stored password from the data access object
-//            String storedPassword = userDataAccessObject.get(username).getPassword();
-//
-//            // Check if the provided password matches the stored password
-//            if (!newPassword.equals(storedPassword)) {
-//                loggedInPresenter.prepareFailView("Cannot reset to the same password: " + newPassword);
-//                LOGGER.log(Level.WARNING, "Cannot reset to the same password: " + newPassword);
-//            } else {
-//                userDataAccessObject.changePassword(username, newPassword);
-//                buyerPresenter.prepareFailView("Password changed to " + newPassword);
-//                LOGGER.log(Level.INFO, "Password changed to " + newPassword);
-//            }
-//        }
+    public void changePassword(String username, String newPassword)
+    {
+        //        if (!userDataAccessObject.existsByName(username)) {
+        //            buyerPresenter.prepareFailView("Attempted change password on a non-existent account: " + username);
+        //            LOGGER.log(Level.WARNING, "Attempted change password on a non-existent account: " + username);
+        //        } else {
+        //            // Retrieve stored password from the data access object
+        //            String storedPassword = userDataAccessObject.get(username).getPassword();
+        //
+        //            // Check if the provided password matches the stored password
+        //            if (!newPassword.equals(storedPassword)) {
+        //                loggedInPresenter.prepareFailView("Cannot reset to the same password: " + newPassword);
+        //                LOGGER.log(Level.WARNING, "Cannot reset to the same password: " + newPassword);
+        //            } else {
+        //                userDataAccessObject.changePassword(username, newPassword);
+        //                buyerPresenter.prepareFailView("Password changed to " + newPassword);
+        //                LOGGER.log(Level.INFO, "Password changed to " + newPassword);
+        //            }
+        //        }
     }
 
     @Override
-    public void execute(BuyerInputData buyerInputData) {
+    public void execute(BuyerInputData buyerInputData)
+    {
 
     }
 
@@ -65,7 +68,8 @@ public class BuyerInteractor implements BuyerInputBoundary {
      * Switches to another page in the application.
      */
     @Override
-    public void switchPageLogOut() {
+    public void switchPageLogOut()
+    {
         // Business logic for switching to another page
         // ...
 
@@ -74,7 +78,8 @@ public class BuyerInteractor implements BuyerInputBoundary {
     }
 
     @Override
-    public void switchPageSearch(String username) {
+    public void switchPageSearch(String username)
+    {
         // Business logic for switching to another page
         // ...
 
@@ -83,7 +88,8 @@ public class BuyerInteractor implements BuyerInputBoundary {
     }
 
     @Override
-    public void switchPageOrder(String username) {
+    public void switchPageOrder(String username)
+    {
         // Business logic for switching to another page
         // ...
 
@@ -92,7 +98,8 @@ public class BuyerInteractor implements BuyerInputBoundary {
     }
 
     @Override
-    public void switchPageShoppingCart(String username) {
+    public void switchPageShoppingCart(String username)
+    {
         // Business logic for switching to another page
         // ...
 
@@ -101,7 +108,8 @@ public class BuyerInteractor implements BuyerInputBoundary {
     }
 
     @Override
-    public void switchPageStorePage(String username) {
+    public void switchPageStorePage(String username)
+    {
         // Business logic for switching to another page
         // ...
 

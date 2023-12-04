@@ -6,4 +6,6 @@ public interface SearchOutPutBoundary {
     void prepareSuccessView(String s, SearchOutPutData product);
 
     void prepareFailSearchView(String s);
+
+    void switchPage();
 }
