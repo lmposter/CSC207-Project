@@ -32,5 +32,16 @@ public class BuyerViewModel extends AllUserViewModel {
     public BuyerState getState() {
         return state;
     }
+    public void setState(BuyerState state) {
+        this.state = state;
+    }
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
+    public void firePropertyChanged() {
+        support.firePropertyChange("state", null, this.state);
+    }
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
 
 }

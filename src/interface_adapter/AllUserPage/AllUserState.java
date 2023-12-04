@@ -2,7 +2,7 @@ package interface_adapter.AllUserPage;
 
 import interface_adapter.AllUserPage.buyerPage.BuyerState;
 
-public class AllUserState {
+public abstract class AllUserState {
     private String username = "";
 
     /**
