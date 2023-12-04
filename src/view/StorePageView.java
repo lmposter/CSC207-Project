@@ -62,7 +62,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
         add(headerPanel, BorderLayout.NORTH);
         if (storePageViewModel.getState().getUsername()!=null){
             Seller seller = (Seller) userDAO.get(storePageViewModel.getState().getUsername());
-
+            if (seller != null){
             // Seller info
             sellerNameLabel = new JLabel(seller.getName());
             sellerIdLabel = new JLabel("Store ID: " + seller.getId());
@@ -88,7 +88,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
             // Set the initial size of the view
             setSize(800, 600);
 
-        }else{
+        }}else{
             sellerNameLabel = new JLabel("Seller do not exist");
             headerPanel.add(sellerNameLabel);
         }

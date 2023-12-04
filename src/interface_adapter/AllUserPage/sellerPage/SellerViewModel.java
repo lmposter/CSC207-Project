@@ -27,7 +27,7 @@ public class SellerViewModel extends AllUserViewModel {
      *
      */
     public SellerViewModel() {
-        super("logged in");
+        super("seller logged in");
     }
     public SellerState getState() {
         return state;
