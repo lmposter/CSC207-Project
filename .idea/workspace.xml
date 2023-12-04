@@ -5,41 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89cdace0-069a-423e-9809-18877f4de6d2" name="Changes" comment="Dashboard Update">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_3_2023_6_09_AM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_3_2023_6_09_AM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/SellerUseCaseFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/sellerPage/SellerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/sellerPage/SellerPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/sellerPage/SellerState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interface_adapter/sellerPage/SellerViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerDataAccessInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerInputBoundary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerInputData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerInteractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerOutputBoundary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/sellerPage/SellerOutputData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/SellerView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/BuyerUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/BuyerUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/GuestUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/GuestUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/InitializeProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/InitializeProject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/LoginUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/LoginUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_access/UserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/UserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/buyerPage/BuyerViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/guestPage/GuestViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/login/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/login/LoginPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/BuyerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BuyerView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/GuestView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GuestView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/PersonalPageView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/RoundedTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/RoundedTextField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ShoppingCartView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+        <entry key="$PROJECT_DIR$" value="main" />
         <entry key="$PROJECT_DIR$" value="mahe/FrontendDesign-GuestLogin" />
       </map>
     </option>
@@ -76,36 +43,36 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2YbkpcLT34Fw69eZZCAvDD7iJAV" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "mahe/dashboard",
-    "last_opened_file_path": "C:/Users/pangc/Downloads/CSC207-Project-modified",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;mahe/dashboard&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/pangc/Downloads/CSC207-Project-modified&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pangc\IdeaProjects\CSC207-Project\resources" />
@@ -247,6 +214,7 @@
       <workItem from="1701614481187" duration="555000" />
       <workItem from="1701615761090" duration="608000" />
       <workItem from="1701621106340" duration="18243000" />
+      <workItem from="1701651811547" duration="1235000" />
     </task>
     <task id="LOCAL-00001" summary="Implement Password Requirements. Add dummy methods for guest view.">
       <option name="closed" value="true" />

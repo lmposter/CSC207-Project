@@ -22,26 +22,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class StorePageMain {
-    public static void main(String[] args) throws IOException {
-        JFrame application = new JFrame("Create Product test");
-        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        CardLayout cardLayout = new CardLayout();
-        JPanel views = new JPanel(cardLayout);
-
-        Seller seller = new Seller("testSeller", "12345678", "StestID123");
-        view.StorePageView storePageView = new StorePageView(seller);
-        views.add(storePageView, storePageView.viewName);
-        application.add(views);
-        ViewManagerModel viewManagerModel = new ViewManagerModel();
-        new ViewManager(views, cardLayout, viewManagerModel);
-
-        StorePageViewModel storePageViewModel = new StorePageViewModel();
-
-        viewManagerModel.setActiveView(storePageView.viewName);
-        viewManagerModel.firePropertyChanged();
-
-        application.pack();
-        application.setVisible(true);
-    }
+//    public static void main(String[] args) throws IOException {
+//        JFrame application = new JFrame("Create Product test");
+//        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//
+//        CardLayout cardLayout = new CardLayout();
+//        JPanel views = new JPanel(cardLayout);
+//
+//        view.StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject);
+//        views.add(storePageView, storePageView.viewName);
+//        application.add(views);
+//        ViewManagerModel viewManagerModel = new ViewManagerModel();
+//        new ViewManager(views, cardLayout, viewManagerModel);
+//
+//        StorePageViewModel storePageViewModel = new StorePageViewModel();
+//
+//        viewManagerModel.setActiveView(storePageView.viewName);
+//        viewManagerModel.firePropertyChanged();
+//
+//        application.pack();
+//        application.setVisible(true);
+//    }
 }
