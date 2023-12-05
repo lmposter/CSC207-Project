@@ -3,7 +3,8 @@ package entity;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Product {
+public class Product
+{
     private String id;
     private String title;
     private String photoURL;
@@ -11,7 +12,8 @@ public class Product {
     private int inventory;
     private ArrayList<Review> reviews;
 
-    public Product(String title, String photoURL, double price, int inventory){
+    public Product(String title, String photoURL, double price, int inventory)
+    {
         this.id = "Pd" + UUID.randomUUID().toString();
         this.title = title;
         this.photoURL = photoURL;
@@ -20,46 +22,69 @@ public class Product {
         this.reviews = new ArrayList<>();
 
     }
+
     public String getId()
     {
         return id;
     }
+
     public void setID(String newID){id = newID;}
-    public String getTitle(){
+
+    public String getTitle()
+    {
         return title;
     }
-    public void updateTitle(String newTitle){
+
+    public void updateTitle(String newTitle)
+    {
         title = newTitle;
     }
-    public String getURL(){
+
+    public String getURL()
+    {
         return photoURL;
     }
-    public void updatePhoto(String URL){
+
+    public void updatePhoto(String URL)
+    {
         photoURL = URL;
     }
-    public double getPrice(){
+
+    public double getPrice()
+    {
         return price;
     }
-    public void updatePrice(double newPrice){
+
+    public void updatePrice(double newPrice)
+    {
         price = newPrice;
     }
-    public int getInventory(){
+
+    public int getInventory()
+    {
         return inventory;
     }
 
-    public void setInventory(int newNum){
+    public void setInventory(int newNum)
+    {
         inventory = newNum;
-    };
+    }
 
-    public void addReview(Review review){
+    ;
+
+    public void addReview(Review review)
+    {
         this.reviews.add(review);
     }
 
-    public ArrayList<Review> getReview(){
+    public ArrayList<Review> getReview()
+    {
         return reviews;
     }
 
 
-    public String getID() { return id;
+    public String getID()
+    {
+        return id;
     }
 }

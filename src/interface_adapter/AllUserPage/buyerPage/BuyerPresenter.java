@@ -2,7 +2,8 @@ package interface_adapter.AllUserPage.buyerPage;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.orders.Orders;
+import interface_adapter.orders.OrderPresenter;
+import interface_adapter.orders.OrderViewModel;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.shopping_cart.ShoppingCartViewModel;
@@ -20,12 +21,12 @@ public class BuyerPresenter implements BuyerOutputBoundary
     private final BuyerViewModel buyerViewModel;
     private final LoginViewModel loginViewModel;
     private final SearchViewModel searchViewModel;
-    private final Orders orderViewModel;
+    private final OrderViewModel orderViewModel;
     private final ShoppingCartViewModel shoppingCartViewModel;
     private final StorePageViewModel storePageViewModel;
 
     // Constructor to initialize the presenter with required dependencies
-    public BuyerPresenter(SignupViewModel signupViewModel, ViewManagerModel viewManagerModel, BuyerViewModel buyerViewModel, LoginViewModel loginViewModel, SearchViewModel searchViewModel, Orders orderViewModel, ShoppingCartViewModel shoppingCartViewModel, StorePageViewModel storePageViewModel)
+    public BuyerPresenter(SignupViewModel signupViewModel, ViewManagerModel viewManagerModel, BuyerViewModel buyerViewModel, LoginViewModel loginViewModel, SearchViewModel searchViewModel, OrderViewModel orderViewModel, ShoppingCartViewModel shoppingCartViewModel, StorePageViewModel storePageViewModel)
     {
         // Initialize view models and models
         this.signupViewModel = signupViewModel;

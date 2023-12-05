@@ -5,6 +5,7 @@ import interface_adapter.AllUserPage.buyerPage.BuyerController;
 import interface_adapter.AllUserPage.buyerPage.BuyerPresenter;
 import interface_adapter.AllUserPage.buyerPage.BuyerViewModel;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.orders.OrderController;
 import interface_adapter.orders.OrderPresenter;
 import interface_adapter.orders.OrderViewModel;
 import interface_adapter.search.SearchViewModel;
@@ -15,7 +16,12 @@ import use_case.allUser.buyerPage.BuyerDataAccessInterface;
 import use_case.allUser.buyerPage.BuyerInputBoundary;
 import use_case.allUser.buyerPage.BuyerInteractor;
 import use_case.allUser.buyerPage.BuyerOutputBoundary;
+import use_case.orders.OrderDAO;
+import use_case.orders.OrderInputBoundary;
+import use_case.orders.OrderInteractor;
+import use_case.orders.OrderOutputBoundary;
 import view.BuyerView;
+import view.OrderView;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -23,12 +29,12 @@ import java.io.IOException;
 /**
  * The BuyerUseCaseFactory class is responsible for creating and setting up the components required for the buyer user case.
  */
-public class BuyerUseCaseFactory {
+public class OrderUseCaseFactory {
 
     /**
      * Prevent instantiation.
      */
-    private BuyerUseCaseFactory() {
+    private OrderUseCaseFactory() {
     }
 
     /**
@@ -45,7 +51,7 @@ public class BuyerUseCaseFactory {
      * @param userDataAccessObject  The data access object for user data.
      * @return A BuyerView instance for the buyer user case.
      */
-    public static BuyerView create(
+    public static OrderView create(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
             SignupViewModel signupViewModel,
@@ -54,16 +60,16 @@ public class BuyerUseCaseFactory {
             OrderViewModel orderViewModel,
             ShoppingCartViewModel shoppingCartViewModel,
             StorePageViewModel storePageViewModel,
-            BuyerDataAccessInterface userDataAccessObject) {
+            OrderDAO userDataAccessObject) {
 
         try {
             // Create the BuyerController and pass it to the BuyerView
-            BuyerController buyerController = createBuyerUseCase(
+            OrderController orderController = createOrderByUseCase(
                     viewManagerModel, loginViewModel, signupViewModel, buyerViewModel,
                     searchViewModel, orderViewModel, shoppingCartViewModel, storePageViewModel,
                     userDataAccessObject);
 
-            return new BuyerView(buyerViewModel, buyerController);
+            return new OrderView(orderController, orderViewModel, true, searchViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }
@@ -86,7 +92,7 @@ public class BuyerUseCaseFactory {
      * @return A BuyerController instance for the buyer user case.
      * @throws IOException If there is an issue with the data access object.
      */
-    private static BuyerController createBuyerUseCase(
+    private static OrderController createOrderByUseCase(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
             SignupViewModel signupViewModel,
@@ -95,17 +101,16 @@ public class BuyerUseCaseFactory {
             OrderViewModel orderViewModel,
             ShoppingCartViewModel shoppingCartViewModel,
             StorePageViewModel storePageViewModel,
-            BuyerDataAccessInterface userDataAccessObject) throws IOException {
+            OrderDAO userDataAccessObject) throws IOException {
 
         // Create the BuyerPresenter and pass it to the BuyerController
-        BuyerOutputBoundary buyerOutputBoundary = new BuyerPresenter(
-                signupViewModel, viewManagerModel, buyerViewModel, loginViewModel,
-                searchViewModel, orderViewModel, shoppingCartViewModel, storePageViewModel);
+        OrderOutputBoundary orderOutputBoundary = new OrderPresenter(
+                viewManagerModel, buyerViewModel);
 
         // Create the BuyerInteractor and pass it to the BuyerController
-        BuyerInputBoundary buyerInteractor = new BuyerInteractor(
-                userDataAccessObject, buyerOutputBoundary);
+        OrderInputBoundary orderinteractor = new OrderInteractor(
+                userDataAccessObject, orderOutputBoundary);
 
-        return new BuyerController(buyerInteractor);
+        return new OrderController(orderinteractor);
     }
 }

@@ -1,6 +1,7 @@
 package interface_adapter.AllUserPage.buyerPage;
 
 import entity.Product;
+import entity.ShoppingCart;
 import interface_adapter.AllUserPage.AllUserState;
 
 import java.util.ArrayList;

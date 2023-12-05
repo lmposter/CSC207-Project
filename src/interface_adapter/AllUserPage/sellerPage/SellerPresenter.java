@@ -2,12 +2,14 @@ package interface_adapter.AllUserPage.sellerPage;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.orders.Orders;
+import interface_adapter.orders.OrderPresenter;
+import interface_adapter.orders.OrderViewModel;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.shopping_cart.ShoppingCartViewModel;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.store_page.StorePageState;
 import interface_adapter.store_page.StorePageViewModel;
 import use_case.allUser.sellerPage.SellerOutputBoundary;
 import use_case.allUser.sellerPage.SellerOutputData;
@@ -23,7 +25,7 @@ public class SellerPresenter implements SellerOutputBoundary {
     private final SellerViewModel sellerViewModel;
     private final LoginViewModel loginViewModel;
     private final SearchViewModel searchViewModel;
-    private final Orders orderViewModel;
+    private final OrderViewModel orderViewModel;
     private final ShoppingCartViewModel shoppingCartViewModel;
     private final StorePageViewModel storePageViewModel;
 
@@ -44,7 +46,7 @@ public class SellerPresenter implements SellerOutputBoundary {
                            SellerViewModel sellerViewModel,
                            LoginViewModel loginViewModel,
                            SearchViewModel searchViewModel,
-                           Orders orderViewModel,
+                           OrderViewModel orderViewModel,
                            ShoppingCartViewModel shoppingCartViewModel,
                            StorePageViewModel storePageViewModel) {
 
@@ -94,6 +96,10 @@ public class SellerPresenter implements SellerOutputBoundary {
     }
 
     public void switchPageStorePage(String username) {
+        StorePageState storePageState = storePageViewModel.getState();
+        SellerState sellerState = sellerViewModel.getState();
+        storePageState.setUsername(username);
+        storePageViewModel.setState(storePageState);
         this.viewManagerModel.setActiveView(storePageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }

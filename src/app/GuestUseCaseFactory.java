@@ -5,7 +5,8 @@ import interface_adapter.AllUserPage.guestPage.GuestController;
 import interface_adapter.AllUserPage.guestPage.GuestPresenter;
 import interface_adapter.AllUserPage.guestPage.GuestViewModel;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.orders.Orders;
+import interface_adapter.orders.OrderPresenter;
+import interface_adapter.orders.OrderViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.shopping_cart.ShoppingCartViewModel;
 import interface_adapter.signup.SignupViewModel;
@@ -47,7 +48,7 @@ public class GuestUseCaseFactory {
             SignupViewModel signupViewModel,
             GuestViewModel guestViewModel,
             SearchViewModel searchViewModel,
-            Orders orderViewModel,
+            OrderViewModel orderViewModel,
             ShoppingCartViewModel shoppingCartViewModel,
             StorePageViewModel storePageViewModel,
             GuestUserDataAccessInterface userDataAccessObject) {

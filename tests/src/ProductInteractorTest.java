@@ -1,7 +1,6 @@
 package src;
 
 import entity.Product;
-import entity.Tag;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -47,8 +46,6 @@ class ProductInteractorTest {
         // Arrange
         ProductInputData inputData = new ProductInputData("1"); // Assuming 1 is the product ID
         when(mockProductDetailsDAO.productExists(inputData.getID())).thenReturn(true);
-        // Create a dummy product with a tag
-        ArrayList<Tag> tags = new ArrayList<>();
 
         Product product = new Product("xxx", "https://media.licdn.com/dms/image/D5603AQGFgLHQTCZDQA/profile-displayphoto-shrink_800_800/0/1695674562884?e=1706745600&v=beta&t=rkqFw5hQmo6dWk17kmSOt3zkYhg1nCvlxKEsjkMqnUA", -999999999, 2); // Assuming Product is the entity
         when(mockProductDetailsDAO.getPd(inputData.getID())).thenReturn(product);
