@@ -38,23 +38,6 @@ public class BuyerInteractor implements BuyerInputBoundary
      * @param newPassword The new password to set.
      */
     public void changePassword(String username, String newPassword) {
-//        if (!userDataAccessObject.existsByName(username)) {
-//            buyerPresenter.prepareFailView("Attempted change password on a non-existent account: " + username);
-//            LOGGER.log(Level.WARNING, "Attempted change password on a non-existent account: " + username);
-//        } else {
-//            // Retrieve stored password from the data access object
-//            String storedPassword = userDataAccessObject.get(username).getPassword();
-//
-//            // Check if the provided password matches the stored password
-//            if (!newPassword.equals(storedPassword)) {
-//                loggedInPresenter.prepareFailView("Cannot reset to the same password: " + newPassword);
-//                LOGGER.log(Level.WARNING, "Cannot reset to the same password: " + newPassword);
-//            } else {
-//                userDataAccessObject.changePassword(username, newPassword);
-//                buyerPresenter.prepareFailView("Password changed to " + newPassword);
-//                LOGGER.log(Level.INFO, "Password changed to " + newPassword);
-//            }
-//        }
     }
 
     @Override

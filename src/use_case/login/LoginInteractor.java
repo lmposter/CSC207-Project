@@ -48,11 +48,7 @@ public class LoginInteractor implements LoginInputBoundary {
             LOGGER.log(Level.WARNING, "Attempted login to non-existent account: " + username);
         } else {
             String storedPassword = userDataAccessObject.get(username).getPassword();
-            if (userDataAccessObject.isAccountLocked(username)) {
-                loginPresenter.prepareFailView(username + ": Account is locked.");
-                LOGGER.log(Level.WARNING, "Attempted login to locked account: " + username);
-            }
-            else if (!password.equals(storedPassword)) {
+            if (!password.equals(storedPassword)) {
                 userDataAccessObject.incrementFailedLoginAttempts(username);
                 if (userDataAccessObject.isMaxFailedAttemptsReached(username)) {
                     userDataAccessObject.lockAccount(username);
