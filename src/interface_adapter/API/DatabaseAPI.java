@@ -5,16 +5,21 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseAPI
 {
     private static final String INSERT_ONE_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/insertOne";
     private static final String FIND_ONE_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/findOne";
+
+    private static final String FIND_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/find";
 
     private static final String UPDATE_ONE_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/updateOne";
     private static final String DELETE_ONE_API_URL = "https://data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/deleteOne";
@@ -222,7 +227,7 @@ public class DatabaseAPI
     }
 
     public static void buyProduct(String field, String value, String id, String title, Double price) {
-        System.out.println("Reset attempts by Name");
+        System.out.println("Buy Product");
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         JSONObject requestBody = createResponseBody();
         JSONObject insert_document = new JSONObject();
@@ -247,5 +252,37 @@ public class DatabaseAPI
         {
             e.printStackTrace();
         }
+    }
+    public static List<String[]> findProducts(String username) {
+        System.out.println("Find Product");
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        JSONObject requestBody = createResponseBody();
+        JSONObject insert_document = new JSONObject();
+        insert_document.put("name", username);
+        requestBody.put("filter", insert_document);
+        RequestBody body = RequestBody.create(requestBody.toString().getBytes(StandardCharsets.UTF_8));
+        Request request = new Request.Builder().url(FIND_ONE_API_URL).post(body).header("Content-Type", "application/json").header("Accept", "*/*").header("Access-Control-Request-Headers", "*").header("api-key", API_TOKEN).build();
+        try
+        {
+            Response response = client.newCall(request).execute();
+            String resString = response.body().string();
+            response.body().close();
+            System.out.println(resString);
+            JSONObject mainObject = new JSONObject(resString);
+            JSONObject documentObject = mainObject.getJSONObject("document");
+            JSONArray documentsArray = mainObject.getJSONArray("products");
+            List<JSONObject> list = jsonArrayToList(documentsArray);
+        } catch (IOException | JSONException e)
+        {
+            e.printStackTrace();
+        }
+    return  null;}
+
+    private static List<JSONObject> jsonArrayToList(JSONArray documentsArray) {
+        List<JSONObject> list = new ArrayList<>();
+        for (int i = 0; i < documentsArray.length(); i++) {
+            list.add(documentsArray.getJSONObject(i));
+        }
+        return list;
     }
 }

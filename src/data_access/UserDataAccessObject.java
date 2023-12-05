@@ -2,18 +2,21 @@ package data_access;
 
 import entity.BuyerFactory;
 import entity.LoginUser;
+import entity.Product;
 import entity.SellerFactory;
 import interface_adapter.API.DatabaseAPI;
 import use_case.allUser.buyerPage.BuyerDataAccessInterface;
 import use_case.allUser.guestPage.GuestUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.allUser.sellerPage.SellerDataAccessInterface;
+import use_case.orders.OrderDAO;
 import use_case.signup.SignUpUserDataAccessInterface;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class UserDataAccessObject implements SignUpUserDataAccessInterface, LoginUserDataAccessInterface, GuestUserDataAccessInterface, BuyerDataAccessInterface, SellerDataAccessInterface
+public class UserDataAccessObject implements SignUpUserDataAccessInterface, LoginUserDataAccessInterface, GuestUserDataAccessInterface, BuyerDataAccessInterface, SellerDataAccessInterface, OrderDAO
 {
 
     private final BuyerFactory buyerFactory;
@@ -135,6 +138,11 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
     public void deactivateAccount(String username)
     {
         DatabaseAPI.delete("name", username);
+    }
+
+    @Override
+    public List<String[]> getProducts(String username) {
+        return DatabaseAPI.findProducts(username);
     }
 
     // Save user data to the CSV file
