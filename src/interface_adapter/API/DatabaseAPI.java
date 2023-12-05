@@ -119,7 +119,7 @@ public class DatabaseAPI
             }
         } catch (IOException | JSONException e)
         {
-            e.printStackTrace();
+//            e.printStackTrace();
             return null;
         }
     }
