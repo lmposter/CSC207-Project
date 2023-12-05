@@ -5,18 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89cdace0-069a-423e-9809-18877f4de6d2" name="Changes" comment="Dashboard Update">
+      <change afterPath="$PROJECT_DIR$/tests/src/BuyerInputDataTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/BuyerInteractorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/BuyerOutputDataTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/GuestInputDataTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/GuestInteractorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/GuestOutputDataTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/LoginInputDataTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/LoginInteractorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/LoginOutputDataTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/SellerInputDataTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/SellerInteractorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/SellerOutputDataTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/SignUpUserInputDataTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/SignUpUserOutputDataTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/allUser/buyerPage/BuyerInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/allUser/buyerPage/BuyerInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/login/LoginInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/login/LoginInteractor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="1" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OPEN_IN_BROWSER" value="true" />
+    <option name="OUTPUT_DIRECTORY" value="C:\Users\pangc\Desktop" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -60,8 +85,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "ca-button-fix-and-connection",
-    "last_opened_file_path": "C:/Users/pangc/Downloads/CSC207-Project-modified",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/pangc/IdeaProjects/CSC207-Project2/tests/src",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -75,16 +102,30 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pangc\IdeaProjects\CSC207-Project2\tests\src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pangc\IdeaProjects\CSC207-Project\resources" />
       <recent name="C:\Users\pangc\IdeaProjects\CSC207-Project\src\app" />
       <recent name="C:\Users\pangc\IdeaProjects\CSC207-Project\img" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="use_case.login" />
+      <recent name="use_case.signup" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="src" />
       <recent name="app" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.src in CSC207-Project">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-20" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -97,7 +138,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductInteractorTest.execute_productDoesNotExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BuyerInteractorTest.testChangePassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CSC207-Project" />
       <extension name="coverage">
         <pattern>
@@ -106,14 +147,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="src" />
-      <option name="MAIN_CLASS_NAME" value="src.ProductInteractorTest" />
-      <option name="METHOD_NAME" value="execute_productDoesNotExist" />
+      <option name="MAIN_CLASS_NAME" value="src.BuyerInteractorTest" />
+      <option name="METHOD_NAME" value="testChangePassword" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductInteractorTest.execute_productExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginInteractorTest.testDeactivateAccountWithAccountAlreadyDeactivated" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CSC207-Project" />
       <extension name="coverage">
         <pattern>
@@ -122,30 +163,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="src" />
-      <option name="MAIN_CLASS_NAME" value="src.ProductInteractorTest" />
-      <option name="METHOD_NAME" value="execute_productExists" />
+      <option name="MAIN_CLASS_NAME" value="src.LoginInteractorTest" />
+      <option name="METHOD_NAME" value="testDeactivateAccountWithAccountAlreadyDeactivated" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SearchInteractorTest.execute_withNoMatchingProducts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CSC207-Project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="use_case.search.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="use_case.search" />
-      <option name="MAIN_CLASS_NAME" value="use_case.search.SearchInteractorTest" />
-      <option name="METHOD_NAME" value="execute_withNoMatchingProducts" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SearchInteractorTest.testExecute_ItemsFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginInteractorTest.testDeactivateAccountWrongPassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CSC207-Project" />
       <extension name="coverage">
         <pattern>
@@ -154,14 +179,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="src" />
-      <option name="MAIN_CLASS_NAME" value="src.SearchInteractorTest" />
-      <option name="METHOD_NAME" value="testExecute_ItemsFound" />
+      <option name="MAIN_CLASS_NAME" value="src.LoginInteractorTest" />
+      <option name="METHOD_NAME" value="testDeactivateAccountWrongPassword" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SearchInteractorTest.testExecute_NoItemsFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginInteractorTest.testExecuteWithCorrectCredentials" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CSC207-Project" />
       <extension name="coverage">
         <pattern>
@@ -170,28 +195,52 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="src" />
-      <option name="MAIN_CLASS_NAME" value="src.SearchInteractorTest" />
-      <option name="METHOD_NAME" value="testExecute_NoItemsFound" />
+      <option name="MAIN_CLASS_NAME" value="src.LoginInteractorTest" />
+      <option name="METHOD_NAME" value="testExecuteWithCorrectCredentials" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="src in CSC207-Project" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CSC207-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="use_case.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="entity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.ProductInteractorTest.execute_productDoesNotExist" />
-      <item itemvalue="JUnit.ProductInteractorTest.execute_productExists" />
-      <item itemvalue="JUnit.SearchInteractorTest.execute_withNoMatchingProducts" />
-      <item itemvalue="JUnit.SearchInteractorTest.testExecute_ItemsFound" />
-      <item itemvalue="JUnit.SearchInteractorTest.testExecute_NoItemsFound" />
+      <item itemvalue="JUnit.BuyerInteractorTest.testChangePassword" />
+      <item itemvalue="JUnit.LoginInteractorTest.testDeactivateAccountWithAccountAlreadyDeactivated" />
+      <item itemvalue="JUnit.LoginInteractorTest.testDeactivateAccountWrongPassword" />
+      <item itemvalue="JUnit.LoginInteractorTest.testExecuteWithCorrectCredentials" />
+      <item itemvalue="JUnit.src in CSC207-Project" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SearchInteractorTest.testExecute_NoItemsFound" />
-        <item itemvalue="JUnit.SearchInteractorTest.testExecute_ItemsFound" />
-        <item itemvalue="JUnit.SearchInteractorTest.execute_withNoMatchingProducts" />
-        <item itemvalue="JUnit.ProductInteractorTest.execute_productExists" />
-        <item itemvalue="JUnit.ProductInteractorTest.execute_productDoesNotExist" />
+        <item itemvalue="JUnit.src in CSC207-Project" />
+        <item itemvalue="JUnit.BuyerInteractorTest.testChangePassword" />
+        <item itemvalue="JUnit.LoginInteractorTest.testDeactivateAccountWrongPassword" />
+        <item itemvalue="JUnit.LoginInteractorTest.testDeactivateAccountWithAccountAlreadyDeactivated" />
+        <item itemvalue="JUnit.LoginInteractorTest.testExecuteWithCorrectCredentials" />
       </list>
     </recent_temporary>
   </component>
@@ -219,6 +268,9 @@
       <workItem from="1701659541197" duration="406000" />
       <workItem from="1701715484900" duration="4929000" />
       <workItem from="1701721112064" duration="3936000" />
+      <workItem from="1701738129554" duration="1504000" />
+      <workItem from="1701801918551" duration="297000" />
+      <workItem from="1701802228367" duration="4601000" />
     </task>
     <task id="LOCAL-00001" summary="Implement Password Requirements. Add dummy methods for guest view.">
       <option name="closed" value="true" />
@@ -349,5 +401,26 @@
     <MESSAGE value="Loading Screen Update" />
     <MESSAGE value="Dashboard Update" />
     <option name="LAST_COMMIT_MESSAGE" value="Dashboard Update" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CSC207_Project2$src_in_CSC207_Project.ic" NAME="src in CSC207-Project Coverage Results" MODIFIED="1701806704061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>src.*</FILTER>
+      <FILTER>use_case.*</FILTER>
+      <FILTER>entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207_Project2$entity_in_CSC207_Project.ic" NAME="entity in CSC207-Project Coverage Results" MODIFIED="1701806597176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>src.*</FILTER>
+      <FILTER>use_case.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207_Project2$Main.ic" NAME="Main Coverage Results" MODIFIED="1701802258750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207_Project2$SignUpUserInputDataTest_username.ic" NAME="SignUpUserInputDataTest.username Coverage Results" MODIFIED="1701802494847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>use_case.signup.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207_Project2$LoginInteractorTest_testDeactivateAccountWithAccountAlreadyDeactivated.ic" NAME="LoginInteractorTest.testDeactivateAccountWithAccountAlreadyDeactivated Coverage Results" MODIFIED="1701803843557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>src.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207_Project2$LoginInteractorTest_testDeactivateAccountWrongPassword.ic" NAME="LoginInteractorTest.testDeactivateAccountWrongPassword Coverage Results" MODIFIED="1701804309077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>src.*</FILTER>
+    </SUITE>
   </component>
 </project>
