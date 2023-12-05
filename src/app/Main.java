@@ -5,6 +5,7 @@ import data_access.UserDataAccessObject;
 import entity.BuyerFactory;
 import entity.ProductFactory;
 import entity.SellerFactory;
+import interface_adapter.Create_product.CreatePdViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.AllUserPage.buyerPage.BuyerViewModel;
 import interface_adapter.AllUserPage.guestPage.GuestViewModel;
@@ -52,6 +53,7 @@ public class Main
         SellerViewModel sellerViewModel = new SellerViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
         StorePageViewModel storePageViewModel = new StorePageViewModel();
+        CreatePdViewModel createPdViewModel = new CreatePdViewModel();
 
         SearchViewModel searchViewModel = new SearchViewModel();
         try
@@ -91,7 +93,7 @@ public class Main
         BuyerView buyerView = BuyerUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, searchViewModel, null, null, null, userDataAccessObject);
         views.add(buyerView, buyerView.viewName);
 
-        SellerView sellerView = SellerUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, sellerViewModel, searchViewModel, null, null, null, userDataAccessObject);
+        SellerView sellerView = SellerUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, sellerViewModel, searchViewModel, null, null, storePageViewModel, userDataAccessObject);
         views.add(sellerView, sellerView.viewName);
 
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, guestViewModel, buyerViewModel, pdDAO);
@@ -99,6 +101,9 @@ public class Main
 
         StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject);
         views.add(storePageView, storePageView.viewName);
+
+        CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO);
+        views.add(createPdView, createPdView.viewName);
 
         viewManagerModel.setActiveView(signupView.viewName);
         viewManagerModel.firePropertyChanged();

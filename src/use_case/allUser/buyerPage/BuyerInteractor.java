@@ -1,7 +1,5 @@
 package use_case.allUser.buyerPage;
 
-import use_case.allUser.buyerPage.BuyerDataAccessInterface;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
