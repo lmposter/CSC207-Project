@@ -26,6 +26,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -158,10 +159,13 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
         CreatePdViewModel createPdViewModel = new CreatePdViewModel();
 
         try {
-            FileWriter fileWriter = new FileWriter("empty.csv");
-            String header = "id,title,inventory,URL,price";
-            fileWriter.write(header);
-            fileWriter.close();
+
+            File f = new File("empty.csv");
+            if (!(f.exists() && !f.isDirectory())) {
+                FileWriter fileWriter = new FileWriter("empty.csv");
+                String header = "id,title,inventory,URL,price,tags,reviews";
+                fileWriter.write(header);
+                fileWriter.close();}
             ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory());
             view.CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO);
             assert createPdView != null;
