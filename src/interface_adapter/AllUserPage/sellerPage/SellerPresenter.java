@@ -9,6 +9,7 @@ import interface_adapter.search.SearchViewModel;
 import interface_adapter.shopping_cart.ShoppingCartViewModel;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.store_page.StorePageState;
 import interface_adapter.store_page.StorePageViewModel;
 import use_case.allUser.sellerPage.SellerOutputBoundary;
 import use_case.allUser.sellerPage.SellerOutputData;
@@ -95,6 +96,10 @@ public class SellerPresenter implements SellerOutputBoundary {
     }
 
     public void switchPageStorePage(String username) {
+        StorePageState storePageState = storePageViewModel.getState();
+        SellerState sellerState = sellerViewModel.getState();
+        storePageState.setUsername(username);
+        storePageViewModel.setState(storePageState);
         this.viewManagerModel.setActiveView(storePageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
