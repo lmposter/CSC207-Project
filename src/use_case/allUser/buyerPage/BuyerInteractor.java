@@ -1,4 +1,4 @@
-package use_case.buyerPage;
+package use_case.allUser.buyerPage;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

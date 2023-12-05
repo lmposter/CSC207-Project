@@ -22,7 +22,7 @@ public class CreatePdUseCaseFactory {
             ProductDAO userProductDAO) {
 
         try{
-            CreatePdController createPdController = createPdhUseCase(viewManagerModel, createPdViewModel, userProductDAO);
+            CreatePdController createPdController = createPdUseCase(viewManagerModel, createPdViewModel, userProductDAO);
             return new CreatePdView(createPdController, createPdViewModel);
         } catch (IOException e){
             JOptionPane.showMessageDialog(null, "Could not open product data file.");
@@ -31,7 +31,7 @@ public class CreatePdUseCaseFactory {
         return null;
     }
 
-    private static CreatePdController createPdhUseCase(ViewManagerModel viewManagerModel,
+    private static CreatePdController createPdUseCase(ViewManagerModel viewManagerModel,
                                                        CreatePdViewModel createPdViewModel, CreatePdDAI userProductDAO)
             throws IOException{
         CreatePdOutPutBoundary createPdPresenter = new CreatePdPresenter(createPdViewModel, viewManagerModel);
