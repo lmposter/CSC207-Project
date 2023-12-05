@@ -4,7 +4,7 @@ import entity.Product;
 import java.util.ArrayList;
 
 public class StorePageState {
-    private String username = "";
+    private String username = "Unknown";
     private String usernameError = null;
     private String id = "";
     private String idError = null;

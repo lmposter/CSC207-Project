@@ -14,11 +14,11 @@ public class CreatePdController {
         this.createPdUseCaseInteractor = createPdUseCaseInteractor;
     }
 
-    public void execute(String title, String price, String inventory, String imageUrl) {
+    public void execute(String title, String price, String inventory, String imageUrl, String username) {
 
 
         CreatePdInputData createPdInputData = new CreatePdInputData(title, price,
-                inventory, imageUrl);
+                inventory, imageUrl, username);
         createPdUseCaseInteractor.execute(createPdInputData);
     }
 

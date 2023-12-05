@@ -1,6 +1,7 @@
 package app;
 
 import data_access.ProductDAO;
+import interface_adapter.AllUserPage.sellerPage.SellerViewModel;
 import interface_adapter.Create_product.CreatePdController;
 import interface_adapter.Create_product.CreatePdPresenter;
 import interface_adapter.Create_product.CreatePdViewModel;
@@ -19,11 +20,11 @@ public class CreatePdUseCaseFactory {
 
     public static CreatePdView create(
             ViewManagerModel viewManagerModel, CreatePdViewModel createPdViewModel,
-            ProductDAO userProductDAO) {
+            ProductDAO userProductDAO, SellerViewModel sellerViewModel) {
 
         try{
             CreatePdController createPdController = createPdUseCase(viewManagerModel, createPdViewModel, userProductDAO);
-            return new CreatePdView(createPdController, createPdViewModel);
+            return new CreatePdView(createPdController, createPdViewModel, sellerViewModel);
         } catch (IOException e){
             JOptionPane.showMessageDialog(null, "Could not open product data file.");
         }

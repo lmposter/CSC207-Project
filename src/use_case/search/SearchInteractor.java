@@ -47,7 +47,7 @@ public class SearchInteractor implements SearchInputBoundary
                 productsList.addAll(walmartItems);
                 for (Product pd : walmartItems)
                 {
-                    searchDAO.save(pd);
+                    searchDAO.save(pd, searchInputData.getUsername());
                 }
                 SearchOutPutData searchOutPutData = new SearchOutPutData(productsList, false);
                 this.searchPresenter.prepareSuccessView(String.valueOf(sumNum).concat(" items found:"), searchOutPutData);

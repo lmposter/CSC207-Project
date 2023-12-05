@@ -24,6 +24,7 @@ public class CreatePdInteractor implements CreatePdInputBoundary{
 
         @Override
         public void execute(CreatePdInputData createPdInputData) {
+            String username = createPdInputData.getUsername();
             String title = createPdInputData.getTitle();
             String price = createPdInputData.getPrice();
             String inventory = createPdInputData.getInventory();
@@ -61,8 +62,7 @@ public class CreatePdInteractor implements CreatePdInputBoundary{
             try {
                 ProductFactory pf = new ProductFactory();
                 Product pd = pf.create(title, imageUrl, Double.parseDouble(price), Integer.parseInt(inventory));
-                createPdDAO.save(pd);
-//TODO: also save to the seller's account
+                createPdDAO.save(pd, username);
 
                 this.createPdPresenter.prepareSuccessCreateView("Created Successfully");
                 } catch (RuntimeException e){

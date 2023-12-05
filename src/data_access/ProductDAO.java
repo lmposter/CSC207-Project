@@ -9,10 +9,7 @@ import use_case.productDetails.ProductDetailsDAI;
 import use_case.search.SearchDAI;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
 {
@@ -21,18 +18,21 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
     private final Map<String, Integer> headers = new LinkedHashMap<>();
     private Map<String, Product> products;
 
+    private Map<String, String> productSeller;
+
     public ProductDAO(String csvPath, ProductFactory productFactory)
     {
         this.productFactory = productFactory;
         this.csvFile = new File(csvPath);
         this.products = new HashMap<>();
+        this.productSeller = new HashMap<>();
         headers.put("id", 0);
         headers.put("title", 1);
         headers.put("inventory", 2);
         headers.put("URL", 3);
         headers.put("price", 4);
-        headers.put("tags", 5);
         headers.put("reviews", 5);
+        headers.put("seller", 6);
 
         if (csvFile.length() == 0)
         {
@@ -47,7 +47,7 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
             String header = reader.readLine();
 
-            if (header.equals("id,title,inventory,URL,price,tags,reviews")) {
+            if (header.equals("id,title,inventory,URL,price,reviews,seller")) {
                 String row;
                 while ((row = reader.readLine()) != null) {
                     String[] col = row.split(",");
@@ -56,9 +56,9 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
                     int inventory = Integer.parseInt(col[headers.get("inventory")]);
                     String URL = String.valueOf(col[headers.get("URL")]);
                     double price = Double.parseDouble(col[headers.get("price")]);
-
-                    ArrayList<Review> reviews = new ArrayList<>();
+                    String username = String.valueOf(col[headers.get("seller")]);
                     int reviewsIndex = headers.get("reviews");
+                    ArrayList<Review> reviews = new ArrayList<>();
                     String[] reviewContent = col[reviewsIndex].split(";");
                     for (String review : reviewContent) {
                         if (review.length() >= 1) {
@@ -74,6 +74,7 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
                         product.addReview(review);
                     }
                     products.put(id, product);
+                    productSeller.put(id, username);
                 }
             } else {
                 throw new IOException();
@@ -99,11 +100,11 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
             {
 
                 String line = String.format("%s,%s,%s,%s,%s,%s,%s",
-                        pd.getId(), pd.getTitle(), pd.getInventory(), pd.getURL(), pd.getPrice(), "", pd.getReview());
+                        pd.getId(), pd.getTitle(), pd.getInventory(), pd.getURL(), pd.getPrice(), pd.getReview(), productSeller.get(pd.getID()));
 
                 writer.write(line);
                 writer.newLine();
-                System.out.println(1);
+                System.out.println("one product created");
             }
 
             writer.close();
@@ -154,9 +155,10 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
     }
 
     @Override
-    public void save(Product product)
+    public void save(Product product, String username)
     {
         products.put(product.getID(), product);
+        productSeller.put(product.getID(), username);
         this.save();
     }
 
@@ -200,6 +202,19 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
     public void buyProduct(String name, String id, String title, Double price)
     {
         DatabaseAPI.buyProduct("name", name, id, title, price);
+    }
+
+    @Override
+    public ArrayList<Product> findProducts(String username){
+        ArrayList<Product> result = new ArrayList<>();
+        for (Map.Entry<String, String> entry : productSeller.entrySet()){
+            String pID = entry.getKey();
+            String sellerName = entry.getValue();
+            if (Objects.equals(sellerName, username)){
+                result.add(products.get(pID));
+            }
+        }
+        return result;
     }
 
 }
