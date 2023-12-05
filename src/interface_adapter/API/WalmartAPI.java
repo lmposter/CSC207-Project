@@ -2,7 +2,6 @@ package interface_adapter.API;
 import entity.Product;
 import entity.ProductFactory;
 import entity.Review;
-import entity.Tag;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

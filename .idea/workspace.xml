@@ -15,15 +15,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="mahe/dashboard" />
+        <entry key="$PROJECT_DIR$" value="main" />
         <entry key="$PROJECT_DIR$" value="mahe/FrontendDesign-GuestLogin" />
       </map>
     </option>
@@ -60,7 +60,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "ca-button-fix-and-connection",
+    "git-widget-placeholder": "SearchTest",
     "last_opened_file_path": "C:/Users/pangc/Downloads/CSC207-Project-modified",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -84,7 +84,7 @@
       <recent name="app" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.All in CSC207-Project">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-20" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -97,18 +97,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductInteractorTest.execute_productDoesNotExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in CSC207-Project" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CSC207-Project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="src" />
-      <option name="MAIN_CLASS_NAME" value="src.ProductInteractorTest" />
-      <option name="METHOD_NAME" value="execute_productDoesNotExist" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -179,7 +171,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.ProductInteractorTest.execute_productDoesNotExist" />
+      <item itemvalue="JUnit.All in CSC207-Project" />
       <item itemvalue="JUnit.ProductInteractorTest.execute_productExists" />
       <item itemvalue="JUnit.SearchInteractorTest.execute_withNoMatchingProducts" />
       <item itemvalue="JUnit.SearchInteractorTest.testExecute_ItemsFound" />
@@ -187,11 +179,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in CSC207-Project" />
         <item itemvalue="JUnit.SearchInteractorTest.testExecute_NoItemsFound" />
         <item itemvalue="JUnit.SearchInteractorTest.testExecute_ItemsFound" />
         <item itemvalue="JUnit.SearchInteractorTest.execute_withNoMatchingProducts" />
         <item itemvalue="JUnit.ProductInteractorTest.execute_productExists" />
-        <item itemvalue="JUnit.ProductInteractorTest.execute_productDoesNotExist" />
       </list>
     </recent_temporary>
   </component>
@@ -218,7 +210,7 @@
       <workItem from="1701651811547" duration="7017000" />
       <workItem from="1701659541197" duration="406000" />
       <workItem from="1701715484900" duration="4929000" />
-      <workItem from="1701721112064" duration="3936000" />
+      <workItem from="1701721112064" duration="12261000" />
     </task>
     <task id="LOCAL-00001" summary="Implement Password Requirements. Add dummy methods for guest view.">
       <option name="closed" value="true" />
@@ -349,5 +341,9 @@
     <MESSAGE value="Loading Screen Update" />
     <MESSAGE value="Dashboard Update" />
     <option name="LAST_COMMIT_MESSAGE" value="Dashboard Update" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CSC207_Project$All_in_CSC207_Project.ic" NAME="All in CSC207-Project Coverage Results" MODIFIED="1701739929770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207_Project$Main.ic" NAME="Main Coverage Results" MODIFIED="1701733520134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
