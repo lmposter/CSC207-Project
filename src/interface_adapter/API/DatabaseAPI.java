@@ -12,7 +12,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> 3adc5da1ca3d1c3d349e71a3112df8f3d4f36a44
 
 public class DatabaseAPI
 {
@@ -23,12 +26,21 @@ public class DatabaseAPI
 
     private static final String UPDATE_ONE_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/updateOne";
     private static final String DELETE_ONE_API_URL = "https://data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/deleteOne";
+
+    private static final String Find_API_URL = "https://data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/find";
     private static final String API_TOKEN = System.getenv("API_TOKEN_MongoDB");
 
     private static JSONObject createResponseBody()
     {
         JSONObject requestBody = new JSONObject();
         requestBody.put("collection", "UsersCollection");
+        requestBody.put("database", "CSC207");
+        requestBody.put("dataSource", "CSC207");
+        return requestBody;
+    }
+    private  static JSONObject createProductBody(){
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("collection", "Products");
         requestBody.put("database", "CSC207");
         requestBody.put("dataSource", "CSC207");
         return requestBody;
@@ -124,7 +136,7 @@ public class DatabaseAPI
             }
         } catch (IOException | JSONException e)
         {
-            e.printStackTrace();
+//            e.printStackTrace();
             return null;
         }
     }
@@ -227,7 +239,7 @@ public class DatabaseAPI
     }
 
     public static void buyProduct(String field, String value, String id, String title, Double price) {
-        System.out.println("Buy Product");
+        System.out.println("Bud products by Name");
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         JSONObject requestBody = createResponseBody();
         JSONObject insert_document = new JSONObject();
