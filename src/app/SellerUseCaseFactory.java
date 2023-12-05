@@ -2,7 +2,8 @@ package app;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.orders.Orders;
+import interface_adapter.orders.OrderPresenter;
+import interface_adapter.orders.OrderViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.AllUserPage.sellerPage.SellerController;
 import interface_adapter.AllUserPage.sellerPage.SellerPresenter;
@@ -47,7 +48,7 @@ public class SellerUseCaseFactory {
             SignupViewModel signupViewModel,
             SellerViewModel sellerViewModel,
             SearchViewModel searchViewModel,
-            Orders orderViewModel,
+            OrderViewModel orderViewModel,
             ShoppingCartViewModel shoppingCartViewModel,
             StorePageViewModel storePageViewModel,
             SellerDataAccessInterface userDataAccessObject) {
@@ -68,7 +69,7 @@ public class SellerUseCaseFactory {
             SignupViewModel signupViewModel,
             SellerViewModel sellerViewModel,
             SearchViewModel searchViewModel,
-            Orders orderViewModel,
+            OrderViewModel orderViewModel,
             ShoppingCartViewModel shoppingCartViewModel,
             StorePageViewModel storePageViewModel,
             SellerDataAccessInterface userDataAccessObject) throws IOException {

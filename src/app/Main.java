@@ -10,6 +10,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.AllUserPage.buyerPage.BuyerViewModel;
 import interface_adapter.AllUserPage.guestPage.GuestViewModel;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.orders.OrderViewModel;
 import interface_adapter.search.SearchViewModel;
 import interface_adapter.AllUserPage.sellerPage.SellerViewModel;
 import interface_adapter.signup.SignupViewModel;
@@ -54,6 +55,7 @@ public class Main
         SignupViewModel signupViewModel = new SignupViewModel();
         StorePageViewModel storePageViewModel = new StorePageViewModel();
         CreatePdViewModel createPdViewModel = new CreatePdViewModel();
+        OrderViewModel orderViewModel = new OrderViewModel();
 
         SearchViewModel searchViewModel = new SearchViewModel();
         try
@@ -73,6 +75,7 @@ public class Main
         try
         {
             userDataAccessObject = new UserDataAccessObject(new BuyerFactory(), new SellerFactory());
+
         } catch (IOException e)
         {
             throw new RuntimeException(e);
@@ -87,13 +90,13 @@ public class Main
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, sellerViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        GuestView guestView = GuestUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, guestViewModel, searchViewModel, null, null, null, userDataAccessObject);
+        GuestView guestView = GuestUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, guestViewModel, searchViewModel, orderViewModel, null, null, userDataAccessObject);
         views.add(guestView, guestView.viewName);
 
-        BuyerView buyerView = BuyerUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, searchViewModel, null, null, null, userDataAccessObject);
+        BuyerView buyerView = BuyerUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, searchViewModel, orderViewModel, null, null, userDataAccessObject);
         views.add(buyerView, buyerView.viewName);
 
-        SellerView sellerView = SellerUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, sellerViewModel, searchViewModel, null, null, storePageViewModel, userDataAccessObject);
+        SellerView sellerView = SellerUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, sellerViewModel, searchViewModel, orderViewModel, null, storePageViewModel, userDataAccessObject);
         views.add(sellerView, sellerView.viewName);
 
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
@@ -104,6 +107,9 @@ public class Main
 
         CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO);
         views.add(createPdView, createPdView.viewName);
+
+        OrderView orderView = OrderUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, searchViewModel, orderViewModel, null, storePageViewModel, userDataAccessObject);
+        views.add(orderView, orderView.viewName);
 
         viewManagerModel.setActiveView(signupView.viewName);
         viewManagerModel.firePropertyChanged();
