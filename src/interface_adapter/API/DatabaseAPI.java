@@ -12,10 +12,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.List;
-=======
->>>>>>> 3adc5da1ca3d1c3d349e71a3112df8f3d4f36a44
 
 public class DatabaseAPI
 {
@@ -23,7 +20,7 @@ public class DatabaseAPI
     private static final String FIND_ONE_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/findOne";
 
     private static final String FIND_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/find";
-
+    // created for mulpltile document search
     private static final String UPDATE_ONE_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/updateOne";
     private static final String DELETE_ONE_API_URL = "https://data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/deleteOne";
 
