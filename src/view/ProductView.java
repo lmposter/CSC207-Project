@@ -1,6 +1,7 @@
 package view;
 
 import entity.Review;
+import interface_adapter.AllUserPage.buyerPage.BuyerViewModel;
 import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductState;
 import interface_adapter.product.ProductViewModel;
@@ -32,7 +33,7 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
     private JButton closeButton;
     private final JPanel pdPanel;
 
-    public ProductView(ProductController controller, ProductViewModel productViewModel, boolean showButtons, SearchViewModel searchViewModel)
+    public ProductView(ProductController controller, ProductViewModel productViewModel, boolean showButtons, SearchViewModel searchViewModel, BuyerViewModel buyerViewModel)
     {
         this.searchViewModel = searchViewModel;
         JFrame application = new JFrame(this.viewName);
@@ -104,7 +105,14 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
             {
                 public void actionPerformed(ActionEvent evt)
                 {
-                    JOptionPane.showConfirmDialog(pdPanel,"Shopping cart feature is coming soon!");
+                    if (searchViewModel.getState().isBuyer())
+                    {
+                        buyerViewModel.getState().addProduct(productViewModel.getState().getProduct());
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(pdPanel,"Log in to use shopping cart");
+                    }
                 }
             });
 
