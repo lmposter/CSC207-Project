@@ -4,7 +4,6 @@ import entity.Product;
 import entity.ProductFactory;
 import entity.Review;
 import interface_adapter.API.DatabaseAPI;
-import use_case.CheckOut.CheckOutProductDataAccessInterface;
 import use_case.create_product.CreatePdDAI;
 import use_case.productDetails.ProductDetailsDAI;
 import use_case.search.SearchDAI;
@@ -15,7 +14,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI, CheckOutProductDataAccessInterface
+public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
 {
     private final File csvFile;
     private final ProductFactory productFactory;
@@ -205,9 +204,4 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI, Ch
         DatabaseAPI.buyProduct("name", name, id, title, price);
     }
 
-    @Override
-    public int getInvertory(String id)
-    {
-        return products.get(id).getInventory();
-    }
 }
