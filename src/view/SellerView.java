@@ -31,7 +31,7 @@ public class SellerView extends JPanel implements ActionListener, PropertyChange
     final JButton logOut;
     final JButton searchItem;
     final JButton sellProduct;
-    final JButton orders;
+//    final JButton orders;
 
     /**
      * Constructs a SellerView with the provided view model and controller.
@@ -78,9 +78,9 @@ public class SellerView extends JPanel implements ActionListener, PropertyChange
         buttons.add(sellProduct);
 
         // Add Personal Page Button
-        orders = new JButton(SellerViewModel.PERSONAL_PAGE_LABEL);
-        styleButton(orders, Color.GRAY, Color.BLACK);
-        buttons.add(orders);
+//        orders = new JButton(SellerViewModel.PERSONAL_PAGE_LABEL);
+//        styleButton(orders, Color.GRAY, Color.BLACK);
+//        buttons.add(orders);
 
         // Add Log Out Button
         logOut = new JButton(SellerViewModel.LOGOUT_BUTTON_LABEL);
@@ -91,7 +91,7 @@ public class SellerView extends JPanel implements ActionListener, PropertyChange
         logOut.addActionListener(this);
         searchItem.addActionListener(this);
         sellProduct.addActionListener(this);
-        orders.addActionListener(this);
+//        orders.addActionListener(this);
 
         // Set up the layout
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -143,15 +143,16 @@ public class SellerView extends JPanel implements ActionListener, PropertyChange
             sellerController.switchPageSearch(currentState.getUsername());
         } else if (evt.getSource() == sellProduct) {
             // Perform sell product action
-            System.out.println("Selling a product...");
+            System.out.println("Store Page...");
             SellerState currentState = sellerViewModel.getState();
             sellerController.switchPageStorePage(currentState.getUsername());
-        } else if (evt.getSource() == orders) {
-            // Perform personal page action
-            System.out.println("Accessing personal page...");
-            SellerState currentState = sellerViewModel.getState();
-            sellerController.switchPageOrder(currentState.getUsername());
         }
+//        else if (evt.getSource() == orders) {
+//            // Perform personal page action
+//            System.out.println("Accessing personal page...");
+//            SellerState currentState = sellerViewModel.getState();
+//            sellerController.switchPageOrder(currentState.getUsername());
+//        }
     }
 
     /**
