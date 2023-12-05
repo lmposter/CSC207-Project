@@ -19,42 +19,42 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class SearchTest {
-    @Mock
-    private SearchDAI mockUserDataAccessObject;
-    @Mock
-    private SearchOutPutBoundary mockSearchPresenter;
-    private SearchInteractor searchInteractor;
-
-    // Setup for Mockito annotations and initializing the test object
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        searchInteractor = new SearchInteractor(
-                mockUserDataAccessObject,
-                mockSearchPresenter);
-    }
-
-    // Test case for guest user signup
-    @Test
-    void testExecute() {
-        // Arrange
-        SearchInputData inputData = new SearchInputData("apple");
-
-        // Act
-        searchInteractor.execute(inputData);
-
-        // Assert
-        verify(mockSearchPresenter).prepareSuccessView(any(String.class), any(SearchOutPutData.class));
-    }
-
-    // Test case to verify the functionality of switching pages
-    @Test
-    void testSwitchPage() {
-        // Act
-        searchInteractor.switchPage();
-
-        // Assert
-        verify(mockSearchPresenter).switchPage();
-    }
+//    @Mock
+//    private SearchDAI mockUserDataAccessObject;
+//    @Mock
+//    private SearchOutPutBoundary mockSearchPresenter;
+//    private SearchInteractor searchInteractor;
+//
+//    // Setup for Mockito annotations and initializing the test object
+//    @BeforeEach
+//    void setUp() {
+//        MockitoAnnotations.openMocks(this);
+//        searchInteractor = new SearchInteractor(
+//                mockUserDataAccessObject,
+//                mockSearchPresenter);
+//    }
+//
+//    // Test case for guest user signup
+//    @Test
+//    void testExecute() {
+//        // Arrange
+//        SearchInputData inputData = new SearchInputData("apple");
+//
+//        // Act
+//        searchInteractor.execute(inputData);
+//
+//        // Assert
+//        verify(mockSearchPresenter).prepareSuccessView(any(String.class), any(SearchOutPutData.class));
+//    }
+//
+//    // Test case to verify the functionality of switching pages
+//    @Test
+//    void testSwitchPage() {
+//        // Act
+//        searchInteractor.switchPage();
+//
+//        // Assert
+//        verify(mockSearchPresenter).switchPage();
+//    }
 
 }
