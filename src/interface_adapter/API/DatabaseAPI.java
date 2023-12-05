@@ -5,11 +5,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class DatabaseAPI
 {
@@ -18,12 +20,21 @@ public class DatabaseAPI
 
     private static final String UPDATE_ONE_API_URL = "https://us-east-2.aws.data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/updateOne";
     private static final String DELETE_ONE_API_URL = "https://data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/deleteOne";
+
+    private static final String Find_API_URL = "https://data.mongodb-api.com/app/data-dfulc/endpoint/data/v1/action/find";
     private static final String API_TOKEN = System.getenv("API_TOKEN_MongoDB");
 
     private static JSONObject createResponseBody()
     {
         JSONObject requestBody = new JSONObject();
         requestBody.put("collection", "UsersCollection");
+        requestBody.put("database", "CSC207");
+        requestBody.put("dataSource", "CSC207");
+        return requestBody;
+    }
+    private  static JSONObject createProductBody(){
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("collection", "Products");
         requestBody.put("database", "CSC207");
         requestBody.put("dataSource", "CSC207");
         return requestBody;
@@ -222,7 +233,7 @@ public class DatabaseAPI
     }
 
     public static void buyProduct(String field, String value, String id, String title, Double price) {
-        System.out.println("Reset attempts by Name");
+        System.out.println("Bud products by Name");
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         JSONObject requestBody = createResponseBody();
         JSONObject insert_document = new JSONObject();

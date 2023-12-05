@@ -73,6 +73,7 @@ public class Main
         try
         {
             userDataAccessObject = new UserDataAccessObject(new BuyerFactory(), new SellerFactory());
+
         } catch (IOException e)
         {
             throw new RuntimeException(e);

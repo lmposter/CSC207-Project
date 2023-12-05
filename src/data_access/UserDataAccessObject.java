@@ -75,7 +75,7 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
     @Override
     public void clearCart(String username)
     {
-        // TODO: Clear the user's shopping cart
+//        DatabaseAPI.clearCart("name", username);
     }
 
     // Delete a user based on the identifier (username)
