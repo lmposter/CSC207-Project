@@ -98,7 +98,7 @@ public class SellerPresenter implements SellerOutputBoundary {
     public void switchPageStorePage(String username) {
         StorePageState storePageState = storePageViewModel.getState();
         SellerState sellerState = sellerViewModel.getState();
-        storePageState.setUsername(username);
+        storePageState.setUsername(sellerState.getUsername());
         storePageViewModel.setState(storePageState);
         this.viewManagerModel.setActiveView(storePageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();

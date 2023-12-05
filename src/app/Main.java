@@ -64,7 +64,7 @@ public class Main
             File f = new File("empty.csv");
             if (!(f.exists() && !f.isDirectory())) {
                 FileWriter fileWriter = new FileWriter("empty.csv");
-                String header = "id,title,inventory,URL,price,tags,reviews";
+                String header = "id,title,inventory,URL,price,reviews,seller";
                 fileWriter.write(header);
                 fileWriter.close();
             }
@@ -106,10 +106,10 @@ public class Main
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, guestViewModel, buyerViewModel, pdDAO);
         views.add(searchView, searchView.viewName);
 
-        StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject);
+        StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject, sellerViewModel, pdDAO);
         views.add(storePageView, storePageView.viewName);
 
-        CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO);
+        CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO, sellerViewModel);
         views.add(createPdView, createPdView.viewName);
 
         OrderView orderView = OrderUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, buyerViewModel, searchViewModel, orderViewModel, null, storePageViewModel, userDataAccessObject);

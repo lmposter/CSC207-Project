@@ -8,6 +8,7 @@ import entity.LoginUser;
 import entity.Product;
 import entity.ProductFactory;
 import entity.Seller;
+import interface_adapter.AllUserPage.sellerPage.SellerViewModel;
 import interface_adapter.Create_product.CreatePdState;
 import interface_adapter.Create_product.CreatePdViewModel;
 import interface_adapter.ViewManagerModel;
@@ -45,60 +46,79 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
     private JLabel sellerNameLabel;
     private JLabel sellerIdLabel;
     private JPanel productsPanel;
+
+    private SellerViewModel sellerViewModel;
     private JButton createProductButton;
 
     private final StorePageViewModel storePageViewModel;
     private UserDataAccessObject userDAO;
 
-    public StorePageView(StorePageViewModel storePageViewModel, UserDataAccessObject userDAO)
+    private final ProductDAO productDAO;
+
+    private JPanel headerPanel;
+
+    public StorePageView(StorePageViewModel storePageViewModel, UserDataAccessObject userDAO, SellerViewModel sellerViewModel, ProductDAO productDAO)
     {
         this.storePageViewModel = storePageViewModel;
         this.userDAO = userDAO;
+        this.productDAO = productDAO;
+        this.sellerViewModel = sellerViewModel;
         setLayout(new BorderLayout());
-        JPanel headerPanel = new JPanel();
+        headerPanel = new JPanel();
         headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JLabel title = new JLabel("My Store Page");
         headerPanel.add(title);
         add(headerPanel, BorderLayout.NORTH);
+        // Products
+        productsPanel = new JPanel();
+    }
+
+    public void refreshView() {
+        System.out.println("refreshed");
+        // Clear existing products
+        productsPanel.removeAll();
         if (storePageViewModel.getState().getUsername()!=null){
             Seller seller = (Seller) userDAO.get(storePageViewModel.getState().getUsername());
             if (seller != null){
-            // Seller info
-            sellerNameLabel = new JLabel(seller.getName());
-            sellerIdLabel = new JLabel("Store ID: " + seller.getId());
-            headerPanel.add(sellerNameLabel);
-            headerPanel.add(sellerIdLabel);
-            // Add the header panel to the top of the view
-            // Products
-            productsPanel = new JPanel();
-            productsPanel.setLayout(new BoxLayout(productsPanel, BoxLayout.Y_AXIS));
-            for (Product product : seller.getProducts())
-            {
-                addProduct(product);
-            }
+                // Seller info
+                sellerNameLabel = new JLabel(seller.getName());
+                sellerIdLabel = new JLabel("Store ID: " + seller.getId());
+                headerPanel.add(sellerNameLabel);
+                headerPanel.add(sellerIdLabel);
+                // Add the header panel to the top of the view
+                productsPanel.setLayout(new BoxLayout(productsPanel, BoxLayout.Y_AXIS));
+                for (Product product : productDAO.findProducts(seller.getName()))
+                {
+                    addProduct(product);
+                }
 
-            // Create product button
-            createProductButton = new JButton("Create a New Product");
-            createProductButton.setSize(20, 10);
-            createProductButton.addActionListener(e -> actionPerformed(e));
+                // Create product button
+                createProductButton = new JButton("Create a New Product");
+                createProductButton.setSize(20, 10);
+                createProductButton.addActionListener(e -> actionPerformed(e));
 
-            //        add(productsPanel, BorderLayout.NORTH);
-            add(new JScrollPane(productsPanel), BorderLayout.CENTER);
-            add(createProductButton, BorderLayout.SOUTH);
-            // Set the initial size of the view
-            setSize(800, 600);
+                //        add(productsPanel, BorderLayout.NORTH);
+                add(new JScrollPane(productsPanel), BorderLayout.CENTER);
+                add(createProductButton, BorderLayout.SOUTH);
+                // Set the initial size of the view
+                setSize(800, 600);
 
-        }}else{
+            }}else{
             sellerNameLabel = new JLabel("Seller do not exist");
             headerPanel.add(sellerNameLabel);
         }
+
+        // Revalidate and repaint the products panel
+        productsPanel.revalidate();
+        productsPanel.repaint();
     }
 
     private void addProduct(Product product)
     {
         JPanel productPanel = new JPanel();
         productPanel.setLayout(new BoxLayout(productPanel, BoxLayout.X_AXIS));
+        productPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         try
         {
@@ -112,8 +132,11 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
             productPanel.add(new JLabel("ImageURL is broken"));
         }
 
+        productPanel.add(new JLabel("   ")); // Empty space for padding
         productPanel.add(new JLabel(product.getTitle()));
+        productPanel.add(new JLabel("   ")); // Empty space for padding
         productPanel.add(new JLabel("Price: $" + product.getPrice()));
+        productPanel.add(new JLabel("   ")); // Empty space for padding
         productPanel.add(new JLabel("Inventory: " + product.getInventory()));
         productPanel.addMouseListener(new MouseAdapter()
         {
@@ -125,10 +148,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
                 ProductViewModel pdViewModel = new ProductViewModel();
                 ProductState state = new ProductState(product.getId(), product.getURL(), product.getTitle(), product.getPrice(), product.getInventory(), product.getReview());
                 pdViewModel.setState(state);
-
-                ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
-
-                ProductView pdView = ProductDetailsUseCaseFactory.createForSeller(viewManagerModel, pdViewModel, pdDAO);
+                ProductView pdView = ProductDetailsUseCaseFactory.createForSeller(viewManagerModel, pdViewModel, productDAO);
 
                 assert pdView != null;
                 pdView.show();
@@ -167,7 +187,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
                 fileWriter.write(header);
                 fileWriter.close();}
             ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory());
-            view.CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO);
+            view.CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO, sellerViewModel);
             assert createPdView != null;
             views.add(createPdView, createPdView.viewName);
 
