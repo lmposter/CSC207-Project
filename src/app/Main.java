@@ -94,7 +94,7 @@ public class Main
         SellerView sellerView = SellerUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, sellerViewModel, searchViewModel, null, null, null, userDataAccessObject);
         views.add(sellerView, sellerView.viewName);
 
-        SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, pdDAO);
+        SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, guestViewModel, buyerViewModel, pdDAO);
         views.add(searchView, searchView.viewName);
 
         StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject);

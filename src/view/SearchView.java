@@ -4,6 +4,8 @@ import app.ProductDetailsUseCaseFactory;
 import data_access.ProductDAO;
 import entity.Product;
 import entity.ProductFactory;
+import interface_adapter.AllUserPage.buyerPage.BuyerViewModel;
+import interface_adapter.AllUserPage.guestPage.GuestViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductState;
@@ -30,6 +32,8 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     public final String viewName = "Search";
 
     private final SearchViewModel searchViewModel;
+    private final GuestViewModel guestViewModel;
+    private final BuyerViewModel buyerViewModel;
     private final JTextField searchInputField = new JTextField(50);
     private final SearchController searchController;
 
@@ -38,10 +42,12 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
     private JPanel mainPanel;
 
 
-    public SearchView(SearchController controller, SearchViewModel searchViewModel)
+    public SearchView(SearchController controller, SearchViewModel searchViewModel, GuestViewModel guestViewModel, BuyerViewModel buyerViewModel)
     {
         this.searchController = controller;
         this.searchViewModel = searchViewModel;
+        this.guestViewModel = guestViewModel;
+        this.buyerViewModel = buyerViewModel;
         this.mainPanel = new JPanel();
         searchViewModel.addPropertyChangeListener(this);
 
@@ -179,7 +185,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                         }
                         ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory()); //TODO: change to database
 
-                        ProductView pdView = ProductDetailsUseCaseFactory.createForBuyer(viewManagerModel, pdViewModel, pdDAO, searchViewModel);
+                        ProductView pdView = ProductDetailsUseCaseFactory.createForBuyer(viewManagerModel, pdViewModel, pdDAO, searchViewModel, buyerViewModel);
 
                         assert pdView != null;
                         pdView.show();

@@ -1,16 +1,33 @@
 package view;
 
+import app.ProductDetailsUseCaseFactory;
+import data_access.ProductDAO;
+import entity.Product;
+import entity.ProductFactory;
 import interface_adapter.AllUserPage.buyerPage.BuyerController;
 import interface_adapter.AllUserPage.buyerPage.BuyerState;
 import interface_adapter.AllUserPage.buyerPage.BuyerViewModel;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.product.ProductController;
+import interface_adapter.product.ProductState;
+import interface_adapter.product.ProductViewModel;
+import interface_adapter.search.SearchViewModel;
 
+import javax.imageio.IIOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * BuyerView represents the graphical user interface for the buyer's dashboard.
@@ -171,8 +188,55 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
         {
             // Perform shopping cart action
             System.out.println("Accessing shopping cart...");
-            BuyerState currentState = buyerViewModel.getState();
-            buyerController.switchPageShoppingCart(currentState.getUsername());
+            //            BuyerState currentState = buyerViewModel.getState();
+            //            buyerController.switchPageShoppingCart(currentState.getUsername());
+            if (buyerViewModel.getState().getCart().isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Currently empty");
+            } else
+            {
+                JPanel cart = new JPanel();
+
+                double price = 0.0;
+
+                JFrame frame = new JFrame(buyerViewModel.getState().getUsername() + "'s Shopping Cart");
+                frame.setSize(600, 400);
+
+                cart.setLayout(new BoxLayout(cart, BoxLayout.Y_AXIS));
+                JScrollPane scrollPane = new JScrollPane(cart);
+                frame.add(scrollPane);
+
+                for (Product p : buyerViewModel.getState().getCart())
+                {
+                    price += p.getPrice();
+
+                    JPanel productPanel = new JPanel();
+                    productPanel.setLayout(new BoxLayout(productPanel, BoxLayout.Y_AXIS));
+
+                    try
+                    {
+                        URL url = new URL(p.getURL());
+                        Image image = ImageIO.read(url).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+                        ImageIcon imageicon = new ImageIcon(image);
+                        JLabel imageLabel = new JLabel(imageicon);
+                        productPanel.add(imageLabel);
+                    } catch (IIOException | MalformedURLException e)
+                    {
+                        e.printStackTrace();
+                        productPanel.add(new JLabel("Image not available"));
+                    } catch (IOException e)
+                    {
+                        throw new RuntimeException(e);
+                    }
+                    productPanel.add(new JLabel("Price: $" + p.getPrice()));
+                    productPanel.add(new JLabel("Inventory: " + p.getInventory()));
+
+                    cart.add(productPanel);
+                }
+                JLabel totalPrice = new JLabel("Total Price: " + String.valueOf(price));
+                cart.add(totalPrice);
+                frame.setVisible(true);
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 package app;
 
 import data_access.ProductDAO;
+import interface_adapter.AllUserPage.buyerPage.BuyerViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.product.ProductController;
 import interface_adapter.product.ProductPresenter;
@@ -22,13 +23,13 @@ public class ProductDetailsUseCaseFactory
 {
     private ProductDetailsUseCaseFactory(){}
 
-    public static ProductView createForBuyer(ViewManagerModel viewManagerModel, ProductViewModel productViewModel, ProductDAO userProductDAO, SearchViewModel searchViewModel)
+    public static ProductView createForBuyer(ViewManagerModel viewManagerModel, ProductViewModel productViewModel, ProductDAO userProductDAO, SearchViewModel searchViewModel, BuyerViewModel buyerViewModel)
     {
 
         try
         {
             ProductController productController = createUserProductUseCase(viewManagerModel, productViewModel, userProductDAO);
-            return new ProductView(productController, productViewModel, true, searchViewModel);
+            return new ProductView(productController, productViewModel, true, searchViewModel, buyerViewModel);
         } catch (IOException e)
         {
             JOptionPane.showMessageDialog(null, "Could not open product data file.");
@@ -43,7 +44,7 @@ public class ProductDetailsUseCaseFactory
         try
         {
             ProductController productController = createUserProductUseCase(viewManagerModel, productViewModel, userProductDAO);
-            return new ProductView(productController, productViewModel, false, null);
+            return new ProductView(productController, productViewModel, false, null, null);
         } catch (IOException e)
         {
             JOptionPane.showMessageDialog(null, "Could not open product data file.");
