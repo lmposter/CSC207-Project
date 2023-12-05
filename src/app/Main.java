@@ -19,6 +19,7 @@ import view.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -60,10 +61,13 @@ public class Main
         SearchViewModel searchViewModel = new SearchViewModel();
         try
         {
-            FileWriter fileWriter = new FileWriter("empty.csv");
-            String header = "id,title,inventory,URL,price";
-            fileWriter.write(header);
-            fileWriter.close();
+            File f = new File("empty.csv");
+            if (!(f.exists() && !f.isDirectory())) {
+                FileWriter fileWriter = new FileWriter("empty.csv");
+                String header = "id,title,inventory,URL,price,tags,reviews";
+                fileWriter.write(header);
+                fileWriter.close();
+            }
         } catch (Exception e)
         {
             e.printStackTrace();

@@ -32,7 +32,7 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
         headers.put("URL", 3);
         headers.put("price", 4);
         headers.put("tags", 5);
-        headers.put("reviews", 6);
+        headers.put("reviews", 5);
 
         if (csvFile.length() == 0)
         {
@@ -43,18 +43,13 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
         }
     }
 
-    private void createProducts()
-    {
-        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile)))
-        {
+    private void createProducts() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
             String header = reader.readLine();
 
-            if (header.equals("id,title,inventory,URL,price"))
-            {
-
+            if (header.equals("id,title,inventory,URL,price,tags,reviews")) {
                 String row;
-                while ((row = reader.readLine()) != null)
-                {
+                while ((row = reader.readLine()) != null) {
                     String[] col = row.split(",");
                     String id = String.valueOf(col[headers.get("id")]);
                     String title = String.valueOf(col[headers.get("title")]);
@@ -63,33 +58,32 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
                     double price = Double.parseDouble(col[headers.get("price")]);
 
                     ArrayList<Review> reviews = new ArrayList<>();
-                    String[] reviewContent = col[headers.get("review")].split(";");
-                    for (String review : reviewContent)
-                    {
-                        String[] StarAndComment = review.substring(1, review.length() - 1).split(",");
-                        reviews.add(new Review(Integer.parseInt(StarAndComment[0]), StarAndComment[1]));
+                    int reviewsIndex = headers.get("reviews");
+                    String[] reviewContent = col[reviewsIndex].split(";");
+                    for (String review : reviewContent) {
+                        if (review.length() >= 1) {
+                            String[] StarAndComment = review.substring(1, review.length() - 1).split(",");
+                            if (StarAndComment.length == 2 && !StarAndComment[0].isEmpty()) {
+                                reviews.add(new Review(Integer.parseInt(StarAndComment[0]), StarAndComment[1]));
+                            }
+                        }
                     }
-                    ;
                     Product product = productFactory.create(title, URL, price, inventory);
                     product.setID(id);
-                    for (Review review : reviews)
-                    {
+                    for (Review review : reviews) {
                         product.addReview(review);
                     }
                     products.put(id, product);
-
                 }
-            } else
-            {
+            } else {
                 throw new IOException();
             }
-
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("Can't read file in ProductDAO createProducts");
             System.exit(1);
         }
     }
+
 
 
     private void save()
@@ -103,9 +97,13 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
 
             for (Product pd : products.values())
             {
-                String line = String.format("%s,%s,%s,%s,%s,%s", pd.getId(), pd.getTitle(), pd.getInventory(), pd.getURL(), pd.getPrice(), pd.getReview());
+
+                String line = String.format("%s,%s,%s,%s,%s,%s,%s",
+                        pd.getId(), pd.getTitle(), pd.getInventory(), pd.getURL(), pd.getPrice(), "", pd.getReview());
+
                 writer.write(line);
                 writer.newLine();
+                System.out.println(1);
             }
 
             writer.close();

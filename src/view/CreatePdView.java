@@ -41,28 +41,6 @@ public class CreatePdView extends JPanel implements ActionListener, PropertyChan
         // Add components
         addComponents(controller);
 
-        createButton.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                    Object source = e.getSource();
-                    CreatePdState currentState = createPdViewModel.getState();
-                    if (source.equals(createButton)) {
-                        createPdController.execute(
-                                currentState.getTitle(),
-                                currentState.getPrice(),
-                                currentState.getInventory(),
-                                currentState.getUrl()
-                        );
-                    }
-                    JFrame frame = new JFrame(CreatePdViewModel.AFTER_VIEW_PANEL_LABEL);
-                    frame.setSize(600, 400);
-                    JLabel message = new JLabel(createPdViewModel.getState().getMessage());
-                    frame.add(message);
-                    frame.setVisible(true);
-                    }
-                }
-        );
-
         priceField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -162,21 +140,12 @@ public class CreatePdView extends JPanel implements ActionListener, PropertyChan
 
         // Create button
         createButton = new JButton("Create Now");
-        createButton.addActionListener(e -> handleCreateButtonClick());
+        createButton.addActionListener(this);
 
         add(createButton);
 
     }
 
-    private void handleCreateButtonClick() {
-        CreatePdState currentState = createPdViewModel.getState();
-        createPdController.execute(
-                    currentState.getTitle(),
-                    currentState.getPrice(),
-                    currentState.getInventory(),
-                    currentState.getUrl()
-            );
-        }
 
     @Override
     public void actionPerformed(ActionEvent e) {
