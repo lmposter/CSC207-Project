@@ -48,7 +48,7 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
     JLabel imageLabel;
     final JButton logOut;
     final JButton searchItem;
-    final JButton sellProduct;
+    // final JButton sellProduct;
     final JButton orders;
     final JButton shoppingCart;
 
@@ -93,12 +93,12 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
         buttons.add(searchItem);
 
         // Add Sell Product Button
-        sellProduct = new JButton(BuyerViewModel.SELL_PRODUCT_LABEL);
-        styleButton(sellProduct, Color.GRAY, Color.BLACK);
-        buttons.add(sellProduct);
+//        sellProduct = new JButton(BuyerViewModel.SELL_PRODUCT_LABEL);
+//        styleButton(sellProduct, Color.GRAY, Color.BLACK);
+//        buttons.add(sellProduct);
 
         // Add Personal Page Button
-        orders = new JButton(BuyerViewModel.PERSONAL_PAGE_LABEL);
+        orders = new JButton("Orders");
         styleButton(orders, Color.GRAY, Color.BLACK);
         buttons.add(orders);
 
@@ -115,7 +115,7 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
         // Add action listeners
         logOut.addActionListener(this);
         searchItem.addActionListener(this);
-        sellProduct.addActionListener(this);
+        // sellProduct.addActionListener(this);
         orders.addActionListener(this);
         shoppingCart.addActionListener(this);
 
@@ -172,12 +172,6 @@ public class BuyerView extends JPanel implements ActionListener, PropertyChangeL
             System.out.println("Searching for items...");
             BuyerState currentState = buyerViewModel.getState();
             buyerController.switchPageSearch(currentState.getUsername());
-        } else if (evt.getSource() == sellProduct)
-        {
-            // Perform sell product action
-            System.out.println("Selling a product...");
-            BuyerState currentState = buyerViewModel.getState();
-            buyerController.switchPageStorePage(currentState.getUsername());
         } else if (evt.getSource() == orders)
         {
             // Perform personal page action
