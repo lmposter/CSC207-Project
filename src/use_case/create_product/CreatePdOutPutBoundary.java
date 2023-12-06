@@ -4,4 +4,5 @@ public interface CreatePdOutPutBoundary {
     void prepareFailCreateView(String s);
 
     void prepareSuccessCreateView(String s);
+
 }
