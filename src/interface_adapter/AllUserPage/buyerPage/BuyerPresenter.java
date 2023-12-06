@@ -71,7 +71,7 @@ public class BuyerPresenter implements BuyerOutputBoundary
         // Set the username in the search view model and switch to the search page
         SearchState searchState = searchViewModel.getState();
         searchState.setUsername(username);
-        searchState.setBuyer(true);
+        searchState.setUser(1);
         this.viewManagerModel.setActiveView(searchViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
