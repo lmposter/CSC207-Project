@@ -69,7 +69,7 @@ public class OrderUseCaseFactory {
                     searchViewModel, orderViewModel, shoppingCartViewModel, storePageViewModel,
                     userDataAccessObject);
 
-            return new OrderView(orderController, orderViewModel, true, searchViewModel);
+            return new OrderView(orderController, orderViewModel, false, searchViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }

@@ -6,6 +6,8 @@ import use_case.orders.OrderInputBoundary;
 import use_case.orders.OrderInputData;
 import use_case.orders.OrderInteractor;
 
+import java.util.List;
+
 /**
  * The LoginController class is responsible for handling user interface actions related to the login functionality.
  * It communicates with the use case through the LoginInputBoundary and processes user input.
@@ -28,13 +30,8 @@ public class OrderController {
      * Executes the login action triggered by the user interface.
      *
      * @param username The username entered by the user.
-     * @param password The password entered by the user.
      */
-    public void execute(String username, String password) {
-        // Create LoginInputData from user input
-        OrderInputData orderInputData = new OrderInputData(username);
-
-        // Execute the login process through the use case interactor
-        orderInteractor.execute(orderInputData);
+    public List<String[]> execute(String username) {
+        return orderInteractor.execute(username);
     }
 }

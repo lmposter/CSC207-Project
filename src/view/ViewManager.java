@@ -29,6 +29,12 @@ public class ViewManager implements PropertyChangeListener {
                     ((StorePageView) activeComponent).refreshView();
                 }
             }
+            if (viewModelName.equals("Order")) {
+                Component activeComponent = views.getComponent(8); // Assuming Store Page is the sixth component
+                if (activeComponent instanceof OrderView) {
+                    ((OrderView) activeComponent).initComponents(true);
+                }
+            }
             cardLayout.show(views, viewModelName);
         }
 

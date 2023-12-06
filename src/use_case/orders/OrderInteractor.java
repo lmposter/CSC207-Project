@@ -11,6 +11,7 @@ import use_case.search.SearchOutPutData;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderInteractor implements OrderInputBoundary{
 
@@ -23,9 +24,8 @@ public class OrderInteractor implements OrderInputBoundary{
     }
 
     @Override
-    public void execute(OrderInputData orderInputData) {
-        orderDAO.execute(orderInputData);
-        orderDAO.getProducts(orderInputData.username());
+    public List<String[]> execute(String username) {
+        return orderDAO.getProducts(username);
     }
 
     @Override
