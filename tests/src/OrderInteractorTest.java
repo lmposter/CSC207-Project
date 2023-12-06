@@ -20,10 +20,11 @@ class OrderInteractorTest {
         OrderInputData validInputData = new OrderInputData("buyer123");
 
         // Execute interactor
-        interactor.execute(validInputData);
+        interactor.execute(validInputData.username());
 
         // Verify that the DAO's execute method is called with the correct input
-        Mockito.verify(mockDAO).execute(Mockito.eq(validInputData));
+        // here excute is not called on DAO because another metod getProdcts is more suitable
+        Mockito.verify(mockDAO).getProducts(Mockito.eq(validInputData.username()));
     }
 
     @Test

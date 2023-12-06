@@ -3,6 +3,7 @@ package interface_adapter.AllUserPage.buyerPage;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.orders.OrderPresenter;
+import interface_adapter.orders.OrderState;
 import interface_adapter.orders.OrderViewModel;
 import interface_adapter.search.SearchState;
 import interface_adapter.search.SearchViewModel;
@@ -79,6 +80,9 @@ public class BuyerPresenter implements BuyerOutputBoundary
     public void switchPageOrder(String username)
     {
         // Switch to the order page
+        OrderState orderState = orderViewModel.getState();
+        orderState.setUsername(username);
+        orderViewModel.setState(orderState);
         this.viewManagerModel.setActiveView(orderViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }

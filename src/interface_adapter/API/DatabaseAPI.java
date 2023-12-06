@@ -118,6 +118,7 @@ public class DatabaseAPI
             String name = documentObject.getString("name");
             String id = documentObject.getString("id");
             String cart = documentObject.getString("cart");
+            System.out.println("get one");
             if (id.startsWith("B"))
             {
                 if (cart.equals("empty"))
@@ -279,18 +280,24 @@ public class DatabaseAPI
             System.out.println(resString);
             JSONObject mainObject = new JSONObject(resString);
             JSONObject documentObject = mainObject.getJSONObject("document");
-            JSONArray documentsArray = mainObject.getJSONArray("products");
-            List<JSONObject> list = jsonArrayToList(documentsArray);
+            JSONArray documentsArray = documentObject.getJSONArray("products");
+            List<String[]> list = jsonArrayToList(documentsArray);
+            return list;
         } catch (IOException | JSONException e)
         {
             e.printStackTrace();
+            return null;
         }
-    return  null;}
+    }
 
-    private static List<JSONObject> jsonArrayToList(JSONArray documentsArray) {
-        List<JSONObject> list = new ArrayList<>();
+    private static List<String[]> jsonArrayToList(JSONArray documentsArray) {
+        List<String[]> list = new ArrayList<>();
         for (int i = 0; i < documentsArray.length(); i++) {
-            list.add(documentsArray.getJSONObject(i));
+            String[] product = new String[3];
+            for (int j = 0; j < 3; j ++){
+                product[j] = documentsArray.getJSONArray(i).getString(j);
+            }
+            list.add(product);
         }
         return list;
     }
