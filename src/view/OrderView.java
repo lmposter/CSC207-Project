@@ -1,9 +1,9 @@
 package view;
 
+import interface_adapter.API.DatabaseAPI;
 import interface_adapter.orders.OrderController;
 import interface_adapter.orders.OrderViewModel;
 import interface_adapter.search.SearchViewModel;
-import interface_adapter.signup.SignupState;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -49,23 +49,26 @@ public class OrderView extends JPanel implements ActionListener, PropertyChangeL
         title.setBackground(new Color(60, 60, 60));
         this.add(title);
 
-        initComponents(showButtons);
+        if (showButtons){
+            initComponents(true);
+        };
 
         backButton = new JButton("Back");
         styleButton(backButton, new Color(0, 0, 0), Color.WHITE);
         this.add(backButton);
-
         backButton.addActionListener(this);
 
 
     }
 
-    private void initComponents(boolean showButtons) {
-        List<String[]> productsData = getHardcodedProductsData(2);
-
+    public void initComponents(boolean showButtons) {
+        System.out.println("refreshed");
+        List<String[]> productsData = DatabaseAPI.findProducts(orderViewModel.getState().getUsername());
+        if (productsData != null){
         for (String[] productData : productsData) {
             String title = productData[1];
             String price = productData[2];
+            System.out.println(title + price);
 
             JLabel pdTitle = new JLabel("Title: " + title);
             JLabel priceLabel = new JLabel("Price: $" + price);
@@ -100,6 +103,7 @@ public class OrderView extends JPanel implements ActionListener, PropertyChangeL
 
             this.add(Box.createRigidArea(new Dimension(0, 10))); // Add some spacing between products
         }
+        this.revalidate();}
     }
 
     private void styleButton(@NotNull JButton button, Color bgColor, Color fgColor) {

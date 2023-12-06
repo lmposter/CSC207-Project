@@ -57,4 +57,17 @@ class ProductInteractorTest {
         // Verify that the presenter is called with a success view message and the product data
         verify(mockUserPresenter).prepareSuccessView(any(ProductOutputData.class));
     }
+    @Test
+    void testBuyProduct() {
+        // Prepare test data
+        String name = "John Doe";
+        String ID = "123";
+        String title = "Product1";
+        Double price = 10.0;
+
+        // Execute the method
+        productInteractor.buyProduct(name, ID, title, price);
+        // Verify that the appropriate method on the presenter was called with null as an argument
+        verify(mockUserPresenter).prepareSuccessView(null);
+    }
 }

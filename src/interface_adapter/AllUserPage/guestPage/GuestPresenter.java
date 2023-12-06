@@ -73,7 +73,7 @@ public class GuestPresenter implements GuestOutputBoundary
         // Update the search state with the username and switch to the search page.
         SearchState searchState = searchViewModel.getState();
         searchState.setUsername(username);
-        searchState.setBuyer(false);
+        searchState.setUser(0);
         this.viewManagerModel.setActiveView(searchViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }

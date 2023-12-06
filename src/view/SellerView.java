@@ -15,10 +15,11 @@ import java.beans.PropertyChangeListener;
 /**
  * SellerView represents the graphical user interface for the seller's dashboard.
  */
-public class SellerView extends JPanel implements ActionListener, PropertyChangeListener {
+public class SellerView extends JPanel implements ActionListener, PropertyChangeListener
+{
 
     // Constants
-    public final String viewName = "logged in";
+    public final String viewName = "seller logged in";
     private final SellerViewModel sellerViewModel;
     private final SellerController sellerController;
 
@@ -31,15 +32,16 @@ public class SellerView extends JPanel implements ActionListener, PropertyChange
     final JButton logOut;
     final JButton searchItem;
     final JButton sellProduct;
-//    final JButton orders;
+    //    final JButton orders;
 
     /**
      * Constructs a SellerView with the provided view model and controller.
      *
-     * @param sellerViewModel The view model for the seller's dashboard.
+     * @param sellerViewModel  The view model for the seller's dashboard.
      * @param sellerController The controller for managing seller actions.
      */
-    public SellerView(SellerViewModel sellerViewModel, SellerController sellerController) {
+    public SellerView(SellerViewModel sellerViewModel, SellerController sellerController)
+    {
         this.sellerViewModel = sellerViewModel;
         this.sellerController = sellerController;
         this.sellerViewModel.addPropertyChangeListener(this);
@@ -78,9 +80,9 @@ public class SellerView extends JPanel implements ActionListener, PropertyChange
         buttons.add(sellProduct);
 
         // Add Personal Page Button
-//        orders = new JButton(SellerViewModel.PERSONAL_PAGE_LABEL);
-//        styleButton(orders, Color.GRAY, Color.BLACK);
-//        buttons.add(orders);
+        //        orders = new JButton(SellerViewModel.PERSONAL_PAGE_LABEL);
+        //        styleButton(orders, Color.GRAY, Color.BLACK);
+        //        buttons.add(orders);
 
         // Add Log Out Button
         logOut = new JButton(SellerViewModel.LOGOUT_BUTTON_LABEL);
@@ -91,7 +93,7 @@ public class SellerView extends JPanel implements ActionListener, PropertyChange
         logOut.addActionListener(this);
         searchItem.addActionListener(this);
         sellProduct.addActionListener(this);
-//        orders.addActionListener(this);
+        //        orders.addActionListener(this);
 
         // Set up the layout
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -104,7 +106,8 @@ public class SellerView extends JPanel implements ActionListener, PropertyChange
     }
 
     // Helper method to style buttons
-    private void styleButton(JButton button, Color bgColor, Color fgColor) {
+    private void styleButton(JButton button, Color bgColor, Color fgColor)
+    {
         // Styling button appearance
         button.setBackground(bgColor);
         button.setForeground(fgColor);
@@ -120,7 +123,8 @@ public class SellerView extends JPanel implements ActionListener, PropertyChange
     }
 
     // Helper method to style labels
-    private void styleLabel(JLabel label, Color color, Font font) {
+    private void styleLabel(JLabel label, Color color, Font font)
+    {
         label.setForeground(color);
         label.setFont(font);
     }
@@ -130,29 +134,33 @@ public class SellerView extends JPanel implements ActionListener, PropertyChange
      *
      * @param evt The ActionEvent representing the button click event.
      */
-    public void actionPerformed(ActionEvent evt) {
-        if (evt.getSource() == logOut) {
+    public void actionPerformed(ActionEvent evt)
+    {
+        if (evt.getSource() == logOut)
+        {
             // Perform logout action
             System.out.println("Logging out...");
             SellerState currentState = sellerViewModel.getState();
             sellerController.switchPageLogOut();
-        } else if (evt.getSource() == searchItem) {
+        } else if (evt.getSource() == searchItem)
+        {
             // Perform search item action
             System.out.println("Searching for items...");
             SellerState currentState = sellerViewModel.getState();
             sellerController.switchPageSearch(currentState.getUsername());
-        } else if (evt.getSource() == sellProduct) {
+        } else if (evt.getSource() == sellProduct)
+        {
             // Perform sell product action
             System.out.println("Store Page...");
             SellerState currentState = sellerViewModel.getState();
             sellerController.switchPageStorePage(currentState.getUsername());
         }
-//        else if (evt.getSource() == orders) {
-//            // Perform personal page action
-//            System.out.println("Accessing personal page...");
-//            SellerState currentState = sellerViewModel.getState();
-//            sellerController.switchPageOrder(currentState.getUsername());
-//        }
+        //        else if (evt.getSource() == orders) {
+        //            // Perform personal page action
+        //            System.out.println("Accessing personal page...");
+        //            SellerState currentState = sellerViewModel.getState();
+        //            sellerController.switchPageOrder(currentState.getUsername());
+        //        }
     }
 
     /**
@@ -161,7 +169,8 @@ public class SellerView extends JPanel implements ActionListener, PropertyChange
      * @param evt The PropertyChangeEvent representing the change event.
      */
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(PropertyChangeEvent evt)
+    {
         SellerState state = (SellerState) evt.getNewValue();
         title.setText(state.getUsername() + "'s Personal Dashboard");
         usernameLabel.setText("Welcome back! Seller " + state.getUsername());

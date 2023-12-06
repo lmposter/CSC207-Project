@@ -1,17 +1,18 @@
 package use_case.orders;
 
+import java.util.List;
+
 /**
- * The LoginInputBoundary interface defines the input boundary for the login use case.
- * It specifies the methods required to handle user login inputs.
+ * The OrderInputBoundary interface defines the input boundary for tracking order use case.
+ * It specifies the methods required to handle inputs.
  */
 public interface OrderInputBoundary {
 
     /**
-     * Executes the login process based on the provided login input data.
+     * Executes the login process based on the provided user input data.
      *
-     * @param orderInputData The input data containing product to execute.
      */
-    void execute(OrderInputData orderInputData);
+    List<String[]> execute(String name);
 
     void switchPage();
 

@@ -49,6 +49,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
 
     private SellerViewModel sellerViewModel;
     private JButton createProductButton;
+    private JButton returnPage;
 
     private final StorePageViewModel storePageViewModel;
     private UserDataAccessObject userDAO;
@@ -74,13 +75,16 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
         productsPanel = new JPanel();
     }
 
-    public void refreshView() {
+    public void refreshView(ViewManagerModel viewManagerModel)
+    {
         System.out.println("refreshed");
         // Clear existing products
         productsPanel.removeAll();
-        if (storePageViewModel.getState().getUsername()!=null){
+        if (storePageViewModel.getState().getUsername() != null)
+        {
             Seller seller = (Seller) userDAO.get(storePageViewModel.getState().getUsername());
-            if (seller != null){
+            if (seller != null)
+            {
                 // Seller info
                 sellerNameLabel = new JLabel(seller.getName());
                 sellerIdLabel = new JLabel("Store ID: " + seller.getId());
@@ -98,13 +102,29 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
                 createProductButton.setSize(20, 10);
                 createProductButton.addActionListener(e -> actionPerformed(e));
 
+                returnPage = new JButton("return");
+                returnPage.setSize(20, 10);
+                returnPage.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        if (e.getSource().equals(returnPage))
+                        {
+                            viewManagerModel.setActiveView("seller logged in");
+                        }
+                    }
+                });
+
                 //        add(productsPanel, BorderLayout.NORTH);
                 add(new JScrollPane(productsPanel), BorderLayout.CENTER);
                 add(createProductButton, BorderLayout.SOUTH);
+                // add(returnPage);
                 // Set the initial size of the view
                 setSize(800, 600);
 
-            }}else{
+            }
+        } else
+        {
             sellerNameLabel = new JLabel("Seller do not exist");
             headerPanel.add(sellerNameLabel);
         }
@@ -163,7 +183,8 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
 
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
         JFrame application = new JFrame("Create Product");
 
         CardLayout cardLayout = new CardLayout();
@@ -178,14 +199,17 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
 
         CreatePdViewModel createPdViewModel = new CreatePdViewModel();
 
-        try {
+        try
+        {
 
             File f = new File("empty.csv");
-            if (!(f.exists() && !f.isDirectory())) {
+            if (!(f.exists() && !f.isDirectory()))
+            {
                 FileWriter fileWriter = new FileWriter("empty.csv");
                 String header = "id,title,inventory,URL,price,tags,reviews";
                 fileWriter.write(header);
-                fileWriter.close();}
+                fileWriter.close();
+            }
             ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory());
             view.CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO, sellerViewModel);
             assert createPdView != null;
@@ -196,7 +220,8 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
 
             application.pack();
             application.setVisible(true);
-        } catch(IOException ex){
+        } catch (IOException ex)
+        {
             JOptionPane.showMessageDialog(this, "Error reading file");//TODO: change to database
         }
 
@@ -206,13 +231,19 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
     public void propertyChange(PropertyChangeEvent evt)
     {
         Object state = evt.getNewValue();
-        if (state instanceof StorePageState) {
+        if (state instanceof StorePageState)
+        {
             StorePageState storePageState = (StorePageState) state;
-            if (storePageState.getUsernameError() != null) {
+            if (storePageState.getUsernameError() != null)
+            {
                 JOptionPane.showMessageDialog(this, storePageState.getUsernameError());
-            }if (storePageState.getIdError() != null) {
+            }
+            if (storePageState.getIdError() != null)
+            {
                 JOptionPane.showMessageDialog(this, storePageState.getIdError());
-            }if (storePageState.getProductsError() != null) {
+            }
+            if (storePageState.getProductsError() != null)
+            {
                 JOptionPane.showMessageDialog(this, storePageState.getProductsError());
             }
         }

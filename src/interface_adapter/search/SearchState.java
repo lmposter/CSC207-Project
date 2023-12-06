@@ -13,7 +13,8 @@ public class SearchState
 
     private String content = "";
 
-    private boolean isBuyer;
+    private int user;
+    // Guest: 0    Buyer: 1    Seller: 2
 
     private ArrayList<Product> products = new ArrayList<>();
     private String productsError = null;
@@ -31,14 +32,14 @@ public class SearchState
 
     public SearchState(){}
 
-    public boolean isBuyer()
+    public int getUser()
     {
-        return isBuyer;
+        return user;
     }
 
-    public void setBuyer(boolean buyer)
+    public void setUser(int user)
     {
-        isBuyer = buyer;
+        this.user = user;
     }
 
     public String getMessage(){return message;}

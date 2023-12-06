@@ -1,7 +1,10 @@
 package use_case.create_product;
 
-public interface CreatePdOutPutBoundary {
+public interface CreatePdOutPutBoundary
+{
     void prepareFailCreateView(String s);
 
     void prepareSuccessCreateView(String s);
+
+    void switchPage();
 }

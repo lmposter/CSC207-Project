@@ -10,6 +10,7 @@ import use_case.allUser.guestPage.GuestUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.allUser.sellerPage.SellerDataAccessInterface;
 import use_case.orders.OrderDAO;
+import use_case.orders.OrderInputData;
 import use_case.signup.SignUpUserDataAccessInterface;
 
 import java.io.IOException;
@@ -150,6 +151,12 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
     public List<String[]> getProducts(String username) {
         return DatabaseAPI.findProducts(username);
     }
+
+    @Override
+    public void execute(OrderInputData orderInputData) {
+        // place holder
+    }
+
 
     // Save user data to the CSV file
     /**

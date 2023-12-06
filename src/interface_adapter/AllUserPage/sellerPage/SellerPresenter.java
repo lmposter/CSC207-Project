@@ -18,7 +18,8 @@ import use_case.allUser.sellerPage.SellerOutputData;
  * The SellerPresenter class handles the presentation logic for the seller's dashboard.
  * It interacts with various view models and manages the navigation between different views.
  */
-public class SellerPresenter implements SellerOutputBoundary {
+public class SellerPresenter implements SellerOutputBoundary
+{
 
     private final SignupViewModel signupViewModel;
     private final ViewManagerModel viewManagerModel;
@@ -61,36 +62,43 @@ public class SellerPresenter implements SellerOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(SellerOutputData sellerOutputData) {
+    public void prepareSuccessView(SellerOutputData sellerOutputData)
+    {
         // Logic to prepare and display a successful view
     }
 
     @Override
-    public void prepareFailView(String errorMessage) {
+    public void prepareFailView(String errorMessage)
+    {
         SignupState loginState = signupViewModel.getState();
         loginState.setUsernameError(errorMessage);
         signupViewModel.firePropertyChanged();
     }
 
     @Override
-    public void switchPageLogOut() {
+    public void switchPageLogOut()
+    {
         this.viewManagerModel.setActiveView(loginViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageSearch(String username) {
+    public void switchPageSearch(String username)
+    {
         SearchState searchState = searchViewModel.getState();
         searchState.setUsername(username);
+        searchState.setUser(2);
         this.viewManagerModel.setActiveView(searchViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageOrder(String username) {
+    public void switchPageOrder(String username)
+    {
         this.viewManagerModel.setActiveView(orderViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageShoppingCart(String username) {
+    public void switchPageShoppingCart(String username)
+    {
         this.viewManagerModel.setActiveView(shoppingCartViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }

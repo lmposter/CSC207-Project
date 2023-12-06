@@ -16,5 +16,5 @@ public class SearchOutPutData {
 
     }
     public ArrayList<Product> getProducts(){return productsList;}
-
+    public boolean getUseCaseFailed(){return useCaseFailed;}
 }
