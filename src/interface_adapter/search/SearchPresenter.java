@@ -4,6 +4,8 @@ import interface_adapter.ViewManagerModel;
 import use_case.search.SearchOutPutBoundary;
 import use_case.search.SearchOutPutData;
 
+import java.util.List;
+
 public class SearchPresenter implements SearchOutPutBoundary
 {
 
@@ -50,7 +52,8 @@ public class SearchPresenter implements SearchOutPutBoundary
     @Override
     public void switchPage()
     {
-        viewManagerModel.setActiveView(searchViewModel.getState().isBuyer() ? "buyer logged in" : "guest logged in");
+        List<String> user = List.of("guest logged in", "buyer logged in", "seller logged in");
+        viewManagerModel.setActiveView(user.get(searchViewModel.getState().getUser()));
         viewManagerModel.firePropertyChanged();
     }
 }
