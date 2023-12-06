@@ -1,6 +1,5 @@
 package src;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import use_case.create_product.CreatePdInputBoundary;
@@ -8,8 +7,6 @@ import use_case.create_product.CreatePdInteractor;
 import use_case.create_product.CreatePdOutPutBoundary;
 import use_case.create_product.CreatePdInputData;
 import use_case.create_product.CreatePdDAI;
-import entity.Product;
-import entity.ProductFactory;
 
 class CreatedPdInteractorTest {
 

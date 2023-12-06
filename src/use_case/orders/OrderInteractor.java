@@ -23,8 +23,9 @@ public class OrderInteractor implements OrderInputBoundary{
     }
 
     @Override
-    public  void execute(OrderInputData orderInputData) {
-        String name = orderInputData.username();
+    public void execute(OrderInputData orderInputData) {
+        orderDAO.execute(orderInputData);
+        orderDAO.getProducts(orderInputData.username());
     }
 
     @Override
