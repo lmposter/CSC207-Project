@@ -18,7 +18,7 @@ import java.beans.PropertyChangeListener;
 public class SellerView extends JPanel implements ActionListener, PropertyChangeListener {
 
     // Constants
-    public final String viewName = "logged in";
+    public final String viewName = "seller logged in";
     private final SellerViewModel sellerViewModel;
     private final SellerController sellerController;
 

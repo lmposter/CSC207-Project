@@ -16,7 +16,8 @@ import use_case.allUser.sellerPage.SellerOutputData;
  * The SellerPresenter class handles the presentation logic for the seller's dashboard.
  * It interacts with various view models and manages the navigation between different views.
  */
-public class SellerPresenter implements SellerOutputBoundary {
+public class SellerPresenter implements SellerOutputBoundary
+{
 
     private final SignupViewModel signupViewModel;
     private final ViewManagerModel viewManagerModel;
@@ -39,14 +40,8 @@ public class SellerPresenter implements SellerOutputBoundary {
      * @param shoppingCartViewModel The view model for the shopping cart view.
      * @param storePageViewModel    The view model for the store page view.
      */
-    public SellerPresenter(SignupViewModel signupViewModel,
-                           ViewManagerModel viewManagerModel,
-                           SellerViewModel sellerViewModel,
-                           LoginViewModel loginViewModel,
-                           SearchViewModel searchViewModel,
-                           Orders orderViewModel,
-                           ShoppingCartViewModel shoppingCartViewModel,
-                           StorePageViewModel storePageViewModel) {
+    public SellerPresenter(SignupViewModel signupViewModel, ViewManagerModel viewManagerModel, SellerViewModel sellerViewModel, LoginViewModel loginViewModel, SearchViewModel searchViewModel, Orders orderViewModel, ShoppingCartViewModel shoppingCartViewModel, StorePageViewModel storePageViewModel)
+    {
 
         this.signupViewModel = signupViewModel;
         this.viewManagerModel = viewManagerModel;
@@ -59,41 +54,49 @@ public class SellerPresenter implements SellerOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(SellerOutputData sellerOutputData) {
+    public void prepareSuccessView(SellerOutputData sellerOutputData)
+    {
         // Logic to prepare and display a successful view
     }
 
     @Override
-    public void prepareFailView(String errorMessage) {
+    public void prepareFailView(String errorMessage)
+    {
         SignupState loginState = signupViewModel.getState();
         loginState.setUsernameError(errorMessage);
         signupViewModel.firePropertyChanged();
     }
 
     @Override
-    public void switchPageLogOut() {
+    public void switchPageLogOut()
+    {
         this.viewManagerModel.setActiveView(loginViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageSearch(String username) {
+    public void switchPageSearch(String username)
+    {
         SearchState searchState = searchViewModel.getState();
         searchState.setUsername(username);
+        searchState.setUser(2);
         this.viewManagerModel.setActiveView(searchViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageOrder(String username) {
+    public void switchPageOrder(String username)
+    {
         this.viewManagerModel.setActiveView(orderViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageShoppingCart(String username) {
+    public void switchPageShoppingCart(String username)
+    {
         this.viewManagerModel.setActiveView(shoppingCartViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void switchPageStorePage(String username) {
+    public void switchPageStorePage(String username)
+    {
         this.viewManagerModel.setActiveView(storePageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }

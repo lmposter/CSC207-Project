@@ -105,13 +105,13 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
             {
                 public void actionPerformed(ActionEvent evt)
                 {
-                    if (searchViewModel.getState().isBuyer())
+                    if (searchViewModel.getState().getUser() == 1)
                     {
                         buyerViewModel.getState().addProduct(productViewModel.getState().getProduct());
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(pdPanel,"Log in to use shopping cart");
+                        JOptionPane.showMessageDialog(pdPanel,"Log in buyer account to use shopping cart");
                     }
                 }
             });
