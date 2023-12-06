@@ -26,7 +26,7 @@ public class ViewManager implements PropertyChangeListener {
             if (viewModelName.equals("Store Page")) {
                 Component activeComponent = views.getComponent(6); // Assuming Store Page is the sixth component
                 if (activeComponent instanceof StorePageView) {
-                    ((StorePageView) activeComponent).refreshView();
+                    ((StorePageView) activeComponent).refreshView(viewManagerModel);
                 }
             }
             if (viewModelName.equals("Order")) {

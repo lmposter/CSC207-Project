@@ -19,7 +19,8 @@ import java.beans.PropertyChangeListener;
  * LoginView class representing the user interface for login operations.
  * It extends JPanel and implements ActionListener and PropertyChangeListener for handling UI events.
  */
-public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
+public class LoginView extends JPanel implements ActionListener, PropertyChangeListener
+{
     public final String viewName = "log in";
     private final LoginViewModel loginViewModel;
 
@@ -35,9 +36,10 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
      * Initializes the view components and sets up event listeners.
      *
      * @param loginViewModel The ViewModel associated with login.
-     * @param controller The controller handling login operations.
+     * @param controller     The controller handling login operations.
      */
-    public LoginView(@NotNull LoginViewModel loginViewModel, LoginController controller) {
+    public LoginView(@NotNull LoginViewModel loginViewModel, LoginController controller)
+    {
         this.loginController = controller;
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
@@ -103,16 +105,20 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         deactivateButton.addActionListener(this);
 
         // Adding key listeners to input fields for real-time state updating
-        usernameInputField.addKeyListener(new KeyAdapter() {
+        usernameInputField.addKeyListener(new KeyAdapter()
+        {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(KeyEvent e)
+            {
                 updateState();
             }
         });
 
-        passwordInputField.addKeyListener(new KeyAdapter() {
+        passwordInputField.addKeyListener(new KeyAdapter()
+        {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(KeyEvent e)
+            {
                 updateState();
             }
         });
@@ -125,7 +131,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
      * @param bgColor Background color of the button.
      * @param fgColor Foreground (text) color of the button.
      */
-    private void styleButton(@NotNull JButton button, Color bgColor, Color fgColor) {
+    private void styleButton(@NotNull JButton button, Color bgColor, Color fgColor)
+    {
         button.setBackground(bgColor);
         button.setForeground(fgColor);
         button.setFont(new Font("Arial", Font.BOLD, 14));
@@ -149,11 +156,13 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
      * @return The styled JLabel.
      */
     @NotNull
-    private JLabel createLabel(String text, Color bg, Color fg, int fontSize) {
+    private JLabel createLabel(String text, Color bg, Color fg, int fontSize)
+    {
         JLabel label = new JLabel(text);
         label.setForeground(fg);
         label.setFont(new Font("Arial", Font.BOLD, fontSize));
-        if (bg != null) {
+        if (bg != null)
+        {
             label.setOpaque(true);
             label.setBackground(bg);
         }
@@ -163,7 +172,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     /**
      * Updates the LoginViewModel's state based on the current input field values.
      */
-    private void updateState() {
+    private void updateState()
+    {
         LoginState currentState = loginViewModel.getState();
         currentState.setUsername(usernameInputField.getText());
         currentState.setPassword(new String(passwordInputField.getPassword()));
@@ -176,14 +186,18 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
      * @param evt The action event.
      */
     @Override
-    public void actionPerformed(@NotNull ActionEvent evt) {
+    public void actionPerformed(@NotNull ActionEvent evt)
+    {
         updateState();
         Object source = evt.getSource();
-        if (source.equals(logInButton)) {
+        if (source.equals(logInButton))
+        {
             loginController.execute(loginViewModel.getState().getUsername(), loginViewModel.getState().getPassword());
-        } else if (source.equals(cancelButton)) {
+        } else if (source.equals(cancelButton))
+        {
             loginController.switchPage();
-        } else if (source.equals(deactivateButton)) {
+        } else if (source.equals(deactivateButton))
+        {
             loginController.deactivate(loginViewModel.getState().getUsername(), loginViewModel.getState().getPassword());
         }
     }
@@ -194,9 +208,11 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
      * @param evt The property change event.
      */
     @Override
-    public void propertyChange(@NotNull PropertyChangeEvent evt) {
+    public void propertyChange(@NotNull PropertyChangeEvent evt)
+    {
         LoginState state = (LoginState) evt.getNewValue();
-        if (state != null) {
+        if (state != null)
+        {
             usernameInputField.setText(state.getUsername());
         }
     }

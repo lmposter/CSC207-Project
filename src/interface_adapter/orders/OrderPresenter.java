@@ -9,20 +9,11 @@ import use_case.login.LoginOutputData;
 import use_case.orders.OrderInputData;
 import use_case.orders.OrderOutputBoundary;
 
-/**
- * The LoginPresenter class is responsible for preparing and displaying views based on login outcomes.
- */
 public class OrderPresenter implements OrderOutputBoundary {
 
     private final BuyerViewModel buyerViewModel;
     private ViewManagerModel viewManagerModel;
 
-    /**
-     * Constructs a LoginPresenter with the required view models and view manager model.
-     *
-     * @param viewManagerModel The view manager model for managing views.
-     * @param buyerViewModel   The view model for the buyer.
-     */
     public OrderPresenter(ViewManagerModel viewManagerModel,
                           BuyerViewModel buyerViewModel) {
         this.viewManagerModel = viewManagerModel;
