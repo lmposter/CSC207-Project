@@ -1,18 +1,20 @@
 package use_case.orders;
 
 /**
- * The LoginOutputData class represents the output data for the login use case.
- * It holds information to be presented in the view after a login attempt.
+ * The OrderOutputData class represents the output data for the order use case.
+ * It holds information to be presented in the view after a clicking order.
  */
-public record OrderOutputData(String username, boolean successful) {
+public record OrderOutputData(String username, boolean successful)
+{
 
     /**
-     * Constructs a LoginOutputData object with the provided username and success status.
+     * Constructs a OrderOutputData object with the provided username and success status.
      *
-     * @param username   The username associated with the login attempt.
-     * @param successful True if the login was successful, false otherwise.
+     * @param username   The username associated with the user.
+     * @param successful True if the tracking was successful, false otherwise.
      */
-    public OrderOutputData {
+    public OrderOutputData
+    {
     }
 
     /**
@@ -21,17 +23,19 @@ public record OrderOutputData(String username, boolean successful) {
      * @return The username.
      */
     @Override
-    public String username() {
+    public String username()
+    {
         return username;
     }
 
     /**
-     * Gets the id associated with the login attempt.
+     * Gets if the attempt is success.
      *
-     * @return The username.
+     * @return successful.
      */
     @Override
-    public boolean successful() {
+    public boolean successful()
+    {
         return successful;
     }
 }

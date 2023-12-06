@@ -8,17 +8,25 @@ import javax.swing.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class CreatePdController {
+public class CreatePdController
+{
     CreatePdInputBoundary createPdUseCaseInteractor;
-    public CreatePdController(CreatePdInputBoundary createPdUseCaseInteractor){
+
+    public CreatePdController(CreatePdInputBoundary createPdUseCaseInteractor)
+    {
         this.createPdUseCaseInteractor = createPdUseCaseInteractor;
     }
 
-    public void execute(String title, String price, String inventory, String imageUrl, String username) {
+    public void switchPage()
+    {
+        createPdUseCaseInteractor.switchPage();
+    }
+
+    public void execute(String title, String price, String inventory, String imageUrl, String username)
+    {
 
 
-        CreatePdInputData createPdInputData = new CreatePdInputData(title, price,
-                inventory, imageUrl, username);
+        CreatePdInputData createPdInputData = new CreatePdInputData(title, price, inventory, imageUrl, username);
         createPdUseCaseInteractor.execute(createPdInputData);
     }
 

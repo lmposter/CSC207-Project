@@ -1,18 +1,20 @@
 package use_case.orders;
 
 /**
- * The LoginInputData class represents the input data for the user login process.
+ * The OrderInputData class represents the input data for the user tracking order process.
  * It holds information such as the username and password.
  */
-public record OrderInputData(String username) {
+public record OrderInputData(String username)
+{
 
     /**
      * Gets the username.
      *
-     * @return The username for the login attempt.
+     * @return The username for the user.
      */
     @Override
-    public String username() {
+    public String username()
+    {
         return username;
     }
 }

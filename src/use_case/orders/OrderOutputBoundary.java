@@ -3,10 +3,11 @@ package use_case.orders;
 import use_case.login.LoginOutputData;
 
 /**
- * The LoginOutputBoundary interface defines methods for presenting the output of the login use case.
- * It includes operations for preparing views in case of successful and failed login attempts.
+ * The OrderOutputBoundary interface defines methods for presenting the output of the order use case.
+ * It includes operations for preparing views in case of successful and failed tracking order.
  */
-public interface OrderOutputBoundary {
+public interface OrderOutputBoundary
+{
 
 
     /**
@@ -17,7 +18,7 @@ public interface OrderOutputBoundary {
     void prepareSuccessView(OrderInputData orderInputData);
 
     /**
-     * Prepare the view for a failed fetch attempt.
+     * Prepare the view for a failed attempt.
      *
      * @param errorMessage The error message to be displayed.
      */
