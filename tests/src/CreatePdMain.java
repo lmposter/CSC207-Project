@@ -4,6 +4,7 @@ import app.CreatePdUseCaseFactory;
 import app.SearchUseCaseFactory;
 import data_access.ProductDAO;
 import entity.ProductFactory;
+import interface_adapter.AllUserPage.sellerPage.SellerViewModel;
 import interface_adapter.Create_product.CreatePdViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.search.SearchViewModel;
@@ -30,6 +31,7 @@ public class CreatePdMain {
         new ViewManager(views, cardLayout, viewManagerModel);
 
     CreatePdViewModel createPdViewModel = new CreatePdViewModel();
+    SellerViewModel sellerViewModel = new SellerViewModel();
 
     FileWriter fileWriter = new FileWriter("empty.csv");
     String header = "id,title,inventory,URL,price";
@@ -37,7 +39,7 @@ public class CreatePdMain {
         fileWriter.close();
     ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory());
 
-    view.CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO);
+    view.CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO, sellerViewModel);
         assert createPdView != null;
         views.add(createPdView, createPdView.viewName);
 
