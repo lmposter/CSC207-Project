@@ -75,7 +75,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                 if (evt.getSource().equals(goSearch))
                 {
                     SearchState currentState = searchViewModel.getState();
-                    searchController.execute(currentState.getContent());
+                    searchController.execute(currentState.getContent(), buyerViewModel.getState().getUsername());
                     frame.setVisible(true);
                 }
             }

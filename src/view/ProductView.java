@@ -94,10 +94,10 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
             {
                 public void actionPerformed(ActionEvent evt)
                 {
-//                    SearchState searchState = searchViewModel.getState();
-//                    ProductState productState = productViewModel.getState();
-//                    productController.buyProduct(searchState.getUsername(), productState.getID(), productState.getTitle(), productState.getPrice());
-                    JOptionPane.showConfirmDialog(pdPanel,"Purchase feature is coming soon!");
+                    SearchState searchState = searchViewModel.getState();
+                    ProductState productState = productViewModel.getState();
+                    productController.buyProduct(searchState.getUsername(), productState.getID(), productState.getTitle(), productState.getPrice());
+//                    JOptionPane.showConfirmDialog(pdPanel,"Purchase feature is coming soon!");
                 }
             });
 

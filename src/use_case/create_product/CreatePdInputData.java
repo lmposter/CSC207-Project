@@ -8,11 +8,14 @@ public class CreatePdInputData {
     private final String inventory;
     private final String imageUrl;
 
-    public CreatePdInputData(String title, String price, String inventory, String imageUrl) {
+    private String username;
+
+    public CreatePdInputData(String title, String price, String inventory, String imageUrl, String username) {
         this.title = title.trim();
         this.price = price;
         this.inventory = inventory;
         this.imageUrl = imageUrl.trim();
+        this.username = username;
     }
 
     public String getTitle(){return title;}
@@ -27,5 +30,9 @@ public class CreatePdInputData {
 
     public String getPrice() {
         return price;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

@@ -1,5 +1,7 @@
 package use_case.productDetails;
 
+import interface_adapter.API.DatabaseAPI;
+
 public class ProductInteractor implements ProductInputBoundary {
 
     final ProductDetailsDAI productDetailsDAO;
@@ -21,7 +23,8 @@ public class ProductInteractor implements ProductInputBoundary {
     }
 
     public void buyProduct(String name, String ID, String title, Double price){
-        productDetailsDAO.buyProduct(name, ID, title, price);
+        DatabaseAPI.buyProduct("name", name, ID, title, price);
+//        productDetailsDAO.buyProduct(name, ID, title, price);
         userPresenter.prepareSuccessView(null);
     }
 }

@@ -3,7 +3,7 @@ package interface_adapter.AllUserPage;
 import interface_adapter.AllUserPage.buyerPage.BuyerState;
 
 public abstract class AllUserState {
-    private String username = "";
+    private String username = "Unknown";
 
     /**
      * Constructs a SellerState by copying the values from another SellerState.

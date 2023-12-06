@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.AllUserPage.sellerPage.SellerViewModel;
 import interface_adapter.Create_product.CreatePdController;
 import interface_adapter.Create_product.CreatePdState;
 import interface_adapter.Create_product.CreatePdViewModel;
@@ -22,6 +23,8 @@ public class CreatePdView extends JPanel implements ActionListener, PropertyChan
     public final String viewName = "Create Product";
     private final CreatePdController createPdController;
     private final CreatePdViewModel createPdViewModel;
+
+    private final SellerViewModel sellerViewModel;
     private final JPanel mainPanel;
     private JTextField titleField = new JTextField(50);
     private JTextField priceField = new JTextField(50);
@@ -29,9 +32,10 @@ public class CreatePdView extends JPanel implements ActionListener, PropertyChan
     private JTextField imageUrlField = new JTextField(50);
     private JButton createButton;
 
-    public CreatePdView(CreatePdController controller, CreatePdViewModel createPdViewModel) {
+    public CreatePdView(CreatePdController controller, CreatePdViewModel createPdViewModel, SellerViewModel sellerViewModel) {
         this.createPdController = controller;
         this.createPdViewModel = createPdViewModel;
+        this.sellerViewModel = sellerViewModel;
         this.mainPanel = new JPanel();
 
         createPdViewModel.addPropertyChangeListener(this);
@@ -40,28 +44,6 @@ public class CreatePdView extends JPanel implements ActionListener, PropertyChan
 
         // Add components
         addComponents(controller);
-
-        createButton.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                    Object source = e.getSource();
-                    CreatePdState currentState = createPdViewModel.getState();
-                    if (source.equals(createButton)) {
-                        createPdController.execute(
-                                currentState.getTitle(),
-                                currentState.getPrice(),
-                                currentState.getInventory(),
-                                currentState.getUrl()
-                        );
-                    }
-                    JFrame frame = new JFrame(CreatePdViewModel.AFTER_VIEW_PANEL_LABEL);
-                    frame.setSize(600, 400);
-                    JLabel message = new JLabel(createPdViewModel.getState().getMessage());
-                    frame.add(message);
-                    frame.setVisible(true);
-                    }
-                }
-        );
 
         priceField.addKeyListener(
                 new KeyListener() {
@@ -162,32 +144,25 @@ public class CreatePdView extends JPanel implements ActionListener, PropertyChan
 
         // Create button
         createButton = new JButton("Create Now");
-        createButton.addActionListener(e -> handleCreateButtonClick());
+        createButton.addActionListener(this);
 
         add(createButton);
 
     }
 
-    private void handleCreateButtonClick() {
-        CreatePdState currentState = createPdViewModel.getState();
-        createPdController.execute(
-                    currentState.getTitle(),
-                    currentState.getPrice(),
-                    currentState.getInventory(),
-                    currentState.getUrl()
-            );
-        }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         CreatePdState currentState = createPdViewModel.getState();
+
         if (source.equals(createButton)) {
             createPdController.execute(
                     currentState.getTitle(),
                     currentState.getPrice(),
                     currentState.getInventory(),
-                    currentState.getUrl()
+                    currentState.getUrl(),
+                    sellerViewModel.getState().getUsername()
             );
         }
         JFrame frame = new JFrame(CreatePdViewModel.AFTER_VIEW_PANEL_LABEL);

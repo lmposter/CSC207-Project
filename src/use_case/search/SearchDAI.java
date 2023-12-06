@@ -11,5 +11,6 @@ public interface SearchDAI {
 
     ArrayList<Product> getItems(String content);
 
-    void save(Product pd);
+    void save(Product pd, String username);
+
 }
