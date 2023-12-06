@@ -26,7 +26,7 @@ public class SellerViewModel extends ViewModel {
      *
      */
     public SellerViewModel() {
-        super("logged in");
+        super("seller logged in");
     }
 
     /**

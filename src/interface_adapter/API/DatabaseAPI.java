@@ -118,6 +118,7 @@ public class DatabaseAPI
             String name = documentObject.getString("name");
             String id = documentObject.getString("id");
             String cart = documentObject.getString("cart");
+            System.out.println("get one");
             if (id.startsWith("B"))
             {
                 if (cart.equals("empty"))
