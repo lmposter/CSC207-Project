@@ -89,19 +89,6 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
         DatabaseAPI.delete("id", identifier);
     }
 
-    // Update user information
-    @Override
-    public void update(LoginUser user)
-    {
-        // Placeholder implementation
-    }
-
-    // Get a list of all users
-    @Override
-    public List<LoginUser> getAllUsers()
-    {
-        return null; // Placeholder implementation
-    }
 
     // Check if an account is locked
     @Override

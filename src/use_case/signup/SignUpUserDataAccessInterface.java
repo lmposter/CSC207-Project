@@ -52,12 +52,4 @@ public interface SignUpUserDataAccessInterface {
      *
      * @param user The updated user object.
      */
-    void update(LoginUser user);
-
-    /**
-     * Retrieves a list of all users in the data store.
-     *
-     * @return List of all users.
-     */
-    List<LoginUser> getAllUsers();
 }
