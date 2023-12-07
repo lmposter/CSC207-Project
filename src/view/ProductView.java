@@ -154,4 +154,19 @@ public class ProductView extends JPanel implements ActionListener, PropertyChang
     {
         return productController;
     }
-}
+
+    public JButton getBuyButton() {
+        return buy;
+    }
+
+    public JButton getAddToCartButton() {
+        return add_to_cart;
+    }
+
+    public JButton getCloseButton() {
+        return closeButton;
+    }
+
+    public JPanel getPdPanel() {
+        return pdPanel;
+    }}
