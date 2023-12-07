@@ -10,6 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EntityTest
 {
+
+    /*
+    Test Buyer's shopping cart works correctly (add/remove product; get the total price)
+     */
     @Test
     void testBuyer()
     {
@@ -27,6 +31,9 @@ public class EntityTest
         assertEquals(new BuyerFactory().create("name", "password").getPassword(), "password");
     }
 
+    /*
+    Test Guest should NOT have name and password
+     */
     @Test
     void testGuest()
     {
@@ -38,6 +45,9 @@ public class EntityTest
         assertEquals(guest.getPassword(), "null");
     }
 
+    /*
+    Test assigning ID to product works properly
+     */
     @Test
     void testProduct()
     {
@@ -48,6 +58,9 @@ public class EntityTest
         assertEquals(product.getId(), product.getID());
     }
 
+    /*
+    Test review is correct and printing all the reviews
+     */
     @Test
     void testReview()
     {
@@ -61,6 +74,9 @@ public class EntityTest
         Review.printReviews(reviews);
     }
 
+    /*
+    Test Seller can manage its products
+     */
     @Test
     void testSeller()
     {
@@ -73,6 +89,9 @@ public class EntityTest
         assertTrue(seller.getProducts().isEmpty());
     }
 
+    /*
+    Test shopping cart works properly
+     */
     @Test
     void testCart()
     {
