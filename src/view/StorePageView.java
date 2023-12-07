@@ -132,7 +132,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
         productsPanel.repaint();
     }
 
-    private void addProduct(Product product)
+    public void addProduct(Product product)
     {
         JPanel productPanel = new JPanel();
         productPanel.setLayout(new BoxLayout(productPanel, BoxLayout.X_AXIS));
