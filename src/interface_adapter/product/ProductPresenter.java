@@ -21,7 +21,6 @@ public class ProductPresenter implements ProductOutPutBoundary{
     public void prepareSuccessView(ProductOutputData response) {
 
         ProductState productState = productViewModel.getState();
-        productState.setID(response.getPdID());
         productState.setTitle(response.getTitle());
         productState.setPrice(response.getPrice());
         productState.setInventory(response.getInventory());
