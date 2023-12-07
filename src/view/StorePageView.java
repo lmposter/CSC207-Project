@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.search.SearchViewModel;
+import interface_adapter.store_page.StorePageController;
 import interface_adapter.store_page.StorePageState;
 import interface_adapter.store_page.StorePageViewModel;
 
@@ -47,23 +48,20 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
     private JLabel sellerIdLabel;
     private JPanel productsPanel;
 
+    private StorePageController storePageController;
+
     private SellerViewModel sellerViewModel;
     private JButton createProductButton;
     private JButton returnPage;
 
     private final StorePageViewModel storePageViewModel;
-    private UserDataAccessObject userDAO;
-
-    private final ProductDAO productDAO;
-
     private JPanel headerPanel;
 
-    public StorePageView(StorePageViewModel storePageViewModel, UserDataAccessObject userDAO, SellerViewModel sellerViewModel, ProductDAO productDAO)
+    public StorePageView(StorePageViewModel storePageViewModel, SellerViewModel sellerViewModel, StorePageController storePageController)
     {
         this.storePageViewModel = storePageViewModel;
-        this.userDAO = userDAO;
-        this.productDAO = productDAO;
         this.sellerViewModel = sellerViewModel;
+        this.storePageController = storePageController;
         setLayout(new BorderLayout());
         headerPanel = new JPanel();
         headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -82,7 +80,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
         productsPanel.removeAll();
         if (storePageViewModel.getState().getUsername() != null)
         {
-            Seller seller = (Seller) userDAO.get(storePageViewModel.getState().getUsername());
+            Seller seller = (Seller) storePageController.get(storePageViewModel.getState().getUsername());
             if (seller != null)
             {
                 // Seller info
@@ -92,7 +90,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
                 headerPanel.add(sellerIdLabel);
                 // Add the header panel to the top of the view
                 productsPanel.setLayout(new BoxLayout(productsPanel, BoxLayout.Y_AXIS));
-                for (Product product : productDAO.findProducts(seller.getName()))
+                for (Product product : storePageController.findProducts(seller.getName()))
                 {
                     addProduct(product);
                 }
@@ -168,7 +166,7 @@ public class StorePageView extends JPanel implements ActionListener, PropertyCha
                 ProductViewModel pdViewModel = new ProductViewModel();
                 ProductState state = new ProductState(product.getId(), product.getURL(), product.getTitle(), product.getPrice(), product.getInventory(), product.getReview());
                 pdViewModel.setState(state);
-                ProductView pdView = ProductDetailsUseCaseFactory.createForSeller(viewManagerModel, pdViewModel, productDAO);
+                ProductView pdView = ProductDetailsUseCaseFactory.createForSeller(viewManagerModel, pdViewModel, storePageController.getDAO());
 
                 assert pdView != null;
                 pdView.show();

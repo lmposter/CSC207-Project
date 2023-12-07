@@ -63,6 +63,11 @@ public class OrderView extends JPanel implements ActionListener, PropertyChangeL
 
     public void initComponents(boolean showButtons) {
         System.out.println("refreshed");
+        // Clear existing components
+        this.removeAll();
+
+        // Add the title label
+        this.add(title);
         List<String[]> productsData = orderController.findProducts(orderViewModel.getState().getUsername());
         if (productsData != null){
         for (String[] productData : productsData) {
@@ -103,7 +108,8 @@ public class OrderView extends JPanel implements ActionListener, PropertyChangeL
 
             this.add(Box.createRigidArea(new Dimension(0, 10))); // Add some spacing between products
         }
-        this.revalidate();}
+            this.add(backButton);
+            this.revalidate();}
     }
 
     private void styleButton(@NotNull JButton button, Color bgColor, Color fgColor) {
