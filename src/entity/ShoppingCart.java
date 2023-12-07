@@ -58,19 +58,6 @@ public class ShoppingCart // implements Iterable<Product>
     }
 
     /**
-     *
-     * @return the number of such product in cart
-     * @param product
-     */
-    public int getProductQuantity(Product product)
-    {
-        if (!this.contains(product))
-            throw new NoSuchElementException();
-        else
-            return cart.get(product);
-    }
-
-    /**
      * Remove a product from the shopping cart
      * Raise an exception if there is no such product
      * @param product
@@ -82,29 +69,6 @@ public class ShoppingCart // implements Iterable<Product>
         cart.put(product, cart.get(product) - 1);
         if (cart.get(product) <= 0)
             cart.remove(product);
-    }
-
-
-    /**
-     * Clear the shopping cart
-     */
-    public void clearCart()
-    {
-        cart.clear();
-    }
-
-    /**
-     *
-     * @return if there is enough products in stock
-     */
-    public boolean inStock()
-    {
-        for (Product i : cart.keySet())
-        {
-            if(cart.get(i) > i.getInventory())
-                return false;
-        }
-        return true;
     }
 
     public HashMap<Product, Integer> getCart()

@@ -43,13 +43,17 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
         }
     }
 
-    private void createProducts() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+    private void createProducts()
+    {
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile)))
+        {
             String header = reader.readLine();
 
-            if (header.equals("id,title,inventory,URL,price,reviews,seller")) {
+            if (header.equals("id,title,inventory,URL,price,reviews,seller"))
+            {
                 String row;
-                while ((row = reader.readLine()) != null) {
+                while ((row = reader.readLine()) != null)
+                {
                     String[] col = row.split(",");
                     String id = String.valueOf(col[headers.get("id")]);
                     String title = String.valueOf(col[headers.get("title")]);
@@ -60,31 +64,36 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
                     int reviewsIndex = headers.get("reviews");
                     ArrayList<Review> reviews = new ArrayList<>();
                     String[] reviewContent = col[reviewsIndex].split(";");
-                    for (String review : reviewContent) {
-                        if (review.length() >= 1) {
+                    for (String review : reviewContent)
+                    {
+                        if (review.length() >= 1)
+                        {
                             String[] StarAndComment = review.substring(1, review.length() - 1).split(",");
-                            if (StarAndComment.length == 2 && !StarAndComment[0].isEmpty()) {
+                            if (StarAndComment.length == 2 && !StarAndComment[0].isEmpty())
+                            {
                                 reviews.add(new Review(Integer.parseInt(StarAndComment[0]), StarAndComment[1]));
                             }
                         }
                     }
                     Product product = productFactory.create(title, URL, price, inventory);
                     product.setID(id);
-                    for (Review review : reviews) {
+                    for (Review review : reviews)
+                    {
                         product.addReview(review);
                     }
                     products.put(id, product);
                     productSeller.put(id, username);
                 }
-            } else {
+            } else
+            {
                 throw new IOException();
             }
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             System.out.println("Can't read file in ProductDAO createProducts");
             System.exit(1);
         }
     }
-
 
 
     private void save()
@@ -99,8 +108,7 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
             for (Product pd : products.values())
             {
 
-                String line = String.format("%s,%s,%s,%s,%s,%s,%s",
-                        pd.getId(), pd.getTitle(), pd.getInventory(), pd.getURL(), pd.getPrice(), pd.getReview(), productSeller.get(pd.getID()));
+                String line = String.format("%s,%s,%s,%s,%s,%s,%s", pd.getId(), pd.getTitle(), pd.getInventory(), pd.getURL(), pd.getPrice(), pd.getReview(), productSeller.get(pd.getID()));
 
                 writer.write(line);
                 writer.newLine();
@@ -205,12 +213,15 @@ public class ProductDAO implements SearchDAI, CreatePdDAI, ProductDetailsDAI
     }
 
     @Override
-    public ArrayList<Product> findProducts(String username){
+    public ArrayList<Product> findProducts(String username)
+    {
         ArrayList<Product> result = new ArrayList<>();
-        for (Map.Entry<String, String> entry : productSeller.entrySet()){
+        for (Map.Entry<String, String> entry : productSeller.entrySet())
+        {
             String pID = entry.getKey();
             String sellerName = entry.getValue();
-            if (Objects.equals(sellerName, username)){
+            if (Objects.equals(sellerName, username))
+            {
                 result.add(products.get(pID));
             }
         }

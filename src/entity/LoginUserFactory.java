@@ -1,6 +1,8 @@
 package entity;
 
 public interface LoginUserFactory{
-    /** Pre-condition: valid id, name and password. */
+    /**
+     * Pre-condition: valid id, name and password.
+     */
     LoginUser create(String name, String password);
 }

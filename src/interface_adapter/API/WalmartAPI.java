@@ -1,4 +1,5 @@
 package interface_adapter.API;
+
 import entity.Product;
 import entity.ProductFactory;
 import entity.Review;
@@ -14,10 +15,13 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class WalmartAPI {
+public class WalmartAPI
+{
 
-    public static ArrayList<Product> searchWalmart(String[] searchItems)  {
-        try {
+    public static ArrayList<Product> searchWalmart(String[] searchItems)
+    {
+        try
+        {
 
             HttpURLConnection connection = getHttpURLConnection(searchItems);
 
@@ -25,12 +29,14 @@ public class WalmartAPI {
             int responseCode = connection.getResponseCode();
             System.out.println("Response Code:" + responseCode);
 
-            if (responseCode == HttpURLConnection.HTTP_OK) {
+            if (responseCode == HttpURLConnection.HTTP_OK)
+            {
                 //read the JSON response
                 JSONArray searchResults = getSearchResults(connection);
                 ArrayList<Product> productList = new ArrayList<>();
                 ProductFactory productFactory = new ProductFactory();
-                for (int i = 0; i < searchResults.length(); i++) {
+                for (int i = 0; i < searchResults.length(); i++)
+                {
                     JSONObject result = searchResults.getJSONObject(i);
                     // Extract individual fields from each object in the array
                     JSONObject product = result.getJSONObject("product");
@@ -41,7 +47,10 @@ public class WalmartAPI {
                     JSONObject inventory = result.getJSONObject("inventory");
                     boolean inStock = inventory.getBoolean("in_stock");
                     int numInventory = 0;
-                    if (inStock){numInventory = 1;}
+                    if (inStock)
+                    {
+                        numInventory = 1;
+                    }
                     JSONObject offers = result.getJSONObject("offers");
                     JSONObject primary = offers.getJSONObject("primary");
                     double price = primary.getDouble("price");
@@ -53,46 +62,53 @@ public class WalmartAPI {
                 }
 
                 return productList;
-            } else {
+            } else
+            {
                 System.out.println("HTTP GET request failed");
             }
             // Disconnect the connection
             connection.disconnect();
 
-    } catch (IOException e) {
+        } catch (IOException e)
+        {
             throw new RuntimeException(e);
-    } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
         return null;
     }
 
-    private static JSONArray getSearchResults(HttpURLConnection connection) throws IOException {
+    private static JSONArray getSearchResults(HttpURLConnection connection) throws IOException
+    {
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
         StringBuilder content = new StringBuilder();
 
-        while ((inputLine = in.readLine()) != null) {
+        while ((inputLine = in.readLine()) != null)
+        {
             content.append(inputLine);
         }
         //Parse the JSON response using org.json
         JSONObject jsonObject = new JSONObject(content.toString());
-//      System.out.println(jsonObject);
+        //      System.out.println(jsonObject);
 
         JSONArray searchResults = jsonObject.getJSONArray("search_results");
         return searchResults;
     }
 
-    private static HttpURLConnection getHttpURLConnection(String[] searchItems) throws IOException {
+    private static HttpURLConnection getHttpURLConnection(String[] searchItems) throws IOException
+    {
         String contentS = searchItems[0];
-        for (int i = 1; i < searchItems.length; i++){
+        for (int i = 1; i < searchItems.length; i++)
+        {
             contentS = contentS.concat("+").concat(searchItems[i]);
         }
 
-//        System.out.println(contentS);
+        //        System.out.println(contentS);
         String apiToken = System.getenv("API_TOKEN_WAL");
         String urll = "https://api.bluecartapi.com/request?api_key=".concat(apiToken).concat("&search_term=").concat(contentS).concat("&type=search");
-//        System.out.println(photoURL);
+        //        System.out.println(photoURL);
         URL url = new URL(urll);
         //open a connection to the URL
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -102,15 +118,17 @@ public class WalmartAPI {
         return connection;
     }
 
-    public static void main(String[] args) {
-//        code for testing, uncomment to test
-////        String apiToken = System.getenv("API_TOKEN_WAL");
-////        System.out.println(apiToken);
-////
-//        String[] x = new String[2];
-//        x[0] = "pen";
-//        x[1] = "apple";
-//        System.out.println(searchWalmart(x));
+    public static void main(String[] args)
+    {
+        //        code for testing, uncomment to test
+        ////        String apiToken = System.getenv("API_TOKEN_WAL");
+        ////        System.out.println(apiToken);
+        ////
+        //        String[] x = new String[2];
+        //        x[0] = "pen";
+        //        x[1] = "apple";
+        //        System.out.println(searchWalmart(x));
     }
+
     public WalmartAPI(){}
 }
