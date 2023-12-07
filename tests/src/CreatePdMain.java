@@ -33,10 +33,10 @@ public class CreatePdMain {
     CreatePdViewModel createPdViewModel = new CreatePdViewModel();
     SellerViewModel sellerViewModel = new SellerViewModel();
 
-    FileWriter fileWriter = new FileWriter("empty.csv");
-    String header = "id,title,inventory,URL,price";
-        fileWriter.write(header);
-        fileWriter.close();
+//    FileWriter fileWriter = new FileWriter("empty.csv");
+//    String header = "id,title,inventory,URL,price,reviews,seller";
+//        fileWriter.write(header);
+//        fileWriter.close();
     ProductDAO pdDAO = new ProductDAO("empty.csv", new ProductFactory());
 
     view.CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO, sellerViewModel);

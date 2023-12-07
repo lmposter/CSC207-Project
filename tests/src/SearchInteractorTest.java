@@ -29,7 +29,7 @@ class SearchInteractorTest {
     @Test
     void testExecuteWithNoMatch() {
         // Prepare test data
-        SearchInputData searchData = new SearchInputData("nonexistent", "username");
+        SearchInputData searchData = new SearchInputData("asdasjlknvcxnvcxn@!@#@!", "username");
 
         // Set up mock behavior
         when(searchDAO.numItemsFound(anyString())).thenReturn(0);

@@ -176,7 +176,7 @@ public class SearchView extends JPanel implements ActionListener, PropertyChange
                         try
                         {
                             fileWriter = new FileWriter("empty.csv");
-                            String header = "id,title,inventory,URL,price";
+                            String header = "id,title,inventory,URL,price,reviews,seller";
                             fileWriter.write(header);
                             fileWriter.close();
                         } catch (IOException ex)
