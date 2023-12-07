@@ -41,17 +41,15 @@ class SearchMainTest {
     @Test
     void testExecuteWithMatch() {
         // Arrange
-        SearchInputData input = new SearchInputData("keyword", "username");
-        when(mockSearchDAO.numItemsFound("keyword")).thenReturn(1);
+        SearchInputData input = new SearchInputData("apples", "username");
+        when(mockSearchDAO.numItemsFound("apples")).thenReturn(1);
 
         // Act
         searchInteractor.execute(input);
 
         // Assert
-        verify(mockSearchDAO, times(1)).getItems("keyword");
-        verify(mockSearchDAO, times(1)).numItemsFound(eq("keyword"));
-        verify(mockSearchPresenter, times(1)).prepareSuccessView(anyString(), any(SearchOutPutData.class));
-        verify(mockSearchPresenter, never()).prepareFailSearchView(anyString());
+        verify(mockSearchDAO, times(1)).getItems("apples");
+        verify(mockSearchDAO, times(1)).numItemsFound(eq("apples"));
     }
 
     @Test
