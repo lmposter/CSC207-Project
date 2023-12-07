@@ -87,4 +87,9 @@ public class Product
     {
         return id;
     }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
 }
