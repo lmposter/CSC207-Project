@@ -8,7 +8,6 @@ public class BuyerFactory implements LoginUserFactory {
      * @return
      */
 
-    @Override
     public LoginUser create(String name, String password) {
         return new Buyer(name, password);
     }

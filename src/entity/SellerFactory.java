@@ -9,7 +9,6 @@ public class SellerFactory implements LoginUserFactory {
      * @return
      */
 
-    @Override
     public LoginUser create(String name, String password) {
         return new Seller(name, password);
     }
