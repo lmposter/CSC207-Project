@@ -12,7 +12,7 @@ public interface OrderInputBoundary {
      * Executes the login process based on the provided user input data.
      *
      */
-    List<String[]> execute(String name);
+    List<String[]> findProducts(String name);
 
     void switchPage();
 

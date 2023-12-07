@@ -65,6 +65,7 @@ public class UserDataAccessObject implements SignUpUserDataAccessInterface, Logi
         return DatabaseAPI.get("name", username, buyerFactory, sellerFactory);
     }
 
+
     @Override
     public void changePassword(String username, String password) {
 
