@@ -24,7 +24,7 @@ public class OrderInteractor implements OrderInputBoundary{
     }
 
     @Override
-    public List<String[]> execute(String username) {
+    public List<String[]> findProducts(String username) {
         return orderDAO.getProducts(username);
     }
 

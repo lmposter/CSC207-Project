@@ -63,7 +63,7 @@ public class OrderView extends JPanel implements ActionListener, PropertyChangeL
 
     public void initComponents(boolean showButtons) {
         System.out.println("refreshed");
-        List<String[]> productsData = DatabaseAPI.findProducts(orderViewModel.getState().getUsername());
+        List<String[]> productsData = orderController.findProducts(orderViewModel.getState().getUsername());
         if (productsData != null){
         for (String[] productData : productsData) {
             String title = productData[1];

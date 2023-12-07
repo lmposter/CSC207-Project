@@ -23,8 +23,8 @@ public class OrderController
         orderInteractor.switchPage();
     }
 
-    public List<String[]> execute(String username)
+    public List<String[]> findProducts(String username)
     {
-        return orderInteractor.execute(username);
+        return orderInteractor.findProducts(username);
     }
 }
