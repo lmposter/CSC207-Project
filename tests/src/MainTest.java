@@ -115,7 +115,7 @@ public class MainTest {
         SearchView searchView = SearchUseCaseFactory.create(viewManagerModel, searchViewModel, guestViewModel, buyerViewModel, pdDAO);
         views.add(searchView, searchView.viewName);
 
-        StorePageView storePageView = new StorePageView(storePageViewModel, userDataAccessObject, sellerViewModel, pdDAO);
+        StorePageView storePageView = StoreUseCaseFactory.create(storePageViewModel,sellerViewModel, pdDAO, userDataAccessObject);
         views.add(storePageView, storePageView.viewName);
 
         CreatePdView createPdView = CreatePdUseCaseFactory.create(viewManagerModel, createPdViewModel, pdDAO, sellerViewModel);
