@@ -6,7 +6,9 @@
     </embed>
 </object>
 
-<p>See presentation here: <a href="https://utoronto-my.sharepoint.com/:p:/g/personal/mahe_chen_mail_utoronto_ca/EYzCv06bSaxGitWeMAqm7NQB2a7h0a8SnXsb2T0QtJWiaA?e=jdh9bL">Slides with video demo</p>
+<p>See presentation here: <a href="https://utoronto-my.sharepoint.com/:p:/g/personal/mahe_chen_mail_utoronto_ca/EYzCv06bSaxGitWeMAqm7NQB2a7h0a8SnXsb2T0QtJWiaA?e=jdh9bL">Slides with Video Demo</p>
+    
+## Outdated!
     
 ## Project Domain
 The problem domain our team is tentatively wanting to focus on is e-commerce and online shopping. We are considering developing a full-stack shopping application that will allow users to browse, search for, and purchase products from various online retailers.
