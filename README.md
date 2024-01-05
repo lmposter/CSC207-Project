@@ -1,4 +1,11 @@
 # Full-Stack-Shopping-App (Group 132)
+
+<object data="https://mahechen.com/207.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://mahechen.com/207.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://mahechen.com/207.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
 ## Project Domain
 The problem domain our team is tentatively wanting to focus on is e-commerce and online shopping. We are considering developing a full-stack shopping application that will allow users to browse, search for, and purchase products from various online retailers.
 ## Description of the application
